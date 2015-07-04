@@ -18,7 +18,7 @@ spa.shell = (function () {
         + '<nav id="side">'
         + '<h3>Nav Region</h3>'
         + '<ul>'
-        + '<li>Brian\'s link</li>'
+        + '<li><a id="clientRoutes" href="bcTest.html">Brian\'s Link</a></li>'
 	+ '<li>Craig\'s link</li>'
 	+ '<li>Nathan\'s link</li>'
 	+ '</ul></nav>'
@@ -31,7 +31,7 @@ spa.shell = (function () {
       resize_idto : undefined
     },
     jqueryMap = {},
-    initModule, copyAnchorMap, setJqueryMap;
+    initModule, copyAnchorMap, setJqueryMap, setClicks;
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
   //------------------- BEGIN UTILITY METHODS ------------------
@@ -55,6 +55,19 @@ spa.shell = (function () {
   };
   // End DOM method /setJqueryMap/
 
+  // Begin DOM method /setClicks/
+  function setClicks() {
+    addClickHandler(document.getElementById("clientRoutes"));
+    }
+  // End DOM method /setClicks/
+
+  // Begin DOM method addClickHandler/
+  function addClickHandler(link) {
+    link.addEventListener("click", function(e) {
+      jqueryMap.$content.html('Brian\s content will appear here!!');
+      e.preventDefault();
+      }, false);
+    }
   //--------------------- END DOM METHODS ----------------------
 
   //------------------- BEGIN EVENT HANDLERS -------------------
@@ -81,6 +94,7 @@ spa.shell = (function () {
     stateMap.$container = $container;
     $container.html( configMap.main_html );
     setJqueryMap();
+    setClicks();
   };
   return { initModule : initModule };
   //------------------- END PUBLIC METHODS ---------------------
