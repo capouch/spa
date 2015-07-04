@@ -81,7 +81,7 @@ spa.shell = (function () {
     stateMap.$container = $container;
     $container.html( configMap.main_html );
     setJqueryMap();
+  };
   return { initModule : initModule };
-  }	
   //------------------- END PUBLIC METHODS ---------------------
 }());
