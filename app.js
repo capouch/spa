@@ -19,8 +19,8 @@ var
   methodOverride = require('method-override'),
   morgan = require('morgan'		    ),
   app     = express(),
-  // router = express.Router(),
-  // routes = require('./routes.js'),
+  router = express.Router(),
+  routes = require('./routes.js'),
   server  = http.createServer( app );
 
 // ------------- END MODULE SCOPE VARIABLES ---------------
@@ -32,14 +32,8 @@ var
   app.use(methodOverride());
   // Turn on verbose logging
   // app.use(morgan('combined'));
-  // routes.configRoutes( router, server );
-  app.get('/', function(req, res) {
-    var options = {
-      root: __dirname + '/html/'
-    };
-    res.sendFile('index.html',options);
-  });
-
+  routes.configRoutes( router, server );
+  app.use('/', router);
 // -------------- END SERVER CONFIGURATION ----------------
 
 // ----------------- BEGIN START SERVER -------------------
