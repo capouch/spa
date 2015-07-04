@@ -19,7 +19,7 @@ spa.shell = (function () {
         + '<h3>Nav Region</h3>'
         + '<ul>'
         + '<li><a id="clientRoutes" href="bcTest.html">Brian\'s Link</a></li>'
-	+ '<li>Craig\'s link</li>'
+	+ '<li><a id="testRoutes" href="otherTest.html">Craig\'s link</a></li>'
 	+ '<li>Nathan\'s link</li>'
 	+ '</ul></nav>'
         + '<section id="content">Content Region</section>'
@@ -57,7 +57,8 @@ spa.shell = (function () {
 
   // Begin DOM method /setClicks/
   function setClicks() {
-    addClickHandler(document.getElementById("clientRoutes"));
+    addClickHandler(document.getElementById("clientRoutes"), 'Brian Content');
+    addClickHandler(document.getElementById("testRoutes"), 'Craig Content');
     // Note this assumes only one pushState . . . 
     window.addEventListener("popstate", function(e) {
       jqueryMap.$content.html('Content Region');
@@ -66,10 +67,9 @@ spa.shell = (function () {
   // End DOM method /setClicks/
 
   // Begin DOM method addClickHandler/
-  function addClickHandler(link) {
+  function addClickHandler(link, verbiage) {
     link.addEventListener("click", function(e) {
-      jqueryMap.$content.html('Brian\s content will appear here--'
-      + '<br>Note: back button works!!');
+      jqueryMap.$content.html(verbiage);
       history.pushState(null, null, link.href); 
       e.preventDefault();
       }, false);
