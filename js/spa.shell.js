@@ -68,7 +68,8 @@ spa.shell = (function () {
   // Begin DOM method addClickHandler/
   function addClickHandler(link) {
     link.addEventListener("click", function(e) {
-      jqueryMap.$content.html('Brian\s content will appear here!!');
+      jqueryMap.$content.html('Brian\s content will appear here--'
+      + '<br>Note: back button works!!');
       history.pushState(null, null, link.href); 
       e.preventDefault();
       }, false);
