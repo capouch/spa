@@ -17,6 +17,7 @@ var
   express = require( 'express'              ),
   bodyParser = require('body-parser'        ),
   methodOverride = require('method-override'),
+  morgan = require('morgan'		    ),
   app     = express(),
   // router = express.Router(),
   // routes = require('./routes.js'),
@@ -25,11 +26,19 @@ var
 // ------------- END MODULE SCOPE VARIABLES ---------------
 
 // ------------- BEGIN SERVER CONFIGURATION ---------------
-  app.use( express.static( __dirname + '/html' ) );
+  app.use( express.static( __dirname + '' ) );
   app.use( bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
   app.use(methodOverride());
+  // Turn on verbose logging
+  // app.use(morgan('combined'));
   // routes.configRoutes( router, server );
+  app.get('/', function(req, res) {
+    var options = {
+      root: __dirname + '/html/'
+    };
+    res.sendFile('index.html',options);
+  });
 
 // -------------- END SERVER CONFIGURATION ----------------
 
