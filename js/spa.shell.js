@@ -58,6 +58,10 @@ spa.shell = (function () {
   // Begin DOM method /setClicks/
   function setClicks() {
     addClickHandler(document.getElementById("clientRoutes"));
+    // Note this assumes only one pushState . . . 
+    window.addEventListener("popstate", function(e) {
+      jqueryMap.$content.html('Content Region');
+      });
     }
   // End DOM method /setClicks/
 
@@ -65,6 +69,7 @@ spa.shell = (function () {
   function addClickHandler(link) {
     link.addEventListener("click", function(e) {
       jqueryMap.$content.html('Brian\s content will appear here!!');
+      history.pushState(null, null, link.href); 
       e.preventDefault();
       }, false);
     }
