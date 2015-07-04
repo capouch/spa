@@ -21,7 +21,8 @@ var
 configRoutes = function ( router, server ) {
     router.get('/', function(req, res) {
       var options = {
-        root: __dirname + '/html/'
+        // I don't like this very much 
+        root: __dirname + '/../html/'
       };
       res.sendFile('index.html',options);
     });

@@ -20,7 +20,7 @@ var
   morgan = require('morgan'		    ),
   app     = express(),
   router = express.Router(),
-  routes = require('./routes.js'),
+  routes = require('./js/routes.js'),
   server  = http.createServer( app );
 
 // ------------- END MODULE SCOPE VARIABLES ---------------
