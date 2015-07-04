@@ -1,0 +1,9 @@
+{ "name"    : "SPA",
+  "version" : "0.0.1",
+  "private" : true,
+  "dependencies" : {
+    "express"   : "4.10.x",
+    "body-parser": "1.5.x",
+    "method-override": "2.3.x"
+   }
+}
