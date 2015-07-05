@@ -14,7 +14,7 @@ spa.dates = (function () {
       },
       resize_interval : 200,
       main_html : String()
-        + '<section id="dateCalc">Date Calculation Region</section>'
+        + '<section class ="dateCalc">Date Calculation Region</section>'
     },
     stateMap = {
       $container  : undefined,
