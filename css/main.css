@@ -10,6 +10,7 @@ nav#side {
  height: 100%;
  margin: 1%;
 }
+
 #content {
  margin: 1%;
  padding: 2%;
@@ -18,4 +19,8 @@ nav#side {
  text-align: top;
  background-color:  #FFFF66;
  border-radius: 5px;
+}
+
+#dateCalc {
+  background-color: #CCFF99;
 } 
