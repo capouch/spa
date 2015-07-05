@@ -18,7 +18,7 @@ spa.shell = (function () {
         + '<nav id="side">'
         + '<h3>Nav Region</h3>'
         + '<ul>'
-        + '<li><a id="clientRoutes" href="bcTest.html">Brian\'s Link</a></li>'
+        + '<li><a id="dateCalc" href="./dates">Date calculator</a></li>'
 	+ '<li><a id="testRoutes" href="otherTest.html">Craig\'s link</a></li>'
 	+ '<li>Nathan\'s link</li>'
 	+ '<li><a href=".">Reload</a><li'
@@ -60,7 +60,7 @@ spa.shell = (function () {
 
   // Begin DOM method /setClicks/
   function setClicks() {
-    addClickHandler(document.getElementById("clientRoutes"), 'Brian Content');
+    addClickHandler(document.getElementById("dateCalc"), 'Brian Content');
     addClickHandler(document.getElementById("testRoutes"), 'Craig Content');
     // Enable backing up through content
     window.addEventListener("popstate", function(e) {
@@ -73,7 +73,8 @@ spa.shell = (function () {
   function addClickHandler(link, verbiage) {
     link.addEventListener("click", function(e) {
       savedContent[pushedCount++] = jqueryMap.$content.html();
-      jqueryMap.$content.html(verbiage);
+      // jqueryMap.$content.html(verbiage);
+      spa.dates.initModule(jqueryMap.$content);
       history.pushState(null, null, link.href); 
       e.preventDefault();
       }, false);
