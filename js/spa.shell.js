@@ -19,7 +19,7 @@ spa.shell = (function () {
         + '<h3>Nav Region</h3>'
         + '<ul>'
         + '<li><a id="dateCalc" href="./dates">Date calculator</a></li>'
-	+ '<li><a id="testRoutes" href="otherTest.html">Craig\'s link</a></li>'
+	+ '<li><a id="socketIO" href="./socket">Socket.io View</a></li>'
 	+ '<li>Nathan\'s link</li>'
 	+ '<li><a href=".">Reload</a><li'
 	+ '</ul></nav>'
@@ -60,8 +60,8 @@ spa.shell = (function () {
 
   // Begin DOM method /setClicks/
   function setClicks() {
-    addClickHandler(document.getElementById("dateCalc"), 'Brian Content');
-    addClickHandler(document.getElementById("testRoutes"), 'Craig Content');
+    addClickHandler(document.getElementById("dateCalc"), 'dates');
+    addClickHandler(document.getElementById("socketIO"), 'socket');
     // Enable backing up through content
     window.addEventListener("popstate", function(e) {
       jqueryMap.$content.html(savedContent[--pushedCount]);
@@ -74,7 +74,10 @@ spa.shell = (function () {
     link.addEventListener("click", function(e) {
       savedContent[pushedCount++] = jqueryMap.$content.html();
       // jqueryMap.$content.html(verbiage);
-      spa.dates.initModule(jqueryMap.$content);
+      if (verbiage === 'dates')
+        spa.dates.initModule(jqueryMap.$content);
+      else
+        spa.socket.initModule(jqueryMap.$content);
       history.pushState(null, null, link.href); 
       e.preventDefault();
       }, false);
