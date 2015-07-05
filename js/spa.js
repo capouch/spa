@@ -6,8 +6,7 @@
 var spa = (function () {
   'use strict';
   var initModule = function ( $container ) {
-    // cem.data.initModule();
-    // cem.model.initModule();
+    // Start the shell
     spa.shell.initModule( $container );
   };
 
