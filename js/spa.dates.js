@@ -34,6 +34,7 @@ spa.dates = (function () {
     // Overkill for small amount of functionality
     jqueryMap = {
       $container : $container,
+      $section : $container.find('.dateCalc')
     };
   };
   // End DOM method /setJqueryMap/
@@ -86,6 +87,11 @@ spa.dates = (function () {
     stateMap.$container = $container;
     $container.html( configMap.main_html );
     setJqueryMap();
+
+    // Test moment library functions
+    var now = moment();
+    var then = moment('September 17, 1865');
+    jqueryMap.$section.append('<br>Now ' + now.format("dddd, MMMM Do YYYY") + ' and then: ' + then.format("dddd, MMMM Do YYYY"));
     // setClicks();
   };
   return { initModule : initModule };
