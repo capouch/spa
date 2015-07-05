@@ -21,6 +21,7 @@ spa.shell = (function () {
         + '<li><a id="clientRoutes" href="bcTest.html">Brian\'s Link</a></li>'
 	+ '<li><a id="testRoutes" href="otherTest.html">Craig\'s link</a></li>'
 	+ '<li>Nathan\'s link</li>'
+	+ '<li><a href=".">Home</a><li'
 	+ '</ul></nav>'
         + '<section id="content">Feature Content Region</section>'
 	+ '</main>'
