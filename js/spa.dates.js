@@ -90,10 +90,10 @@ spa.dates = (function () {
 
     // Test moment library functions
     var now = moment(),
-      then = moment('September 17, 1865'),
-      birth = moment(then);
+      died = moment('September 17, 1865'),
+      birth = moment(died);
     birth.subtract(21, 'years', 6, 'months', 6, 'days');
-    jqueryMap.$section.append('<br>Now ' + now.format("dddd, MMMM Do YYYY") + '<br><br>John Milton:<br>  Died: ' + then.format("dddd, MMMM Do YYYY") + "--Birth: " + birth.format("dddd, MMMM Do YYYY"));
+    jqueryMap.$section.append('<br>Now ' + now.format("dddd, MMMM Do YYYY") + '<br><br>John Milton aged 21 years 6 months and 6 days:<br>  Born: ' + birth.format("dddd, MMMM Do YYYY") + "--Death: " + died.format("dddd, MMMM Do YYYY"));
     // setClicks();
   };
   return { initModule : initModule };
