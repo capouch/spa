@@ -89,9 +89,11 @@ spa.dates = (function () {
     setJqueryMap();
 
     // Test moment library functions
-    var now = moment();
-    var then = moment('September 17, 1865');
-    jqueryMap.$section.append('<br>Now ' + now.format("dddd, MMMM Do YYYY") + ' and then: ' + then.format("dddd, MMMM Do YYYY"));
+    var now = moment(),
+      then = moment('September 17, 1865'),
+      birth = moment(then);
+    birth.subtract(21, 'years', 6, 'months', 6, 'days');
+    jqueryMap.$section.append('<br>Now ' + now.format("dddd, MMMM Do YYYY") + ' and then: ' + then.format("dddd, MMMM Do YYYY") + " Birth: " + birth.format("dddd, MMMM Do YYYY"));
     // setClicks();
   };
   return { initModule : initModule };
