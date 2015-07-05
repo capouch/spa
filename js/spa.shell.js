@@ -18,8 +18,8 @@ spa.shell = (function () {
         + '<nav id="side">'
         + '<h3>Nav Region</h3>'
         + '<ul>'
-        + '<li><a id="dateCalc" href="./dates">Date calculator</a></li>'
-	+ '<li><a id="socketIO" href="./socket">Socket.io View</a></li>'
+        + '<li><a id="date" href="./dates">Date calculator</a></li>'
+	+ '<li><a id="socket" href="./socket">Socket.io View</a></li>'
 	+ '<li>Nathan\'s link</li>'
 	+ '<li><a href=".">Reload</a><li'
 	+ '</ul></nav>'
@@ -60,8 +60,8 @@ spa.shell = (function () {
 
   // Begin DOM method /setClicks/
   function setClicks() {
-    addClickHandler(document.getElementById("dateCalc"), 'dates');
-    addClickHandler(document.getElementById("socketIO"), 'socket');
+    addClickHandler(document.getElementById("date"), 'dates');
+    addClickHandler(document.getElementById("socket"), 'socket');
     // Enable backing up through content
     window.addEventListener("popstate", function(e) {
       jqueryMap.$content.html(savedContent[--pushedCount]);
