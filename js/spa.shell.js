@@ -31,7 +31,9 @@ spa.shell = (function () {
       resize_idto : undefined
     },
     jqueryMap = {},
-    initModule, copyAnchorMap, setJqueryMap, setClicks;
+    initModule, copyAnchorMap, setJqueryMap, setClicks,
+    pushedCount = 0, savedContent = [];
+    savedContent[pushedCount++] = 'Content Region'; 
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
   //------------------- BEGIN UTILITY METHODS ------------------
@@ -61,7 +63,7 @@ spa.shell = (function () {
     addClickHandler(document.getElementById("testRoutes"), 'Craig Content');
     // Note this assumes only one pushState . . . 
     window.addEventListener("popstate", function(e) {
-      jqueryMap.$content.html('Content Region');
+      jqueryMap.$content.html(savedContent[--pushedCount]);
       });
     }
   // End DOM method /setClicks/
@@ -69,6 +71,7 @@ spa.shell = (function () {
   // Begin DOM method addClickHandler/
   function addClickHandler(link, verbiage) {
     link.addEventListener("click", function(e) {
+      savedContent[pushedCount++] = jqueryMap.$content.html();
       jqueryMap.$content.html(verbiage);
       history.pushState(null, null, link.href); 
       e.preventDefault();
