@@ -61,7 +61,7 @@ spa.shell = (function () {
   function setClicks() {
     addClickHandler(document.getElementById("clientRoutes"), 'Brian Content');
     addClickHandler(document.getElementById("testRoutes"), 'Craig Content');
-    // Note this assumes only one pushState . . . 
+    // Enable backing up through content
     window.addEventListener("popstate", function(e) {
       jqueryMap.$content.html(savedContent[--pushedCount]);
       });
@@ -77,6 +77,8 @@ spa.shell = (function () {
       e.preventDefault();
       }, false);
     }
+  // End DOM method /addClickHandler/
+
   //--------------------- END DOM METHODS ----------------------
 
   //------------------- BEGIN EVENT HANDLERS -------------------
