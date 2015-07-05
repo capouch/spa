@@ -22,7 +22,7 @@ spa.shell = (function () {
 	+ '<li><a id="testRoutes" href="otherTest.html">Craig\'s link</a></li>'
 	+ '<li>Nathan\'s link</li>'
 	+ '</ul></nav>'
-        + '<section id="content">Content Region</section>'
+        + '<section id="content">Feature Content Region</section>'
 	+ '</main>'
     },
     stateMap = {
@@ -33,7 +33,7 @@ spa.shell = (function () {
     jqueryMap = {},
     initModule, copyAnchorMap, setJqueryMap, setClicks,
     pushedCount = 0, savedContent = [];
-    savedContent[pushedCount++] = 'Content Region'; 
+    savedContent[pushedCount++] = 'Feature Content Region'; 
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
   //------------------- BEGIN UTILITY METHODS ------------------
