@@ -21,6 +21,7 @@ nav#side {
  border-radius: 5px;
 }
 
-#dateCalc {
+#content .dateCalc {
+  height: 100%;
   background-color: #CCFF99;
 } 
