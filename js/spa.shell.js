@@ -20,7 +20,7 @@ spa.shell = (function () {
         + '<ul>'
         + '<li><a id="date" href="./dates">Date calculator</a></li>'
 	+ '<li><a id="socket" href="./socket">Socket.io View</a></li>'
-	+ '<li>Nathan\'s link</li>'
+	+ '<li>SEO link</li>'
 	+ '<li><a href=".">Reload</a><li'
 	+ '</ul></nav>'
         + '<section id="content">Feature Content Region</section>'
