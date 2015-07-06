@@ -1,12 +1,12 @@
 header {
- height: 15%;
+ height: 10%;
  background-color: #1FFFF0;
 }
 
 nav#side {
  background-color: #ADADAD;
  float: left;
- width: 28%; #A
+ width: 28%;
  height: 100%;
  margin: 1%;
 }
@@ -22,6 +22,6 @@ nav#side {
 }
 
 #content .dateCalc {
-  height: 100%;
+  height: 90%;
   background-color: #CCFF99;
 } 
