@@ -82,7 +82,7 @@ spa.dates = (function () {
     setJqueryMap();
     jqueryMap.$section.html( configMap.input_html );
 
-    // Add our new button to the jquery map
+    // Add new elements to jquery map
     jqueryMap['$calcButton'] = jqueryMap.$section.find('#calcButton');
     jqueryMap['$days'] = jqueryMap.$section.find('#days');
     jqueryMap['$clear'] = jqueryMap.$section.find('#clearButton');
@@ -101,9 +101,11 @@ spa.dates = (function () {
       });
 
     // Let user hit enter in final field to calc, too
-    // This is why I wanted to do this in a function, eh?
+    // If this logic could be encapsulated that would be boss!
     jqueryMap.$days.keypress(function(e) {
+      // 13 = Return key
       if(e.which == 13) {
+        // This logic identical to click handler
         var inputDate = $('#deathDate').val(),
         lifeYears = $('#years').val(),
         lifeMonths = $('#months').val(),
@@ -116,6 +118,7 @@ spa.dates = (function () {
       }
       }); 
 
+    // Clear input fields on clear button click
     jqueryMap.$clear.click(function() {
       $('#deathDate').val('');
       $('#years').val('');
@@ -123,7 +126,7 @@ spa.dates = (function () {
       $('#days').val('');
       });
 
-    // Test moment library functions
+    // Test moment library functions by showing my age
     var now = moment(),
       birthday = moment('1951-02-20');
     jqueryMap.$section.append('<br>Date now: ' 
