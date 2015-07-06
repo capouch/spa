@@ -14,8 +14,10 @@ spa.dates = (function () {
       },
       resize_interval : 200,
       main_html : String()
-      + '<section class ="dateCalc"><b>Date Calculation Region</b></section>',
+      + '<section class ="dateCalc"></section>',
+
       input_html : String()
+      + '<b>Date Calculation Region<b>'
       + '<p><label for="deathDate">Death Date</label>'
       + ' <input type="date" id="deathDate" />'
       + ' <p><label for="years">Years</label>'
@@ -50,17 +52,6 @@ spa.dates = (function () {
     };
   };
   // End DOM method /setJqueryMap/
-
-  // Begin DOM method addClickHandler/
-  function addClickHandler(link, verbiage) {
-    link.addEventListener("click", function(e) {
-      savedContent[pushedCount++] = jqueryMap.$content.html();
-      jqueryMap.$content.html(verbiage);
-      history.pushState(null, null, link.href); 
-      e.preventDefault();
-      }, false);
-    }
-  // End DOM method /addClickHandler/
 
   //--------------------- END DOM METHODS ----------------------
 
@@ -106,9 +97,9 @@ spa.dates = (function () {
     // Test moment library functions
     var now = moment(),
       birthday = moment('1951-02-20');
-    jqueryMap.$section.append('<br>Now ' 
+    jqueryMap.$section.append('<br>Date now: ' 
       + now.format("dddd, MMMM Do YYYY") 
-      + '<br>My exact age: ' + moment.duration(now.diff(birthday)).format());
+      + '<br>Capouch\'s precise age: ' + moment.duration(now.diff(birthday)).format());
 
  } 
 
