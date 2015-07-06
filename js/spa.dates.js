@@ -18,13 +18,13 @@ spa.dates = (function () {
 
       input_html : String()
       + '<h4>Date Calculation Region</h4>'
-      + '<p><label for="deathDate">Death Date</label>'
+      + '<p><label for="deathDate">Finish Date</label>'
       + ' <input type="date" id="deathDate" />'
-      + ' <p><label for="years">Years</label>'
+      + ' <p><label for="years">Years </label>'
       + ' <input type="number" maxlength="3" id="years" /><br>'
       + ' <label for="months">Months</label>'
       + ' <input type="number" maxlength="2" id="months" /><br>'
-      + ' <label for="days">Days</label>'
+      + ' <label for="days">Days  </label>'
       + ' <input type="number" maxlength="2" id="days" />'
       + ' <br><input type="button" value="Calc" id="calcButton" />'
       + ' <input type="button" value="Clear" id="clearButton" />'
@@ -96,7 +96,7 @@ spa.dates = (function () {
         death = moment(inputDate),
         birth = moment(death);
 
-        birth.subtract(lifeYears, 'years', lifeMonths, 'months', lifeDays, 'days'); 
+        birth.subtract(lifeYears, 'years').subtract(lifeMonths, 'months').subtract(lifeDays, 'days'); 
       $('#output').html('Birth: ' + birth.format("dddd, MMMM Do YYYY") );
       });
 
@@ -113,7 +113,7 @@ spa.dates = (function () {
         death = moment(inputDate),
         birth = moment(death);
 
-        birth.subtract(lifeYears, 'years', lifeMonths, 'months', lifeDays, 'days');
+        birth.subtract(lifeYears, 'years').subtract(lifeMonths, 'months').subtract(lifeDays, 'days');
       $('#output').html('Birth: ' + birth.format("dddd, MMMM Do YYYY"));
       }
       }); 
