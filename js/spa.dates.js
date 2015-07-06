@@ -14,13 +14,25 @@ spa.dates = (function () {
       },
       resize_interval : 200,
       main_html : String()
-        + '<section class ="dateCalc"><b>Date Calculation Region</b></section>'
+      + '<section class ="dateCalc"><b>Date Calculation Region</b></section>',
+      input_html : String()
+      + '<p><label for="deathDate">Death Date</label>'
+      + ' <input type="date" id="deathDate" />'
+      + ' <p><label for="years">Years</label>'
+      + ' <input type="number" maxlength="3" id="years" /><br>'
+      + ' <label for="months">Months</label>'
+      + ' <input type="number" maxlength="2" id="months" /><br>'
+      + ' <label for="days">Days</label>'
+      + ' <input type="number" maxlength="2" id="days" />'
+      + ' <br><input type="button" value="Calc" id="calcButton" />'
+      + ' <div id="output">Birth: </div>'
     },
     stateMap = {
       $container  : undefined,
     },
     jqueryMap = {},
-    initModule, copyAnchorMap, setJqueryMap, setClicks;
+    initModule, copyAnchorMap, setJqueryMap, setClicks,
+    calcButton;
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
   //------------------- BEGIN UTILITY METHODS ------------------
@@ -31,24 +43,13 @@ spa.dates = (function () {
   setJqueryMap = function () {
     var $container = stateMap.$container;
 
-    // Overkill for small amount of functionality
+    // Grrrrrrr
     jqueryMap = {
       $container : $container,
-      $section : $container.find('.dateCalc')
+      $section : $container.find('.dateCalc'),
     };
   };
   // End DOM method /setJqueryMap/
-
-  // Begin DOM method /setClicks/
-  function setClicks() {
-    addClickHandler(document.getElementById("clientRoutes"), 'Brian Content');
-    addClickHandler(document.getElementById("testRoutes"), 'Craig Content');
-    // Enable backing up through content
-    window.addEventListener("popstate", function(e) {
-      jqueryMap.$content.html(savedContent[--pushedCount]);
-      });
-    }
-  // End DOM method /setClicks/
 
   // Begin DOM method addClickHandler/
   function addClickHandler(link, verbiage) {
@@ -87,16 +88,30 @@ spa.dates = (function () {
     stateMap.$container = $container;
     $container.html( configMap.main_html );
     setJqueryMap();
+    jqueryMap.$section.html( configMap.input_html );
+    calcButton = jqueryMap.$section.find('#calcButton');
+
+    calcButton.click(function() {
+      var inputDate = $('#deathDate').val(),
+        lifeYears = $('#years').val(),
+        lifeMonths = $('#months').val(),
+        lifeDays = $('#days').val(),
+        death = moment(inputDate),
+        birth = moment(death);
+
+        birth.subtract(lifeYears, 'years', lifeMonths, 'months', lifeDays, 'days'); 
+      $('#output').html('Birth: ' + birth.format("dddd, MMMM Do YYYY") );
+      });
 
     // Test moment library functions
     var now = moment(),
-      died = moment('September 17, 1865'),
-      birth = moment(died),
-      birthday = moment('February 20, 1951');
-    birth.subtract(21, 'years', 6, 'months', 6, 'days');
-    jqueryMap.$section.append('<br>Now ' + now.format("dddd, MMMM Do YYYY") + '<br><br>John Milton aged 21 years 6 months and 6 days:<br>  Born: ' + birth.format("dddd, MMMM Do YYYY") + "--Death: " + died.format("dddd, MMMM Do YYYY") + '<br>My exact age: ' + moment.duration(now.diff(birthday)).format());
-    // setClicks();
-  };
+      birthday = moment('1951-02-20');
+    jqueryMap.$section.append('<br>Now ' 
+      + now.format("dddd, MMMM Do YYYY") 
+      + '<br>My exact age: ' + moment.duration(now.diff(birthday)).format());
+
+ } 
+
   return { initModule : initModule };
   //------------------- END PUBLIC METHODS ---------------------
 }());
