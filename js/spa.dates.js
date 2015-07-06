@@ -14,8 +14,8 @@ spa.dates = (function () {
 
       input_html : String()
       + '<h4>Date Calculation Region</h4>'
-      + '<p><label for="deathDate">Finish Date</label>'
-      + ' <input type="date" id="deathDate" />'
+      + '<p><label for="finishDate">Finish Date</label>'
+      + ' <input type="date" id="finishDate" />'
       + ' <p><label for="years">Years </label>'
       + ' <input type="number" maxlength="3" id="years" /><br>'
       + ' <label for="months">Months</label>'
@@ -88,12 +88,12 @@ spa.dates = (function () {
 
     // Click handler for Calc button
     jqueryMap.$calcButton.click(function() {
-      var inputDate = $('#deathDate').val(),
+      var inputDate = $('#finishDate').val(),
         lifeYears = $('#years').val(),
         lifeMonths = $('#months').val(),
         lifeDays = $('#days').val(),
-        death = moment(inputDate),
-        birth = moment(death);
+        finish = moment(inputDate),
+        birth = moment(finish);
 
         birth.subtract(lifeYears, 'years').subtract(lifeMonths, 'months').subtract(lifeDays, 'days'); 
       $('#output').html('Birth: ' + birth.format("dddd, MMMM Do YYYY") );
@@ -105,12 +105,12 @@ spa.dates = (function () {
       // 13 = Return (Enter) key
       if(e.which == 13) {
         // This logic is identical to click handler above!
-        var inputDate = $('#deathDate').val(),
+        var inputDate = $('#finishDate').val(),
         lifeYears = $('#years').val(),
         lifeMonths = $('#months').val(),
         lifeDays = $('#days').val(),
-        death = moment(inputDate),
-        birth = moment(death);
+        finish = moment(inputDate),
+        birth = moment(finish);
 
         birth.subtract(lifeYears, 'years').subtract(lifeMonths, 'months').subtract(lifeDays, 'days');
       $('#output').html('Birth: ' + birth.format("dddd, MMMM Do YYYY"));
@@ -119,7 +119,7 @@ spa.dates = (function () {
 
     // Clear input fields on clear button click
     jqueryMap.$clear.click(function() {
-      $('#deathDate').val('');
+      $('#finishDate').val('');
       $('#years').val('');
       $('#months').val('');
       $('#days').val('');
