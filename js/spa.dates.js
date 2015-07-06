@@ -80,9 +80,12 @@ spa.dates = (function () {
     $container.html( configMap.main_html );
     setJqueryMap();
     jqueryMap.$section.html( configMap.input_html );
-    calcButton = jqueryMap.$section.find('#calcButton');
 
-    calcButton.click(function() {
+    // Add our new button to the jquery map
+    jqueryMap['$calcButton'] = jqueryMap.$section.find('#calcButton');
+
+    // Then add a click handler to it
+    jqueryMap.$calcButton.click(function() {
       var inputDate = $('#deathDate').val(),
         lifeYears = $('#years').val(),
         lifeMonths = $('#months').val(),
