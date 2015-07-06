@@ -10,9 +10,7 @@ spa.dates = (function () {
   var
     configMap = {
       main_html : String()
-      + '<section class ="dateCalc"></section>',
-
-      input_html : String()
+      + '<section class ="dateCalc">'
       + '<h4>Date Calculation Region</h4>'
       + '<p><label for="finishDate">Finish Date</label>'
       + ' <input type="date" id="finishDate" />'
@@ -25,6 +23,7 @@ spa.dates = (function () {
       + ' <br><input type="button" value="Calc" id="calcButton" />'
       + ' <input type="button" value="Clear" id="clearButton" />'
       + ' <div id="output">Birth:</div>'
+      + ' </section>'
     },
     stateMap = {
       $container  : undefined,
@@ -48,6 +47,9 @@ spa.dates = (function () {
     jqueryMap = {
       $container : $container,
       $section : $container.find('.dateCalc'),
+      $calcButton :  $container.find('#calcButton'),
+      $days :  $container.find('#days'),
+      $clear :  $container.find('#clearButton')
     };
   };
   // End DOM method /setJqueryMap/
@@ -78,13 +80,6 @@ spa.dates = (function () {
     stateMap.$container = $container;
     $container.html( configMap.main_html );
     setJqueryMap();
-
-    // Add input widgets to section
-    jqueryMap.$section.html( configMap.input_html );
-    // Add those new elements to module-wide jquery map
-    jqueryMap['$calcButton'] = jqueryMap.$section.find('#calcButton');
-    jqueryMap['$days'] = jqueryMap.$section.find('#days');
-    jqueryMap['$clear'] = jqueryMap.$section.find('#clearButton');
 
     // Click handler for Calc button
     jqueryMap.$calcButton.click(function() {
