@@ -22,7 +22,7 @@ spa.dates = (function () {
       + ' <input type="number" maxlength="2" id="days" />'
       + ' <br><input type="button" value="Calc" id="calcButton" />'
       + ' <input type="button" value="Clear" id="clearButton" />'
-      + ' <div id="output">Birth:</div>'
+      + ' <div id="output">Start:</div>'
       + ' </section>'
     },
     stateMap = {
@@ -32,7 +32,7 @@ spa.dates = (function () {
 
     // Local variables, both data and functions
     initModule, copyAnchorMap, setJqueryMap, setClicks,
-    calcBirthYear;
+    calcStartYear;
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
   //------------------- BEGIN UTILITY METHODS ------------------
