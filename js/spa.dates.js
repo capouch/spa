@@ -78,15 +78,15 @@ spa.dates = (function () {
     stateMap.$container = $container;
     $container.html( configMap.main_html );
     setJqueryMap();
-    // Add input widgets
-    jqueryMap.$section.html( configMap.input_html );
 
-    // Add new elements to module-wide jquery map
+    // Add input widgets to section
+    jqueryMap.$section.html( configMap.input_html );
+    // Add those new elements to module-wide jquery map
     jqueryMap['$calcButton'] = jqueryMap.$section.find('#calcButton');
     jqueryMap['$days'] = jqueryMap.$section.find('#days');
     jqueryMap['$clear'] = jqueryMap.$section.find('#clearButton');
 
-    // Click handler to Calc button
+    // Click handler for Calc button
     jqueryMap.$calcButton.click(function() {
       var inputDate = $('#deathDate').val(),
         lifeYears = $('#years').val(),
@@ -99,7 +99,7 @@ spa.dates = (function () {
       $('#output').html('Birth: ' + birth.format("dddd, MMMM Do YYYY") );
       });
 
-    // Callback when user hits enter in "Days" widget
+    // Handler when user hits enter in "Days" widget
     // This logic should be in a macro or function
     jqueryMap.$days.keypress(function(e) {
       // 13 = Return (Enter) key
