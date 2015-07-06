@@ -17,7 +17,7 @@ spa.dates = (function () {
       + '<section class ="dateCalc"></section>',
 
       input_html : String()
-      + '<b>Date Calculation Region<b>'
+      + '<h4>Date Calculation Region</h4>'
       + '<p><label for="deathDate">Death Date</label>'
       + ' <input type="date" id="deathDate" />'
       + ' <p><label for="years">Years</label>'
@@ -27,7 +27,7 @@ spa.dates = (function () {
       + ' <label for="days">Days</label>'
       + ' <input type="number" maxlength="2" id="days" />'
       + ' <br><input type="button" value="Calc" id="calcButton" />'
-      + ' <div id="output">Birth: </div>'
+      + ' <div id="output">Birth:</div>'
     },
     stateMap = {
       $container  : undefined,
