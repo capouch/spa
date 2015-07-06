@@ -9,10 +9,6 @@ spa.dates = (function () {
   //---------------- BEGIN MODULE SCOPE VARIABLES --------------
   var
     configMap = {
-      anchor_schema_map : {
-        chat  : { opened : true, closed : true }
-      },
-      resize_interval : 200,
       main_html : String()
       + '<section class ="dateCalc"></section>',
 
@@ -34,6 +30,8 @@ spa.dates = (function () {
       $container  : undefined,
     },
     jqueryMap = {},
+
+    // Local variables, both data and functions
     initModule, copyAnchorMap, setJqueryMap, setClicks,
     calcBirthYear;
   //----------------- END MODULE SCOPE VARIABLES ---------------
@@ -46,7 +44,7 @@ spa.dates = (function () {
   setJqueryMap = function () {
     var $container = stateMap.$container;
 
-    // Grrrrrrr
+    // Set initial jQuery map values
     jqueryMap = {
       $container : $container,
       $section : $container.find('.dateCalc'),
@@ -80,14 +78,15 @@ spa.dates = (function () {
     stateMap.$container = $container;
     $container.html( configMap.main_html );
     setJqueryMap();
+    // Add input widgets
     jqueryMap.$section.html( configMap.input_html );
 
-    // Add new elements to jquery map
+    // Add new elements to module-wide jquery map
     jqueryMap['$calcButton'] = jqueryMap.$section.find('#calcButton');
     jqueryMap['$days'] = jqueryMap.$section.find('#days');
     jqueryMap['$clear'] = jqueryMap.$section.find('#clearButton');
 
-    // Then add a click handler to it
+    // Click handler to Calc button
     jqueryMap.$calcButton.click(function() {
       var inputDate = $('#deathDate').val(),
         lifeYears = $('#years').val(),
@@ -100,12 +99,12 @@ spa.dates = (function () {
       $('#output').html('Birth: ' + birth.format("dddd, MMMM Do YYYY") );
       });
 
-    // Let user hit enter in final field to calc, too
-    // If this logic could be encapsulated that would be boss!
+    // Callback when user hits enter in "Days" widget
+    // This logic should be in a macro or function
     jqueryMap.$days.keypress(function(e) {
-      // 13 = Return key
+      // 13 = Return (Enter) key
       if(e.which == 13) {
-        // This logic identical to click handler
+        // This logic is identical to click handler above!
         var inputDate = $('#deathDate').val(),
         lifeYears = $('#years').val(),
         lifeMonths = $('#months').val(),
