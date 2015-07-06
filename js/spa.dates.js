@@ -27,6 +27,7 @@ spa.dates = (function () {
       + ' <label for="days">Days</label>'
       + ' <input type="number" maxlength="2" id="days" />'
       + ' <br><input type="button" value="Calc" id="calcButton" />'
+      + ' <input type="button" value="Clear" id="clearButton" />'
       + ' <div id="output">Birth:</div>'
     },
     stateMap = {
@@ -34,7 +35,7 @@ spa.dates = (function () {
     },
     jqueryMap = {},
     initModule, copyAnchorMap, setJqueryMap, setClicks,
-    calcButton;
+    calcBirthYear;
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
   //------------------- BEGIN UTILITY METHODS ------------------
@@ -83,6 +84,8 @@ spa.dates = (function () {
 
     // Add our new button to the jquery map
     jqueryMap['$calcButton'] = jqueryMap.$section.find('#calcButton');
+    jqueryMap['$days'] = jqueryMap.$section.find('#days');
+    jqueryMap['$clear'] = jqueryMap.$section.find('#clearButton');
 
     // Then add a click handler to it
     jqueryMap.$calcButton.click(function() {
@@ -95,6 +98,29 @@ spa.dates = (function () {
 
         birth.subtract(lifeYears, 'years', lifeMonths, 'months', lifeDays, 'days'); 
       $('#output').html('Birth: ' + birth.format("dddd, MMMM Do YYYY") );
+      });
+
+    // Let user hit enter in final field to calc, too
+    // This is why I wanted to do this in a function, eh?
+    jqueryMap.$days.keypress(function(e) {
+      if(e.which == 13) {
+        var inputDate = $('#deathDate').val(),
+        lifeYears = $('#years').val(),
+        lifeMonths = $('#months').val(),
+        lifeDays = $('#days').val(),
+        death = moment(inputDate),
+        birth = moment(death);
+
+        birth.subtract(lifeYears, 'years', lifeMonths, 'months', lifeDays, 'days');
+      $('#output').html('Birth: ' + birth.format("dddd, MMMM Do YYYY"));
+      }
+      }); 
+
+    jqueryMap.$clear.click(function() {
+      $('#deathDate').val('');
+      $('#years').val('');
+      $('#months').val('');
+      $('#days').val('');
       });
 
     // Test moment library functions
