@@ -18,8 +18,8 @@ spa.shell = (function () {
         + '<nav id="side">'
         + '<h3>Nav Region</h3>'
         + '<ul>'
-        + '<li><a id="date" href="./dates">Date calculator</a></li>'
-	+ '<li><a id="socket" href="./socket">Socket.io View</a></li>'
+        + '<li><a id="date" href="/dates">Date calculator</a></li>'
+	+ '<li><a id="socket" href="/socket">Socket.io View</a></li>'
 	+ '<li>SEO link</li>'
 	+ '<li><a href=".">Reload</a><li'
 	+ '</ul></nav>'
@@ -82,6 +82,19 @@ spa.shell = (function () {
       e.preventDefault();
       }, false);
     }
+
+  function index() {
+    initModule(stateMap.$container);
+    }
+
+  function dates() {
+    spa.dates.initModule(jqueryMap.$content);
+    }
+
+  function socket() {
+    spa.socket.initModule(jqueryMap.$content);
+    }
+
   // End DOM method /addClickHandler/
 
   //--------------------- END DOM METHODS ----------------------
@@ -110,7 +123,15 @@ spa.shell = (function () {
     stateMap.$container = $container;
     $container.html( configMap.main_html );
     setJqueryMap();
-    setClicks();
+
+    // Set up our routes
+    // page.base('/');
+    page('/', index);
+    page('/dates', dates);
+    page('/socket', socket);
+    page();
+
+    //setClicks();
   };
   return { initModule : initModule };
   //------------------- END PUBLIC METHODS ---------------------
