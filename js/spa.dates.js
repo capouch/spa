@@ -96,7 +96,7 @@ spa.dates = (function () {
         // The start object begins the same as the finish
         start = moment(finish);
 
-        // Subtract each piece from the finish time to get the start
+        // Subtract each piece from the finish time to mutate the start
         start.subtract(elapsedYears, 'years').subtract(elapsedMonths, 'months').subtract(elapsedDays, 'days'); 
       $('#output').html('Birth: ' + start.format("dddd, MMMM Do YYYY") );
       });
