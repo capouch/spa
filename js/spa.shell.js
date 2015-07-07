@@ -8,10 +8,6 @@ spa.shell = (function () {
   //---------------- BEGIN MODULE SCOPE VARIABLES --------------
   var
     configMap = {
-      anchor_schema_map : {
-        chat  : { opened : true, closed : true }
-      },
-      resize_interval : 200,
       main_html : String()
             + '<main>'
             + '<header><h1>Saint Joseph\'s College SPA Demo</h1></header>'
@@ -28,20 +24,13 @@ spa.shell = (function () {
     },
     stateMap = {
       $container  : undefined,
-      anchor_map  : {},
-      resize_idto : undefined
     },
     jqueryMap = {},
-    initModule, copyAnchorMap, setJqueryMap, setClicks,
-    pushedCount = 0, savedContent = [];
-    savedContent[pushedCount++] = 'Feature Content Region'; 
+    initModule, copyAnchorMap, setJqueryMap, setClicks;
+    
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
   //------------------- BEGIN UTILITY METHODS ------------------
-  // Returns copy of stored anchor map; minimizes overhead
-  copyAnchorMap = function () {
-    return $.extend( true, {}, stateMap.anchor_map );
-  };
   //-------------------- END UTILITY METHODS -------------------
 
   //--------------------- BEGIN DOM METHODS --------------------
@@ -58,30 +47,7 @@ spa.shell = (function () {
   };
   // End DOM method /setJqueryMap/
 
-  // Begin DOM method /setClicks/
-  function setClicks() {
-    addClickHandler(document.getElementById("date"), 'dates');
-    addClickHandler(document.getElementById("socket"), 'socket');
-    // Enable backing up through content
-    window.addEventListener("popstate", function(e) {
-      jqueryMap.$content.html(savedContent[--pushedCount]);
-      });
-    }
-  // End DOM method /setClicks/
-
-  // Begin DOM method addClickHandler/
-  function addClickHandler(link, verbiage) {
-    link.addEventListener("click", function(e) {
-      savedContent[pushedCount++] = jqueryMap.$content.html();
-      // jqueryMap.$content.html(verbiage);
-      if (verbiage === 'dates')
-        spa.dates.initModule(jqueryMap.$content);
-      else
-        spa.socket.initModule(jqueryMap.$content);
-      history.pushState(null, null, link.href); 
-      e.preventDefault();
-      }, false);
-    }
+  // Begin client-side router methods
 
   function index() {
     initModule(stateMap.$container);
@@ -95,7 +61,7 @@ spa.shell = (function () {
     spa.socket.initModule(jqueryMap.$content);
     }
 
-  // End DOM method /addClickHandler/
+  // End DOM client-side router methods
 
   //--------------------- END DOM METHODS ----------------------
 
@@ -124,14 +90,12 @@ spa.shell = (function () {
     $container.html( configMap.main_html );
     setJqueryMap();
 
-    // Set up our routes
-    // page.base('/');
+    // Set up routes
     page('/', index);
     page('/dates', dates);
     page('/socket', socket);
     page();
 
-    //setClicks();
   };
   return { initModule : initModule };
   //------------------- END PUBLIC METHODS ---------------------
