@@ -84,14 +84,14 @@ spa.dates = (function () {
     // Click handler for Calc button
     jqueryMap.$calcButton.click(function() {
       var inputDate = $('#finishDate').val(),
-        lifeYears = $('#years').val(),
-        lifeMonths = $('#months').val(),
-        lifeDays = $('#days').val(),
+        elapsedYears = $('#years').val(),
+        elapsedMonths = $('#months').val(),
+        elapsedDays = $('#days').val(),
         finish = moment(inputDate),
-        birth = moment(finish);
+        start = moment(finish);
 
-        birth.subtract(lifeYears, 'years').subtract(lifeMonths, 'months').subtract(lifeDays, 'days'); 
-      $('#output').html('Birth: ' + birth.format("dddd, MMMM Do YYYY") );
+        start.subtract(elapsedYears, 'years').subtract(elapsedMonths, 'months').subtract(elapsedDays, 'days'); 
+      $('#output').html('Birth: ' + start.format("dddd, MMMM Do YYYY") );
       });
 
     // Handler when user hits enter in "Days" widget
@@ -101,14 +101,14 @@ spa.dates = (function () {
       if(e.which == 13) {
         // This logic is identical to click handler above!
         var inputDate = $('#finishDate').val(),
-        lifeYears = $('#years').val(),
-        lifeMonths = $('#months').val(),
-        lifeDays = $('#days').val(),
+        elapsedYears = $('#years').val(),
+        elapsedMonths = $('#months').val(),
+        elapsedDays = $('#days').val(),
         finish = moment(inputDate),
-        birth = moment(finish);
+        start = moment(finish);
 
-        birth.subtract(lifeYears, 'years').subtract(lifeMonths, 'months').subtract(lifeDays, 'days');
-      $('#output').html('Birth: ' + birth.format("dddd, MMMM Do YYYY"));
+        start.subtract(elapsedYears, 'years').subtract(elapsedMonths, 'months').subtract(elapsedDays, 'days');
+      $('#output').html('Birth: ' + start.format("dddd, MMMM Do YYYY"));
       }
       }); 
 
@@ -122,10 +122,10 @@ spa.dates = (function () {
 
     // Test moment library functions by showing my age
     var now = moment(),
-      birthday = moment('1951-02-20');
+      startday = moment('1951-02-20');
     jqueryMap.$section.append('<br>Date now: ' 
       + now.format("dddd, MMMM Do YYYY") 
-      + '<br>Capouch\'s precise age: ' + moment.duration(now.diff(birthday)).format());
+      + '<br>Capouch\'s precise age: ' + moment.duration(now.diff(startday)).format());
 
  } 
 
