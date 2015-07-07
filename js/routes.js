@@ -24,7 +24,15 @@ configRoutes = function ( router, server ) {
       // I don't like this very much 
       root: __dirname + '/../html/'
     };
-    res.sendFile('index.html',options);
+    res.sendFile('index.html', options);
+  });
+
+  router.get('/dates', function(req, res) {
+    var options = {
+      // I don't like this very much
+      root: __dirname + '/../html/'
+    };
+    res.sendFile('index.html', options);
   });
 
 }; 
