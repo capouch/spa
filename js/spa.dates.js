@@ -86,7 +86,7 @@ spa.dates = (function () {
       // store the date input by user
       var inputDate = $('#finishDate').val(),
 
-        // Now read the change values from widgets
+        // Read the change values from widgets
         elapsedYears = $('#years').val(),
         elapsedMonths = $('#months').val(),
         elapsedDays = $('#days').val(),
@@ -98,6 +98,7 @@ spa.dates = (function () {
 
         // Subtract each piece from the finish time to mutate the start
         start.subtract(elapsedYears, 'years').subtract(elapsedMonths, 'months').subtract(elapsedDays, 'days'); 
+      // Write it to output
       $('#output').html('Birth: ' + start.format("dddd, MMMM Do YYYY") );
       });
 
