@@ -83,13 +83,20 @@ spa.dates = (function () {
 
     // Click handler for Calc button
     jqueryMap.$calcButton.click(function() {
+      // store the date input by user
       var inputDate = $('#finishDate').val(),
+
+        // Now read the change values from widgets
         elapsedYears = $('#years').val(),
         elapsedMonths = $('#months').val(),
         elapsedDays = $('#days').val(),
+
+        // create moment objects
         finish = moment(inputDate),
+        // The start object begins the same as the finish
         start = moment(finish);
 
+        // Subtract each piece from the finish time to get the start
         start.subtract(elapsedYears, 'years').subtract(elapsedMonths, 'months').subtract(elapsedDays, 'days'); 
       $('#output').html('Birth: ' + start.format("dddd, MMMM Do YYYY") );
       });
