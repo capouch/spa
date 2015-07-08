@@ -19,14 +19,18 @@ spa.shell = (function () {
 	+ '<li>SEO link</li>'
 	+ '<li><a href=".">Reload</a><li'
 	+ '</ul></nav>'
-        + '<section id="content">Feature Content Region</section>'
+        + '<section id="content-main">Feature Content Region</section>'
+	+ '<section id="content-date"></section>'
+	+ '<section id="content-socket"></section>'
+	+ '<section id="content-seo"></section>'
 	+ '</main>'
     },
     stateMap = {
       $container  : undefined,
     },
     jqueryMap = {},
-    initModule, copyAnchorMap, setJqueryMap, setClicks;
+    initModule, copyAnchorMap, setJqueryMap, setClicks,
+    dateContent, socketContent, seoContent;
     
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
@@ -42,7 +46,10 @@ spa.shell = (function () {
     jqueryMap = {
       $container : $container,
       $nav       : $container.find('#side'),
-      $content   : $container.find('#content'),
+      $content   : $container.find('#content-main'),
+      $dates     : $container.find('#content-date'),
+      $socket    : $container.find('#content-socket'),
+      $socket    : $container.find('#content-seo')
     };
   };
   // End DOM method /setJqueryMap/
@@ -50,11 +57,16 @@ spa.shell = (function () {
   // Begin client-side router methods
 
   function index() {
-    initModule(stateMap.$container);
+    jqueryMap.$dates.hide();
+    jqueryMap.$content.show();
     }
 
   function dates() {
-    spa.dates.initModule(jqueryMap.$content);
+    // Begin the swap process
+    // divStore[dates] eventually
+    // divStore = jqueryMap.$content.
+    jqueryMap.$content.hide();
+    spa.dates.postSection();
     }
 
   function socket() {
@@ -89,6 +101,7 @@ spa.shell = (function () {
     stateMap.$container = $container;
     $container.html( configMap.main_html );
     setJqueryMap();
+    spa.dates.initModule(jqueryMap.$dates);
 
     // Set up routes
     page('/', index);
