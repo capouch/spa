@@ -64,6 +64,7 @@ spa.shell = (function () {
 
   function dates() {
     // Fragile div swap for testing
+    // Note this will FREAK if you come in via bookmark
     jqueryMap.$content.hide();
     spa.dates.postSection();
     }
