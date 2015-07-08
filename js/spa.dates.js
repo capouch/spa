@@ -136,7 +136,8 @@ spa.dates = (function () {
  } 
  
  postSection = function() {
-    jqueryMap.$container.show();
+  // For now, all this does is re-display contents of section    
+  jqueryMap.$container.show();
   }
 
   return { initModule : initModule, 

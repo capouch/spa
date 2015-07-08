@@ -16,7 +16,7 @@ spa.shell = (function () {
         + '<ul>'
         + '<li><a id="date" href="/dates">Date calculator</a></li>'
 	+ '<li><a id="socket" href="/socket">Socket.io View</a></li>'
-	+ '<li>SEO link</li>'
+	+ '<li><a id="seo" href="/seo">SEO stuff</a></li>'
 	+ '<li><a href=".">Reload</a><li'
 	+ '</ul></nav>'
         + '<section id="content-main">Feature Content Region</section>'
@@ -29,8 +29,7 @@ spa.shell = (function () {
       $container  : undefined,
     },
     jqueryMap = {},
-    initModule, copyAnchorMap, setJqueryMap, setClicks,
-    datesContent, socketContent, seoContent;
+    initModule, copyAnchorMap, setJqueryMap;
     
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
@@ -57,20 +56,24 @@ spa.shell = (function () {
   // Begin client-side router methods
 
   function index() {
+    // This needs to be more sophisticated
+    //   i.e. what if we're leaving the socket module
     jqueryMap.$dates.hide();
     jqueryMap.$content.show();
     }
 
   function dates() {
-    // Begin the swap process
-    // divStore[dates] eventually
-    // divStore = jqueryMap.$content.
+    // Fragile div swap for testing
     jqueryMap.$content.hide();
     spa.dates.postSection();
     }
 
   function socket() {
     spa.socket.initModule(jqueryMap.$content);
+    }
+
+  function seo() {
+    // Nothing going on here yet
     }
 
   // End DOM client-side router methods
@@ -101,12 +104,15 @@ spa.shell = (function () {
     stateMap.$container = $container;
     $container.html( configMap.main_html );
     setJqueryMap();
+
+    // Initialize module ONCE 
     spa.dates.initModule(jqueryMap.$dates);
 
     // Set up routes
     page('/', index);
     page('/dates', dates);
     page('/socket', socket);
+    page('/seo', seo);
     page();
 
   };
