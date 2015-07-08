@@ -10,7 +10,6 @@ spa.dates = (function () {
   var
     configMap = {
       main_html : String()
-      + '<section class ="dateCalc">'
       + '<h4>Date Calculation Region</h4>'
       + '<p><label for="finishDate">Finish Date</label>'
       + ' <input type="date" id="finishDate" />'
@@ -23,7 +22,6 @@ spa.dates = (function () {
       + ' <br><input type="button" value="Calc" id="calcButton" />'
       + ' <input type="button" value="Clear" id="clearButton" />'
       + ' <div id="output">Start:</div>'
-      + ' </section>'
     },
     stateMap = {
       $container  : undefined,
@@ -32,7 +30,7 @@ spa.dates = (function () {
 
     // Local variables, both data and functions
     initModule, copyAnchorMap, setJqueryMap, setClicks,
-    calcStartYear;
+    calcStartYear, postSection;
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
   //------------------- BEGIN UTILITY METHODS ------------------
@@ -46,7 +44,6 @@ spa.dates = (function () {
     // Set initial jQuery map values
     jqueryMap = {
       $container : $container,
-      $section : $container.find('.dateCalc'),
       $calcButton :  $container.find('#calcButton'),
       $days :  $container.find('#days'),
       $clear :  $container.find('#clearButton')
@@ -78,6 +75,7 @@ spa.dates = (function () {
   initModule = function ( $container ) {
     // load HTML and map jQuery collections
     stateMap.$container = $container;
+    $container.hide();
     $container.html( configMap.main_html );
     setJqueryMap();
 
@@ -131,12 +129,18 @@ spa.dates = (function () {
     // Test moment library functions by showing my age
     var now = moment(),
       startday = moment('1951-02-20');
-    jqueryMap.$section.append('<br>Date now: ' 
+    jqueryMap.$container.append('<br>Date now: ' 
       + now.format("dddd, MMMM Do YYYY") 
       + '<br>Capouch\'s precise age: ' + moment.duration(now.diff(startday)).format());
 
  } 
+ 
+ postSection = function() {
+    jqueryMap.$container.show();
+  }
 
-  return { initModule : initModule };
+  return { initModule : initModule, 
+	   postSection : postSection
+         };
   //------------------- END PUBLIC METHODS ---------------------
 }());
