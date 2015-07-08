@@ -100,8 +100,9 @@ spa.dates = (function () {
       $('#output').html('Birth: ' + start.format("dddd, MMMM Do YYYY") );
       });
 
+      // Fix below!  It duplicates the above logic 100% 
+      //   except for the event name 
     // Handler when user hits enter in "Days" widget
-    // This logic should be in a macro or function
     jqueryMap.$days.keypress(function(e) {
       // 13 = Return (Enter) key
       if(e.which == 13) {
