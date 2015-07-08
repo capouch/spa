@@ -20,7 +20,7 @@ spa.shell = (function () {
 	+ '<li><a href=".">Reload</a><li'
 	+ '</ul></nav>'
         + '<section id="content-main">Feature Content Region</section>'
-	+ '<section id="content-date"></section>'
+	+ '<section id="content-dates"></section>'
 	+ '<section id="content-socket"></section>'
 	+ '<section id="content-seo"></section>'
 	+ '</main>'
@@ -30,7 +30,7 @@ spa.shell = (function () {
     },
     jqueryMap = {},
     initModule, copyAnchorMap, setJqueryMap, setClicks,
-    dateContent, socketContent, seoContent;
+    datesContent, socketContent, seoContent;
     
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
@@ -47,7 +47,7 @@ spa.shell = (function () {
       $container : $container,
       $nav       : $container.find('#side'),
       $content   : $container.find('#content-main'),
-      $dates     : $container.find('#content-date'),
+      $dates     : $container.find('#content-dates'),
       $socket    : $container.find('#content-socket'),
       $socket    : $container.find('#content-seo')
     };

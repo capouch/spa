@@ -11,17 +11,7 @@ nav#side {
  margin: 1%;
 }
 
-#content-main, #content-socket, #content-seo {
- margin: 1%;
- padding: 2%;
- height: 100%;
- overflow-y: auto;
- text-align: top;
- background-color:  #FFFF66;
- border-radius: 5px;
-}
-
-#content-date {
+#content-main, #content-dates, #content-socket, #content-seo {
  margin: 1%;
  padding: 2%;
  height: 100%;
