@@ -11,7 +11,7 @@ nav#side {
  margin: 1%;
 }
 
-#content {
+#content-main, #content-socket, #content-seo {
  margin: 1%;
  padding: 2%;
  height: 100%;
@@ -21,7 +21,13 @@ nav#side {
  border-radius: 5px;
 }
 
-#content .dateCalc {
-  height: 90%;
-  background-color: #CCFF99;
-} 
+#content-date {
+ margin: 1%;
+ padding: 2%;
+ height: 100%;
+ overflow-y: auto;
+ text-align: top;
+ background-color:  #FFFF66;
+ border-radius: 5px;
+}
+
