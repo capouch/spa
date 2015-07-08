@@ -48,7 +48,7 @@ spa.shell = (function () {
       $content   : $container.find('#content-main'),
       $dates     : $container.find('#content-dates'),
       $socket    : $container.find('#content-socket'),
-      $socket    : $container.find('#content-seo')
+      $seo       : $container.find('#content-seo')
     };
   };
   // End DOM method /setJqueryMap/
