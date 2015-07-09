@@ -82,6 +82,9 @@ spa.dates = (function () {
     setJqueryMap();
 
     // Everything below this line is event handlers
+    //    * Calc button
+    //    * Clear button
+    //    * Hit enter while in days input box
 
     // Click handler for Calc button
     jqueryMap.$calcButton.click(function() {
