@@ -23,4 +23,9 @@ nav#side {
 
 #content-dates {
   background-color: #CCFF33;
-} 
+}
+
+#content-dates #output {
+  width: 75%;
+  background-color: #FF3300;
+}   
