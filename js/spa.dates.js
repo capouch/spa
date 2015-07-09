@@ -19,6 +19,8 @@ spa.dates = (function () {
       + ' <input type="number" maxlength="2" id="months" /><br>'
       + ' <label for="days">Days  </label>'
       + ' <input type="number" maxlength="2" id="days" />'
+      + ' <input type="radio" name="opcode" value="sub" checked> Subtract'
+      + ' <input type="radio" name="opcode" value="add">Add'
       + ' <br><input type="button" value="Calc" id="calcButton" />'
       + ' <input type="button" value="Clear" id="clearButton" />'
       + ' <aside id="output">Start:</aside>'
@@ -30,7 +32,7 @@ spa.dates = (function () {
 
     // Local variables, both data and functions
     initModule, copyAnchorMap, setJqueryMap, setClicks,
-    calcStartYear, postSection;
+    calcStartYear, postSection, operation;
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
   //------------------- BEGIN UTILITY METHODS ------------------
@@ -94,14 +96,25 @@ spa.dates = (function () {
         // The start object begins the same as the finish
         start = moment(finish);
 
+        // Which operation--add or subtract?
+        // Note: fix by putting into jqueryMap if we can
+        operation =  $('input[name=opcode]:checked').val();
+
+        // Is this the best way to do it?
+        if (operation === 'add') {
+          elapsedYears = -(elapsedYears);
+          elapsedMonths = -(elapsedMonths);
+          elapsedDays = -(elapsedDays);
+          }
+
         // Subtract each piece from the finish time to mutate the start
         start.subtract(elapsedYears, 'years').subtract(elapsedMonths, 'months').subtract(elapsedDays, 'days'); 
       // Write it to output
       $('#output').html('Finish: ' + start.format("dddd, MMMM Do YYYY") );
       });
 
-      // Fix below!  It duplicates the above logic 100% 
-      //   except for the event name 
+    // Fix this here below!  It duplicates the above logic 100% 
+    //   except for the event name 
     // Handler when user hits enter in "Days" widget
     jqueryMap.$days.keypress(function(e) {
       // 13 = Return (Enter) key
@@ -113,6 +126,17 @@ spa.dates = (function () {
         elapsedDays = $('#days').val(),
         finish = moment(inputDate),
         start = moment(finish);
+
+        // Which operation--add or subtract?
+        // Note: fix by putting into jqueryMap if we can
+        operation =  $('input[name=opcode]:checked').val();
+
+        // Is this the best way to do it?
+        if (operation === 'add') {
+          elapsedYears = -(elapsedYears);
+          elapsedMonths = -(elapsedMonths);
+          elapsedDays = -(elapsedDays);
+          }
 
         start.subtract(elapsedYears, 'years').subtract(elapsedMonths, 'months').subtract(elapsedDays, 'days');
       $('#output').html('Start: ' + start.format("dddd, MMMM Do YYYY"));
