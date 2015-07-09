@@ -82,7 +82,7 @@ spa.socket = (function () {
     stateMap.$container = $container;
     $container.html( configMap.main_html );
     setJqueryMap();
-    // setClicks();
+    jqueryMap.$container.show();
   };
   return { initModule : initModule };
   //------------------- END PUBLIC METHODS ---------------------

@@ -29,8 +29,8 @@ spa.shell = (function () {
       $container  : undefined,
     },
     jqueryMap = {},
-    initModule, copyAnchorMap, setJqueryMap;
-    
+    initModule, copyAnchorMap, setJqueryMap,
+    currentMod;    
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
   //------------------- BEGIN UTILITY METHODS ------------------
@@ -56,24 +56,33 @@ spa.shell = (function () {
   // Begin client-side router methods
 
   function index() {
-    // This needs to be more sophisticated
-    //   i.e. what if we're leaving the socket module
-    jqueryMap.$dates.hide();
+    
+    currentMod.hide();
+    currentMod = jqueryMap.$content; 
     jqueryMap.$content.show();
     }
 
-  function dates() {
-    // Fragile div swap for testing
-    // Note this will FREAK if you come in via bookmark
-    jqueryMap.$content.hide();
+  function dates() { 
+    // Don't be bad if user keeps clicking same menu choice
+    if( currentMod != jqueryMap.$dates ) 
+	currentMod.hide();
+    // Remember where we're at
+    currentMod = jqueryMap.$dates;
     spa.dates.postSection();
     }
 
   function socket() {
-    spa.socket.initModule(jqueryMap.$content);
+    if( currentMod != jqueryMap.$socket )
+      currentMod.hide();
+    currentMod = jqueryMap.$socket
+    // This changes once Nathan is ready 
+    spa.socket.initModule(jqueryMap.$socket);
     }
 
   function seo() {
+    if( currentMod != jqueryMap.$seo )
+      currentMod.hide()
+    currentMod = jqueryMap.$seo;
     // Nothing going on here yet
     }
 
@@ -108,6 +117,10 @@ spa.shell = (function () {
 
     // Initialize module ONCE 
     spa.dates.initModule(jqueryMap.$dates);
+    // spa.socket.initModule(jqueryMap.$socket);
+    // spa.seo.initModule(jqueryMap.$seo);
+
+    currentMod = jqueryMap.$content;
 
     // Set up routes
     page('/', index);
