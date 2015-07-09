@@ -43,6 +43,15 @@ configRoutes = function ( router, server ) {
     res.sendFile('index.html', options);
   });
 
+  // This will be commented out before the show
+  router.get('/seo', function(req, res) {
+    var options = {
+      // I don't like this very much
+      root: __dirname + '/../html/'
+    };
+    res.sendFile('index.html', options);
+  });
+
 }; 
  
 module.exports = { configRoutes : configRoutes };
