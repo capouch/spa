@@ -11,7 +11,7 @@ spa.dates = (function () {
     configMap = {
       main_html : String()
       + '<h4>Date Calculation Region</h4>'
-      + '<p><label for="finishDate">Finish Date</label>'
+      + '<p><label for="finishDate">Date</label>'
       + ' <input type="date" id="finishDate" />'
       + ' <p><label for="years">Years </label>'
       + ' <input type="number" maxlength="3" id="years" /><br>'
@@ -23,7 +23,7 @@ spa.dates = (function () {
       + ' <input type="radio" name="opcode" value="add">Add'
       + ' <br><input type="button" value="Calc" id="calcButton" />'
       + ' <input type="button" value="Clear" id="clearButton" />'
-      + ' <aside id="output">Start:</aside>'
+      + ' <aside id="output">Target:</aside>'
     },
     stateMap = {
       $container  : undefined,
@@ -110,7 +110,7 @@ spa.dates = (function () {
         // Subtract each piece from the finish time to mutate the start
         start.subtract(elapsedYears, 'years').subtract(elapsedMonths, 'months').subtract(elapsedDays, 'days'); 
       // Write it to output
-      $('#output').html('Finish: ' + start.format("dddd, MMMM Do YYYY") );
+      $('#output').html('Target: ' + start.format("dddd, MMMM Do YYYY") );
       });
 
     // Fix this here below!  It duplicates the above logic 100% 
@@ -139,7 +139,7 @@ spa.dates = (function () {
           }
 
         start.subtract(elapsedYears, 'years').subtract(elapsedMonths, 'months').subtract(elapsedDays, 'days');
-      $('#output').html('Start: ' + start.format("dddd, MMMM Do YYYY"));
+      $('#output').html('Target: ' + start.format("dddd, MMMM Do YYYY"));
       }
       }); 
 
