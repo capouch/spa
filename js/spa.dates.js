@@ -75,11 +75,13 @@ spa.dates = (function () {
   // Returns   : none 
   // Throws    : none
   initModule = function ( $container ) {
-    // load HTML and map jQuery collections
+    // load HTML and map jQuery collections SILENTLY!
     stateMap.$container = $container;
     $container.hide();
     $container.html( configMap.main_html );
     setJqueryMap();
+
+    // Everything below this line is event handlers
 
     // Click handler for Calc button
     jqueryMap.$calcButton.click(function() {
