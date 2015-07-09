@@ -45,10 +45,10 @@ spa.dates = (function () {
 
     // Set initial jQuery map values
     jqueryMap = {
-      $container : $container,
-      $calcButton :  $container.find('#calcButton'),
-      $days :  $container.find('#days'),
-      $clear :  $container.find('#clearButton')
+      $container  : $container,
+      $calcButton : $container.find('#calcButton'),
+      $days       : $container.find('#days'),
+      $clear      : $container.find('#clearButton')
     };
   };
   // End DOM method /setJqueryMap/
@@ -99,7 +99,6 @@ spa.dates = (function () {
         // Which operation--add or subtract?
         // Note: fix by putting into jqueryMap if we can
         operation =  $('input[name=opcode]:checked').val();
-
         // Is this the best way to do it?
         if (operation === 'add') {
           elapsedYears = -(elapsedYears);
@@ -149,6 +148,7 @@ spa.dates = (function () {
       $('#years').val('');
       $('#months').val('');
       $('#days').val('');
+      // Also need to reset to subtract at this point
       });
 
     // Test moment library functions by showing my age
