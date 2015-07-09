@@ -97,7 +97,7 @@ spa.dates = (function () {
         // Subtract each piece from the finish time to mutate the start
         start.subtract(elapsedYears, 'years').subtract(elapsedMonths, 'months').subtract(elapsedDays, 'days'); 
       // Write it to output
-      $('#output').html('Birth: ' + start.format("dddd, MMMM Do YYYY") );
+      $('#output').html('Finish: ' + start.format("dddd, MMMM Do YYYY") );
       });
 
       // Fix below!  It duplicates the above logic 100% 
@@ -115,7 +115,7 @@ spa.dates = (function () {
         start = moment(finish);
 
         start.subtract(elapsedYears, 'years').subtract(elapsedMonths, 'months').subtract(elapsedDays, 'days');
-      $('#output').html('Birth: ' + start.format("dddd, MMMM Do YYYY"));
+      $('#output').html('Start: ' + start.format("dddd, MMMM Do YYYY"));
       }
       }); 
 
