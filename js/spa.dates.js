@@ -21,7 +21,7 @@ spa.dates = (function () {
       + ' <input type="number" maxlength="2" id="days" />'
       + ' <br><input type="button" value="Calc" id="calcButton" />'
       + ' <input type="button" value="Clear" id="clearButton" />'
-      + ' <div id="output">Start:</div>'
+      + ' <aside id="output">Start:</aside>'
     },
     stateMap = {
       $container  : undefined,
