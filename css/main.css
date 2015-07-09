@@ -1,23 +1,26 @@
 header {
- height: 10%;
- background-color: #1FFFF0;
+  height: 10%;
+  background-color: #1FFFF0;
 }
 
 nav#side {
- background-color: #ADADAD;
- float: left;
- width: 28%;
- height: 100%;
- margin: 1%;
+  background-color: #ADADAD;
+  float: left;
+  width: 28%;
+  height: 100%;
+  margin: 1%;
 }
 
 #content-main, #content-dates, #content-socket, #content-seo {
- margin: 1%;
- padding: 2%;
- height: 100%;
- overflow-y: auto;
- text-align: top;
- background-color:  #FFFF66;
- border-radius: 5px;
+  margin: 1%;
+  padding: 2%;
+  height: 100%;
+  overflow-y: auto;
+  text-align: top;
+  background-color:  #FFFF66;
+  border-radius: 5px;
 }
 
+#content-dates {
+  background-color: #CCFF33;
+} 
