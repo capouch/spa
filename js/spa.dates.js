@@ -11,7 +11,7 @@ spa.dates = (function () {
     configMap = {
       main_html : String()
       + '<h4>Date Calculation Region</h4>'
-      + '<p><label for="finishDate">Date</label>'
+      + '<p><label for="finishDate">Date of interest</label>'
       + ' <input type="date" id="finishDate" />'
       + ' <p><label for="years">Years </label>'
       + ' <input type="number" maxlength="3" id="years" /><br>'
