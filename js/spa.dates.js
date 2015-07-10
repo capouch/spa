@@ -92,8 +92,8 @@ spa.dates = (function () {
     timespanMap.days = $('#days').val();
 
 
-  // Add or subtract according to opcode value (add/sub)
-  doDateCalc(start, $('input[name=opcode]:checked').val());
+    // Add or subtract according to opcode value (add/sub)
+    doDateCalc(start, $('input[name=opcode]:checked').val());
 
   // Write it to output
   $('#output').html('Target: ' + start.format("dddd, MMMM Do YYYY"));
