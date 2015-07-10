@@ -150,7 +150,10 @@ spa.dates = (function () {
     $container.hide();
     $container.html( configMap.main_html );
     setJqueryMap();
+
+    // Start off with the generic view
     genericView = true;
+    jqueryMap.$cemetery.hide();
 
     // Event handlers
 
