@@ -21,8 +21,12 @@ nav#side {
   border-radius: 5px;
 }
 
-#content-dates {
+#content-dates #genericDate {
   background-color: #CCFF33;
+}
+
+#content-dates #cemeteryDate {
+  background-color: #CC6699
 }
 
 #content-dates #output {
