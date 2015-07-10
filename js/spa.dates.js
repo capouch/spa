@@ -68,6 +68,13 @@ spa.dates = (function () {
   };
   // End DOM method /setJqueryMap/
 
+ // Normal entry point - Just render container contents
+ postSection = function() {
+  // For now, all this does is re-display contents of section
+  jqueryMap.$container.show();
+  }
+
+
   //--------------------- END DOM METHODS ----------------------
 
   //------------------- BEGIN EVENT HANDLERS -------------------
@@ -117,10 +124,7 @@ spa.dates = (function () {
     $container.html( configMap.main_html );
     setJqueryMap();
 
-    // Everything below is event handlers
-    //    * Calc button
-    //    * Clear button
-    //    * Hit enter while in days input box
+    // Event handlers
 
     // Click handler for Calc button
     jqueryMap.$calcButton.click(function() {
@@ -152,15 +156,9 @@ spa.dates = (function () {
       + '<br>Capouch\'s precise age: ' + moment.duration(now.diff(startday)).format());
 
  } 
- 
- // Main entry point - Just render container contents
- postSection = function() {
-  // For now, all this does is re-display contents of section    
-  jqueryMap.$container.show();
-  }
 
   return { initModule : initModule, 
-	   postSection : postSection
-         };
+           postSection : postSection
+    };
   //------------------- END PUBLIC METHODS ---------------------
 }());
