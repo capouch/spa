@@ -44,15 +44,11 @@ spa.dates = (function () {
 
   //------------------- BEGIN UTILITY METHODS ------------------
   doDateCalc = function(startDate, operation) {
-        // Is this the best way to do it?
-        if (operation === 'add') {
-          timespanMap.years = -(timespanMap.years);
-          timespanMap.months = -(timespanMap.months);
-          timespanMap.days = -(timespanMap.days);
-          }
-
-        // Subtract each piece from the finish time to mutate the start
-        startDate.subtract(timespanMap.years, 'years').subtract(timespanMap.months, 'months').subtract(timespanMap.days, 'days');
+    // Calculate target date by adding/subtracting timespan
+    if (operation === 'add') 
+      startDate.add(timespanMap.years, 'years').add(timespanMap.months,'months').add(timespanMap.days, 'days');
+    else
+      startDate.subtract(timespanMap.years, 'years').subtract(timespanMap.months, 'months').subtract(timespanMap.days, 'days');
     };
 
   //-------------------- END UTILITY METHODS -------------------
