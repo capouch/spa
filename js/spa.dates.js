@@ -91,13 +91,11 @@ spa.dates = (function () {
 
   swapSection = function() {
     if( genericView ) {
-      genericView = false;
-      jqueryMap.$generic.hide();
-      jqueryMap.$cemetery.show();
-    } else {
-      genericView = true;
       jqueryMap.$cemetery.hide();
       jqueryMap.$generic.show();
+    } else {
+      jqueryMap.$generic.hide();
+      jqueryMap.$cemetery.show();
       }
   }
 
@@ -165,8 +163,11 @@ spa.dates = (function () {
     // Handle toggling between modes
     jqueryMap.$toggle.click(function() {
       // Fix up button label
+      genericView = (genericView === true)?false:true;
       buttonText = (genericView === true)?'Cemetery View':'Generic View';
       jqueryMap.$toggle.prop('value', buttonText);
+
+      //Swap actual section contents
       swapSection();
     }); 
 
