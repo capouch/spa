@@ -10,8 +10,10 @@ spa.dates = (function () {
   var
     configMap = {
       main_html : String()
-      + '<h4>Date Calculation Region</h4>'
-      + '<p><label for="finishDate">Date of interest</label>'
+      + ' <h4>Date Calculation Region</h4>'
+      + ' <input type="button" value="Cemetery View" id="toggleButton" />'
+      + ' <section id="genericDate">'
+      + ' <p><label for="finishDate">Date of interest</label>'
       + ' <input type="date" id="finishDate" />'
       + ' <p><label for="years">Years </label>'
       + ' <input type="number" maxlength="3" id="years" /><br>'
@@ -24,6 +26,9 @@ spa.dates = (function () {
       + ' <br><input type="button" value="Calc" id="calcButton" />'
       + ' <input type="button" value="Clear" id="clearButton" />'
       + ' <aside id="output">Target:</aside>'
+      + ' </section>'
+      + ' <section id = "cemeteryDate"> Eventual section contents'
+      + ' </section>'
     },
     stateMap = {
       $container  : undefined,
@@ -39,7 +44,9 @@ spa.dates = (function () {
 
     // Local variables, both data and functions
     initModule, copyAnchorMap, setJqueryMap, setClicks,
-    calcStartYear, postSection, operation, doDateCalc;
+    calcStartYear, postSection, operation, doDateCalc,
+    generic, cemetery, genericView, buttonText,
+    swapSection;
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
   //------------------- BEGIN UTILITY METHODS ------------------
@@ -61,6 +68,9 @@ spa.dates = (function () {
     // Set initial jQuery map values
     jqueryMap = {
       $container  : $container,
+      $generic	  : $container.find('#genericDate'),
+      $cemetery   : $container.find('#cemeteryDate'),
+      $toggle     : $container.find('#toggleButton'),
       $calcButton : $container.find('#calcButton'),
       $days       : $container.find('#days'),
       $clear      : $container.find('#clearButton')
@@ -71,9 +81,25 @@ spa.dates = (function () {
  // Normal entry point - Just render container contents
  postSection = function() {
   // For now, all this does is re-display contents of section
+  if (genericView) 
+    jqueryMap.$generic.show();
+  else
+    jqueryMap.$cemetery.show();
+
   jqueryMap.$container.show();
   }
 
+  swapSection = function() {
+    if( genericView ) {
+      genericView = false;
+      jqueryMap.$generic.hide();
+      jqueryMap.$cemetery.show();
+    } else {
+      genericView = true;
+      jqueryMap.$cemetery.hide();
+      jqueryMap.$generic.show();
+      }
+  }
 
   //--------------------- END DOM METHODS ----------------------
 
@@ -119,10 +145,12 @@ spa.dates = (function () {
   // Throws    : none
   initModule = function ( $container ) {
     // load HTML and map jQuery collections SILENTLY!
+    // Start out in generic view
     stateMap.$container = $container;
     $container.hide();
     $container.html( configMap.main_html );
     setJqueryMap();
+    genericView = true;
 
     // Event handlers
 
@@ -130,6 +158,14 @@ spa.dates = (function () {
     jqueryMap.$calcButton.click(function() {
         updateForm();
       });
+
+    // Handle toggling between modes
+    jqueryMap.$toggle.click(function() {
+      // Fix up button label
+      buttonText = (genericView === true)?'Cemetery View':'Generic View';
+      jqueryMap.$toggle.prop('value', buttonText);
+      swapSection();
+    }); 
 
     // Handler when user hits enter in "Days" widget
     jqueryMap.$days.keypress(function(e) {
