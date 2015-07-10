@@ -46,9 +46,9 @@ spa.dates = (function () {
   doDateCalc = function(startDate, operation) {
         // Is this the best way to do it?
         if (operation === 'add') {
-          timespanMap.years -= timespanMap.years;
-          timespanMap.months -= timespanMap.months;
-          timespanMap.days -= -timespanMap.days;
+          timespanMap.years = -(timespanMap.years);
+          timespanMap.months = -(timespanMap.months);
+          timespanMap.days = -(timespanMap.days);
           }
 
         // Subtract each piece from the finish time to mutate the start
@@ -75,6 +75,27 @@ spa.dates = (function () {
   //--------------------- END DOM METHODS ----------------------
 
   //------------------- BEGIN EVENT HANDLERS -------------------
+  function updateForm() {
+    var inputDate = $('#finishDate').val(),
+
+    // create moment objects
+    finish = moment(inputDate),
+    // The start object begins the same as the finish
+    start = moment(finish);
+
+    // Read the change values from widgets
+    timespanMap.years = $('#years').val();
+    timespanMap.months = $('#months').val();
+    timespanMap.days = $('#days').val();
+
+
+  // Add or subtract according to opcode value (add/sub)
+  doDateCalc(start, $('input[name=opcode]:checked').val());
+
+  // Write it to output
+  $('#output').html('Target: ' + start.format("dddd, MMMM Do YYYY"));
+  }
+
   //-------------------- END EVENT HANDLERS --------------------
 
   //------------------- BEGIN PUBLIC METHODS -------------------
@@ -100,63 +121,23 @@ spa.dates = (function () {
     $container.html( configMap.main_html );
     setJqueryMap();
 
-    // Everything below this line is event handlers
+    // Everything below is event handlers
     //    * Calc button
     //    * Clear button
     //    * Hit enter while in days input box
 
     // Click handler for Calc button
     jqueryMap.$calcButton.click(function() {
-      // store the date input by user
-      var inputDate = $('#finishDate').val(),
-
-        // create moment objects
-        finish = moment(inputDate),
-        // The start object begins the same as the finish
-        start = moment(finish);
-
-        // Read the change values from widgets
-        timespanMap.years = $('#years').val();
-        timespanMap.months = $('#months').val();
-        timespanMap.days = $('#days').val();
-
-
-      // Add or subtract according to opcode value (add/sub)
-      doDateCalc(start, $('input[name=opcode]:checked').val());
-
-      // Write it to output
-      $('#output').html('Target: ' + start.format("dddd, MMMM Do YYYY") );
+        updateForm();
       });
 
-    // Fix this here below!  It duplicates the above logic 100% 
-    //   except for the event name 
     // Handler when user hits enter in "Days" widget
     jqueryMap.$days.keypress(function(e) {
       // 13 = Return (Enter) key
       if(e.which == 13) {
-        // This logic is identical to click handler above!
-        var inputDate = $('#finishDate').val(),
-        elapsedYears = $('#years').val(),
-        elapsedMonths = $('#months').val(),
-        elapsedDays = $('#days').val(),
-        finish = moment(inputDate),
-        start = moment(finish);
-
-        // Which operation--add or subtract?
-        // Note: fix by putting into jqueryMap if we can
-        operation =  $('input[name=opcode]:checked').val();
-
-        // Is this the best way to do it?
-        if (operation === 'add') {
-          elapsedYears = -(elapsedYears);
-          elapsedMonths = -(elapsedMonths);
-          elapsedDays = -(elapsedDays);
-          }
-
-        start.subtract(elapsedYears, 'years').subtract(elapsedMonths, 'months').subtract(elapsedDays, 'days');
-      $('#output').html('Target: ' + start.format("dddd, MMMM Do YYYY"));
+        updateForm();
       }
-      }); 
+    });
 
     // Clear input fields on clear button click
     jqueryMap.$clear.click(function() {
@@ -176,6 +157,7 @@ spa.dates = (function () {
 
  } 
  
+ // Main entry point - Just render container contents
  postSection = function() {
   // For now, all this does is re-display contents of section    
   jqueryMap.$container.show();
