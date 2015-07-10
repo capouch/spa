@@ -115,6 +115,8 @@ spa.shell = (function () {
 
     // Initialize module ONCE 
     spa.dates.initModule(jqueryMap.$dates);
+    jqueryMap.$socket.hide();
+    jqueryMap.$seo.hide();
     // spa.socket.initModule(jqueryMap.$socket);
     // spa.seo.initModule(jqueryMap.$seo);
 
