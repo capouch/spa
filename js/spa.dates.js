@@ -30,12 +30,31 @@ spa.dates = (function () {
     },
     jqueryMap = {},
 
+    // Saves passing a nasty number of parameters
+    timespanMap = {
+      years: undefined,
+      months: undefined,
+      days: undefined
+    },
+
     // Local variables, both data and functions
     initModule, copyAnchorMap, setJqueryMap, setClicks,
-    calcStartYear, postSection, operation;
+    calcStartYear, postSection, operation, doDateCalc;
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
   //------------------- BEGIN UTILITY METHODS ------------------
+  doDateCalc = function(startDate, operation) {
+        // Is this the best way to do it?
+        if (operation === 'add') {
+          timespanMap.years -= timespanMap.years;
+          timespanMap.months -= timespanMap.months;
+          timespanMap.days -= -timespanMap.days;
+          }
+
+        // Subtract each piece from the finish time to mutate the start
+        startDate.subtract(timespanMap.years, 'years').subtract(timespanMap.months, 'months').subtract(timespanMap.days, 'days');
+    };
+
   //-------------------- END UTILITY METHODS -------------------
 
   //--------------------- BEGIN DOM METHODS --------------------
@@ -91,28 +110,20 @@ spa.dates = (function () {
       // store the date input by user
       var inputDate = $('#finishDate').val(),
 
-        // Read the change values from widgets
-        elapsedYears = $('#years').val(),
-        elapsedMonths = $('#months').val(),
-        elapsedDays = $('#days').val(),
-
         // create moment objects
         finish = moment(inputDate),
         // The start object begins the same as the finish
         start = moment(finish);
 
-        // Which operation--add or subtract?
-        // Note: fix by putting into jqueryMap if we can
-        operation =  $('input[name=opcode]:checked').val();
-        // Is this the best way to do it?
-        if (operation === 'add') {
-          elapsedYears = -(elapsedYears);
-          elapsedMonths = -(elapsedMonths);
-          elapsedDays = -(elapsedDays);
-          }
+        // Read the change values from widgets
+        timespanMap.years = $('#years').val();
+        timespanMap.months = $('#months').val();
+        timespanMap.days = $('#days').val();
 
-        // Subtract each piece from the finish time to mutate the start
-        start.subtract(elapsedYears, 'years').subtract(elapsedMonths, 'months').subtract(elapsedDays, 'days'); 
+
+      // Add or subtract according to opcode value (add/sub)
+      doDateCalc(start, $('input[name=opcode]:checked').val());
+
       // Write it to output
       $('#output').html('Target: ' + start.format("dddd, MMMM Do YYYY") );
       });
