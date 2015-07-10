@@ -11,7 +11,7 @@ spa.dates = (function () {
     configMap = {
       main_html : String()
       + ' <h4>Date Calculation Region</h4>'
-      + ' <input type="button" value="Cemetery View" id="toggleButton" />'
+      + ' <input type="button" value="Show Cemetery View" id="toggleButton" />'
       + ' <section id="genericDate"></section>'
       + ' <section id = "cemeteryDate"></section>'
       ,
@@ -174,7 +174,7 @@ spa.dates = (function () {
     jqueryMap.$toggle.click(function() {
       // Fix up button label
       genericView = (genericView === true)?false:true;
-      buttonText = (genericView === true)?'Cemetery View':'Generic View';
+      buttonText = (genericView === true)?'Show Cemetery View':'Show Generic View';
       jqueryMap.$toggle.prop('value', buttonText);
 
       //Swap actual section contents
