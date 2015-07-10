@@ -12,7 +12,11 @@ spa.dates = (function () {
       main_html : String()
       + ' <h4>Date Calculation Region</h4>'
       + ' <input type="button" value="Cemetery View" id="toggleButton" />'
-      + ' <section id="genericDate">'
+      + ' <section id="genericDate"></section>'
+      + ' <section id = "cemeteryDate"></section>'
+      ,
+
+      generic_html: String()
       + ' <p><label for="finishDate">Date of interest</label>'
       + ' <input type="date" id="finishDate" />'
       + ' <p><label for="years">Years </label>'
@@ -26,10 +30,12 @@ spa.dates = (function () {
       + ' <br><input type="button" value="Calc" id="calcButton" />'
       + ' <input type="button" value="Clear" id="clearButton" />'
       + ' <aside id="output">Target:</aside>'
-      + ' </section>'
-      + ' <section id = "cemeteryDate"> Eventual section contents'
-      + ' </section>'
-    },
+      ,
+
+      cemetery_html: String()
+      + 'Eventual section contents'
+      },
+
     stateMap = {
       $container  : undefined,
     },
@@ -148,6 +154,10 @@ spa.dates = (function () {
     $container.hide();
     $container.html( configMap.main_html );
     setJqueryMap();
+
+    // Load up sections
+    jqueryMap.$generic.html( configMap.generic_html );
+    jqueryMap.$cemetery.html( configMap.cemetery_html );
 
     // Start off with the generic view
     genericView = true;
