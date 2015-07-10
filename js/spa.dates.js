@@ -30,7 +30,7 @@ spa.dates = (function () {
     },
     jqueryMap = {},
 
-    // Saves passing a nasty number of parameters
+    // Saves nasty parameter clog
     timespanMap = {
       years: undefined,
       months: undefined,
