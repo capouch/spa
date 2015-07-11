@@ -54,7 +54,6 @@ spa.shell = (function () {
   // Begin client-side router methods
 
   function index() {
-    
     currentMod.hide();
     currentMod = jqueryMap.$content; 
     jqueryMap.$content.show();

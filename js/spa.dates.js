@@ -85,25 +85,27 @@ spa.dates = (function () {
   // End DOM method /setJqueryMap/
 
  // Normal entry point - Just render container contents
- postSection = function() {
-  // For now, all this does is re-display contents of section
-  if (genericView) 
-    jqueryMap.$generic.show();
-  else
-    jqueryMap.$cemetery.show();
-
-  jqueryMap.$container.show();
-  }
-
-  swapSection = function() {
-    if( genericView ) {
+  postSection = function() {
+    // For now, all this does is re-display contents of section
+    if (genericView) {
       jqueryMap.$cemetery.hide();
       jqueryMap.$generic.show();
     } else {
       jqueryMap.$generic.hide();
       jqueryMap.$cemetery.show();
-      }
-  }
+    }
+  jqueryMap.$container.show();
+  } // end postSection 
+  
+  swapSection = function() {
+      if ( genericView )  {
+        jqueryMap.$cemetery.hide();
+        jqueryMap.$generic.show();
+      } else {
+       jqueryMap.$generic.hide();
+       jqueryMap.$cemetery.show();
+     } 
+    } // end swapSection 
 
   //--------------------- END DOM METHODS ----------------------
 
@@ -166,7 +168,6 @@ spa.dates = (function () {
     jqueryMap.$cemetery.hide();
 
     // Event handlers
-
     // Click handler for Calc button
     jqueryMap.$calcButton.click(function() {
         updateForm();
