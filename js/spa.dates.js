@@ -73,7 +73,7 @@ spa.dates = (function () {
 
   //------------------- BEGIN UTILITY METHODS ------------------
   doDateCalc = function(startDate, operation) {
-    // Mutate startDate by adding/subtracting timespan
+    // Mutate moment startDate by adding/subtracting timespan
     if (operation === 'add') 
       startDate.add(timespanMap.years, 'years').add(timespanMap.months,'months').add(timespanMap.days, 'days');
     else
