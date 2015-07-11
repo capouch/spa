@@ -205,9 +205,7 @@ spa.dates = (function () {
     var now = moment(),
       startday = moment('1951-02-20');
     jqueryMap.$container.append('<br>Date now: ' 
-      + now.format("dddd, MMMM Do YYYY") 
-      + '<br>Capouch\'s precise age: ' + moment.duration(now.diff(startday)).format());
-
+      + now.format("dddd, MMMM Do YYYY"));
  } 
 
   return { initModule : initModule, 
