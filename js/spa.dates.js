@@ -73,7 +73,7 @@ spa.dates = (function () {
 
   //------------------- BEGIN UTILITY METHODS ------------------
   doDateCalc = function(startDate, operation) {
-    // Calculate target date by adding/subtracting timespan
+    // Mutate startDate by adding/subtracting timespan
     if (operation === 'add') 
       startDate.add(timespanMap.years, 'years').add(timespanMap.months,'months').add(timespanMap.days, 'days');
     else
@@ -83,7 +83,8 @@ spa.dates = (function () {
   //-------------------- END UTILITY METHODS -------------------
 
   //--------------------- BEGIN DOM METHODS --------------------
-  // Begin DOM method /setJqueryMap/
+
+  // Begin method /setJqueryMap/
   setJqueryMap = function () {
     var $container = stateMap.$container;
 
@@ -93,6 +94,8 @@ spa.dates = (function () {
       $generic	     : $container.find('#genericDate'),
       $cemetery      : $container.find('#cemeteryDate'),
       $toggle        : $container.find('#toggleButton'),
+
+      // We need one of each of these per view container
       $genCalcButton : $container.find('#genericDate').find('.calcButton'),
       $cemCalcButton : $container.find('#cemeteryDate').find('.calcButton'),
       $genDays       : $container.find('#genericDate').find('.days'),
@@ -100,22 +103,9 @@ spa.dates = (function () {
       $genClear      : $container.find('#genericDate').find('.clearButton'),
       $cemClear      : $container.find('#cemeteryDate').find('.clearButton')
     };
-  };
-  // End DOM method /setJqueryMap/
+  }; // end setJqueryMap
 
-  // Normal entry point - Just render container contents
-  postSection = function() {
-    // For now, all this does is re-display contents of section
-    if (genericView) {
-      jqueryMap.$cemetery.hide();
-      jqueryMap.$generic.show();
-    } else {
-      jqueryMap.$generic.hide();
-      jqueryMap.$cemetery.show();
-    }
-  jqueryMap.$container.show();
-  } // end postSection 
-  
+  // Begin method /swapSection/
   swapSection = function() {
       if ( genericView )  {
         jqueryMap.$cemetery.hide();
@@ -129,6 +119,8 @@ spa.dates = (function () {
   //--------------------- END DOM METHODS ----------------------
 
   //------------------- BEGIN EVENT HANDLERS -------------------
+
+  // Begin event handler /updateForm/
   function updateForm(container, operation) {
     var inputDate = $(container.find('.finishDate')).val(),
     // create moment objects
@@ -146,26 +138,13 @@ spa.dates = (function () {
     doDateCalc(start, operation);
   // Write it to output
   $(container.find('.output')).html('Target: ' + start.format("dddd, MMMM Do YYYY"));
-  }
+  } // end updateForm
 
   //-------------------- END EVENT HANDLERS --------------------
 
   //------------------- BEGIN PUBLIC METHODS -------------------
+
   // Begin Public method /initModule/
-  // Example   : spa.dates.initModule( $('#app_div_id') );
-  // Purpose   :
-  //   Sets up data calculations
-  // Arguments :
-  //   * $container (example: $('#app_div_id')).
-  //     A jQuery collection that should represent 
-  //     a single DOM container
-  // Action    :
-  //   Populates $container with the shell of the UI
-  //   and then configures and initializes feature modules.
-  //   The Shell is also responsible for browser-wide issues
-  //   such as URI anchor and cookie management
-  // Returns   : none 
-  // Throws    : none
   initModule = function ( $container ) {
     // load HTML and map jQuery collections SILENTLY!
     // Start out in generic view
@@ -196,7 +175,7 @@ spa.dates = (function () {
     jqueryMap.$cemCalcButton.click(function() {
       updateForm(jqueryMap.$cemetery, $('input[name=cem_opcode]:checked').val());
 
-    });
+    }); // end handlers for Calc buttons
 
     // Handlers when user hits enter in "Days" widget
     jqueryMap.$genDays.keypress(function(e) {
@@ -204,7 +183,7 @@ spa.dates = (function () {
       if(e.which == 13) {
         updateForm(jqueryMap.$generic, $('input[name=gen_opcode]:checked').val());
       }
-    });
+    }); 
 
     jqueryMap.$cemDays.keypress(function(e) {
       // 13 = Return (Enter) key
@@ -212,7 +191,7 @@ spa.dates = (function () {
         updateForm(jqueryMap.$cemetery, $('input[name=cem_opcode]:checked').val());
 
       }
-    });
+    }); // End handlers for enter key pressed
 
 
     // Clear input fields on clear button click
@@ -230,9 +209,9 @@ spa.dates = (function () {
       $('.months').val('');
       $('.days').val('');
       // Also need to reset to subtract at this point
-    });
+    }); // End handlers for Clear button pressed
 
-    // Content container scoped toggle between view containers
+    // Begin handler for view toggle button
     jqueryMap.$toggle.click(function() {
       // Fix up button label
       genericView = (genericView === true)?false:true;
@@ -241,7 +220,7 @@ spa.dates = (function () {
 
       //Swap actual section contents
       swapSection();
-    });
+    }); // End handler for view toggle button
 
 
     // Test moment library functions by showing my age
@@ -249,7 +228,21 @@ spa.dates = (function () {
       startday = moment('1951-02-20');
     jqueryMap.$container.append('<br>Date now: ' 
       + now.format("dddd, MMMM Do YYYY"));
- } 
+ } // End public method /initModule
+
+  // Begin method /postSection/
+  // Normal entry point - Just render container contents
+  postSection = function() {
+    // For now, all this does is re-display contents of section
+    if (genericView) {
+      jqueryMap.$cemetery.hide();
+      jqueryMap.$generic.show();
+    } else {
+      jqueryMap.$generic.hide();
+      jqueryMap.$cemetery.show();
+    }
+  jqueryMap.$container.show();
+  } // end postSection
 
   return { initModule : initModule, 
            postSection : postSection
