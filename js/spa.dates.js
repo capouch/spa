@@ -89,21 +89,21 @@ spa.dates = (function () {
 
     // Set initial jQuery map values
     jqueryMap = {
-      $container  : $container,
-      $generic	  : $container.find('#genericDate'),
-      $cemetery   : $container.find('#cemeteryDate'),
-      $toggle     : $container.find('#toggleButton'),
+      $container     : $container,
+      $generic	     : $container.find('#genericDate'),
+      $cemetery      : $container.find('#cemeteryDate'),
+      $toggle        : $container.find('#toggleButton'),
       $genCalcButton : $container.find('#genericDate').find('.calcButton'),
       $cemCalcButton : $container.find('#cemeteryDate').find('.calcButton'),
-      $genDays    : $container.find('#genericDate').find('.days'),
-      $cemDays    : $container.find('#cemeteryDate').find('.days'),
-      $genClear   : $container.find('#genericDate').find('.clearButton'),
-      $cemClear   : $container.find('#cemeteryDate').find('.clearButton')
+      $genDays       : $container.find('#genericDate').find('.days'),
+      $cemDays       : $container.find('#cemeteryDate').find('.days'),
+      $genClear      : $container.find('#genericDate').find('.clearButton'),
+      $cemClear      : $container.find('#cemeteryDate').find('.clearButton')
     };
   };
   // End DOM method /setJqueryMap/
 
- // Normal entry point - Just render container contents
+  // Normal entry point - Just render container contents
   postSection = function() {
     // For now, all this does is re-display contents of section
     if (genericView) {
@@ -185,9 +185,11 @@ spa.dates = (function () {
     jqueryMap.$cemetery.hide();
 
     // Event handlers
+    // First: view container specific handlers
 
     // Click handler for Calc buttons
     jqueryMap.$genCalcButton.click(function() {
+      // Parameters are: section container and operation code
       updateForm(jqueryMap.$generic, $('input[name=gen_opcode]:checked').val());
     });
 
@@ -195,17 +197,6 @@ spa.dates = (function () {
       updateForm(jqueryMap.$cemetery, $('input[name=cem_opcode]:checked').val());
 
     });
-
-    // Handle toggling between modes
-    jqueryMap.$toggle.click(function() {
-      // Fix up button label
-      genericView = (genericView === true)?false:true;
-      buttonText = (genericView === true)?'Show Cemetery View':'Show Generic View';
-      jqueryMap.$toggle.prop('value', buttonText);
-
-      //Swap actual section contents
-      swapSection();
-    }); 
 
     // Handlers when user hits enter in "Days" widget
     jqueryMap.$genDays.keypress(function(e) {
@@ -239,6 +230,17 @@ spa.dates = (function () {
       $('.months').val('');
       $('.days').val('');
       // Also need to reset to subtract at this point
+    });
+
+    // Content container scoped toggle between view containers
+    jqueryMap.$toggle.click(function() {
+      // Fix up button label
+      genericView = (genericView === true)?false:true;
+      buttonText = (genericView === true)?'Show Cemetery View':'Show Generic View';
+      jqueryMap.$toggle.prop('value', buttonText);
+
+      //Swap actual section contents
+      swapSection();
     });
 
 
