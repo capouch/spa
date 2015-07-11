@@ -152,14 +152,16 @@ spa.dates = (function () {
     // Start out in generic view
     stateMap.$container = $container;
     $container.hide();
+
+    // Load up all the HTML
     $container.html( configMap.main_html );
+    $container.find('#cemeteryDate').html( configMap.cemetery_html );
+    $container.find('#genericDate').html( configMap.generic_html );
+    
+    // Set collection references
     setJqueryMap();
 
-    // Load up sections
-    jqueryMap.$generic.html( configMap.generic_html );
-    jqueryMap.$cemetery.html( configMap.cemetery_html );
-
-    // Start off with the generic view
+    // Start with the generic view
     genericView = true;
     jqueryMap.$cemetery.hide();
 
