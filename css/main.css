@@ -3,6 +3,10 @@ header {
   background-color: #1FFFF0;
 }
 
+#calcButton , #clearButton{
+  padding: 10px 25px;
+}
+
 nav#side {
   background-color: #ADADAD;
   float: left;
