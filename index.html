@@ -14,7 +14,6 @@
   <script src="./lib/page.js"></script>
   <script src="./lib/moment.js"></script>
   <script src="./lib/moment-duration-format.js"></script>
-  <script src="./lib/query-1.11.3.min.js"></script>
 
   <!-- Our Javascript -->
   <script src='./js/spa.js'></script>
@@ -25,9 +24,9 @@
 
 <!-- Let's get started -->
 <script>
-    // Leaving here for historical and reference purposes
+    // jQuery has to be set up this way
     // See https://github.com/atom/electron/issues/254
-    // window.$ = window.jQuery = require('./lib/jquery-1.11.3.min.js');
+    window.$ = window.jQuery = require('./lib/jquery-1.11.3.min.js');
     $(function () { spa.initModule( $('#spa') ); });
 </script>
 
