@@ -17,23 +17,39 @@ spa.dates = (function () {
       ,
 
       generic_html: String()
+      + '<h3>Generic Date View</h3>'
       + ' <p><label for="finishDate">Date of interest</label>'
-      + ' <input type="date" id="finishDate" />'
+      + ' <input type="date" class="finishDate" />'
       + ' <p><label for="years">Years </label>'
-      + ' <input type="number" maxlength="3" id="years" /><br>'
+      + ' <input type="number" maxlength="3" class="years" /><br>'
       + ' <label for="months">Months</label>'
-      + ' <input type="number" maxlength="2" id="months" /><br>'
+      + ' <input type="number" maxlength="2" class="months" /><br>'
       + ' <label for="days">Days  </label>'
-      + ' <input type="number" maxlength="2" id="days" />'
-      + ' <input type="radio" name="opcode" value="sub" checked> Subtract'
-      + ' <input type="radio" name="opcode" value="add">Add'
-      + ' <br><input type="button" value="Calc" id="calcButton" />'
-      + ' <input type="button" value="Clear" id="clearButton" />'
-      + ' <aside id="output">Target:</aside>'
+      + ' <input type="number" maxlength="2" class="days" />'
+      + ' <input type="radio" name="gen_opcode" value="sub" checked> Subtract'
+      + ' <input type="radio" name="gen_opcode" value="add">Add'
+      + ' <br><input type="button" value="Calc" class="calcButton" />'
+      + ' <input type="button" value="Clear" class="clearButton" />'
+      + ' <aside class="output">Target:</aside>'
       ,
 
       cemetery_html: String()
-      + 'Eventual section contents'
+      + '<h3>Cemetery Date View</h3>'
+      + ' <p><label for="finishDate">Death Date</label>'
+      + ' <input type="date" class="finishDate" />'
+      + ' <label for="birthDate">Birth Date</label>'
+      + ' <input type="date" id="birthDate" />'
+      + ' <p><label for="years">Years </label>'
+      + ' <input type="number" maxlength="3" class="years" /><br>'
+      + ' <label for="months">Months</label>'
+      + ' <input type="number" maxlength="2" class="months" /><br>'
+      + ' <label for="days">Days  </label>'
+      + ' <input type="number" maxlength="2" class="days" />'
+      + ' <input type="radio" name="cem_opcode" class = "add" value="sub" checked> Subtract'
+      + ' <input type="radio" name="cem_opcode" class= "add" value="add">Add'
+      + ' <br><input type="button" value="Calc" class="calcButton" />'
+      + ' <input type="button" value="Clear" class="clearButton" />'
+      + ' <aside class="output">Target:</aside>'
       },
 
     stateMap = {
@@ -77,9 +93,12 @@ spa.dates = (function () {
       $generic	  : $container.find('#genericDate'),
       $cemetery   : $container.find('#cemeteryDate'),
       $toggle     : $container.find('#toggleButton'),
-      $calcButton : $container.find('#calcButton'),
-      $days       : $container.find('#days'),
-      $clear      : $container.find('#clearButton')
+      $genCalcButton : $container.find('#genericDate').find('.calcButton'),
+      $cemCalcButton : $container.find('#cemeteryDate').find('.calcButton'),
+      $genDays    : $container.find('#genericDate').find('.days'),
+      $cemDays    : $container.find('#cemeteryDate').find('.days'),
+      $genClear   : $container.find('#genericDate').find('.clearButton'),
+      $cemClear   : $container.find('#cemeteryDate').find('.clearButton')
     };
   };
   // End DOM method /setJqueryMap/
@@ -110,25 +129,23 @@ spa.dates = (function () {
   //--------------------- END DOM METHODS ----------------------
 
   //------------------- BEGIN EVENT HANDLERS -------------------
-  function updateForm() {
-    var inputDate = $('#finishDate').val(),
-
+  function updateForm(container, operation) {
+    var inputDate = $(container.find('.finishDate')).val(),
     // create moment objects
     finish = moment(inputDate),
     // The start object begins the same as the finish
     start = moment(finish);
 
     // Read the change values from widgets
-    timespanMap.years = $('#years').val();
-    timespanMap.months = $('#months').val();
-    timespanMap.days = $('#days').val();
+    timespanMap.years = $(container.find('.years')).val();
+    timespanMap.months = $(container.find('.months')).val();
+    timespanMap.days = $(container.find('.days')).val();
 
 
     // Add or subtract according to opcode value (add/sub)
-    doDateCalc(start, $('input[name=opcode]:checked').val());
-
+    doDateCalc(start, operation);
   // Write it to output
-  $('#output').html('Target: ' + start.format("dddd, MMMM Do YYYY"));
+  $(container.find('.output')).html('Target: ' + start.format("dddd, MMMM Do YYYY"));
   }
 
   //-------------------- END EVENT HANDLERS --------------------
@@ -168,10 +185,16 @@ spa.dates = (function () {
     jqueryMap.$cemetery.hide();
 
     // Event handlers
-    // Click handler for Calc button
-    jqueryMap.$calcButton.click(function() {
-        updateForm();
-      });
+
+    // Click handler for Calc buttons
+    jqueryMap.$genCalcButton.click(function() {
+      updateForm(jqueryMap.$generic, $('input[name=gen_opcode]:checked').val());
+    });
+
+    jqueryMap.$cemCalcButton.click(function() {
+      updateForm(jqueryMap.$cemetery, $('input[name=cem_opcode]:checked').val());
+
+    });
 
     // Handle toggling between modes
     jqueryMap.$toggle.click(function() {
@@ -184,30 +207,46 @@ spa.dates = (function () {
       swapSection();
     }); 
 
-    // Handler when user hits enter in "Days" widget
-    jqueryMap.$days.keypress(function(e) {
+    // Handlers when user hits enter in "Days" widget
+    jqueryMap.$genDays.keypress(function(e) {
       // 13 = Return (Enter) key
       if(e.which == 13) {
-        updateForm();
+        updateForm(jqueryMap.$generic, $('input[name=gen_opcode]:checked').val());
       }
     });
 
+    jqueryMap.$cemDays.keypress(function(e) {
+      // 13 = Return (Enter) key
+      if(e.which == 13) {
+        updateForm(jqueryMap.$cemetery, $('input[name=cem_opcode]:checked').val());
+
+      }
+    });
+
+
     // Clear input fields on clear button click
-    jqueryMap.$clear.click(function() {
-      $('#finishDate').val('');
-      $('#years').val('');
-      $('#months').val('');
-      $('#days').val('');
+    jqueryMap.$genClear.click(function() {
+      $('.finishDate').val('');
+      $('.years').val('');
+      $('.months').val('');
+      $('.days').val('');
       // Also need to reset to subtract at this point
-      });
+    });
+
+    jqueryMap.$cemClear.click(function() {
+      $('.finishDate').val('');
+      $('.years').val('');
+      $('.months').val('');
+      $('.days').val('');
+      // Also need to reset to subtract at this point
+    });
+
 
     // Test moment library functions by showing my age
     var now = moment(),
       startday = moment('1951-02-20');
     jqueryMap.$container.append('<br>Date now: ' 
-      + now.format("dddd, MMMM Do YYYY") 
-      + '<br>Capouch\'s precise age: ' + moment.duration(now.diff(startday)).format());
-
+      + now.format("dddd, MMMM Do YYYY"));
  } 
 
   return { initModule : initModule, 
