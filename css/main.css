@@ -3,7 +3,7 @@ header {
   background-color: #1FFFF0;
 }
 
-#calcButton , #clearButton{
+.calcButton , .clearButton{
   padding: 10px 25px;
 }
 
@@ -33,7 +33,7 @@ nav#side {
   background-color: #CC6699
 }
 
-#content-dates #output {
+#content-dates .output {
   width: 75%;
   font-size: 125%;
   background-color: #FF3300;
