@@ -27,7 +27,8 @@ spa.shell = (function () {
       $container  : undefined,
     },
     jqueryMap = {},
-    initModule, copyAnchorMap, setJqueryMap,
+
+    initModule, setJqueryMap,
     currentMod;    
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
@@ -53,12 +54,14 @@ spa.shell = (function () {
 
   // Begin client-side router methods
 
+  // Base route 
   function index() {
     currentMod.hide();
     currentMod = jqueryMap.$content; 
     jqueryMap.$content.show();
     }
 
+  // One function per feature module
   function dates() { 
     // Don't be bad if user keeps clicking same menu choice
     if( currentMod != jqueryMap.$dates ) 
@@ -91,34 +94,24 @@ spa.shell = (function () {
   //-------------------- END EVENT HANDLERS --------------------
 
   //------------------- BEGIN PUBLIC METHODS -------------------
+
   // Begin Public method /initModule/
-  // Example   : spa.shell.initModule( $('#app_div_id') );
-  // Purpose   :
-  //   Directs the Shell to offer its capability to the user
-  // Arguments :
-  //   * $container (example: $('#app_div_id')).
-  //     A jQuery collection that should represent 
-  //     a single DOM container
-  // Action    :
-  //   Populates $container with the shell of the UI
-  //   and then configures and initializes feature modules.
-  //   The Shell is also responsible for browser-wide issues
-  //   such as URI anchor and cookie management
-  // Returns   : none 
-  // Throws    : none
   initModule = function ( $container ) {
     // load HTML and map jQuery collections
     stateMap.$container = $container;
     $container.html( configMap.main_html );
+
+    // Keep track of our elements
     setJqueryMap();
 
-    // Initialize module ONCE 
+    // Initialize each feature module
     spa.dates.initModule(jqueryMap.$dates);
     jqueryMap.$socket.hide();
     jqueryMap.$seo.hide();
     // spa.socket.initModule(jqueryMap.$socket);
     // spa.seo.initModule(jqueryMap.$seo);
 
+    // Default content is "home" screen
     currentMod = jqueryMap.$content;
 
     // Set up routes
@@ -129,6 +122,8 @@ spa.shell = (function () {
     page();
 
   };
+
+  // Public API
   return { initModule : initModule };
   //------------------- END PUBLIC METHODS ---------------------
 }());
