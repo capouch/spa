@@ -18,10 +18,10 @@ spa.dates = (function () {
 
       generic_html: String()
       + '<h3>Generic Date View</h3>'
-      + ' <label for="startDate">Start</label>'
-      + ' <input type="date" id="startDate" />'
+      + ' <label for="startDate">(Start</label>'
+      + ' <input type="date" id="startDate" />)'
       + ' <p><label for="finishDate">End</label>'
-      + ' <input type="date" class="finishDate" /> (Date of interest)'
+      + ' <input type="date" class="finishDate" /><b>(Date of interest)</b>'
       + ' <p><label for="years">Years </label>'
       + ' <input type="number" maxlength="3" class="years" /><br>'
       + ' <label for="months">Months</label>'
