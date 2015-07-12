@@ -18,10 +18,10 @@ spa.dates = (function () {
 
       generic_html: String()
       + '<h3>Generic Date View</h3>'
-      + ' <p><label for="finishDate">Date of interest (End)</label>'
-      + ' <input type="date" class="finishDate" />'
-      + ' <label for="birthDate">Start</label>'
-      + ' <input type="date" id="birthDate" />'
+      + ' <label for="startDate">Start</label>'
+      + ' <input type="date" id="startDate" />'
+      + ' <p><label for="finishDate">End</label>'
+      + ' <input type="date" class="finishDate" /> (Date of interest)'
       + ' <p><label for="years">Years </label>'
       + ' <input type="number" maxlength="3" class="years" /><br>'
       + ' <label for="months">Months</label>'
@@ -68,10 +68,12 @@ spa.dates = (function () {
     initModule, copyAnchorMap, setJqueryMap, setClicks,
     calcStartYear, postSection, operation, doDateCalc,
     generic, cemetery, genericView, buttonText,
-    swapSection;
+    swapSection, dateSpan;
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
-  //------------------- BEGIN UTILITY METHODS ------------------
+ //------------------- BEGIN UTILITY METHODS ------------------
+
+  // Begin method /doDateCalc/
   doDateCalc = function(startDate, operation) {
     // Mutate moment startDate by adding/subtracting timespan
     if (operation === 'add') 
@@ -79,6 +81,24 @@ spa.dates = (function () {
     else
       startDate.subtract(timespanMap.years, 'years').subtract(timespanMap.months, 'months').subtract(timespanMap.days, 'days');
     };
+
+  // Begin method /dateSpan/
+  dateSpan = function() {
+    // Get dates from the input widgets
+    var earlier = moment(jqueryMap.$container.find('#startDate').val()),
+      later = moment(jqueryMap.$container.find('.finishDate').val()),
+
+      // Calculate duration
+      duration = (moment.duration(later.diff(earlier)).format("Y M D")),
+      // Use regex to extract years, months, and days
+      matchString = /(\d+) (\d+) (\d+)/,
+      match = matchString.exec(duration);
+
+      // Put them into input/display widgets
+      $('.years').val(match[1]);
+      $('.months').val(4);
+      $('.days').val(19);
+  } // end /dateSpan
 
   //-------------------- END UTILITY METHODS -------------------
 
@@ -136,8 +156,8 @@ spa.dates = (function () {
 
     // Add or subtract according to opcode value (add/sub)
     doDateCalc(start, operation);
-  // Write it to output
-  $(container.find('.output')).html('Target: ' + start.format("dddd, MMMM Do YYYY"));
+    // Write it to output
+    $(container.find('.output')).html('Target: ' + start.format("dddd, MMMM Do YYYY"));
   } // end updateForm
 
   //-------------------- END EVENT HANDLERS --------------------
@@ -168,13 +188,18 @@ spa.dates = (function () {
 
     // Click handler for Calc buttons
     jqueryMap.$genCalcButton.click(function() {
-      // Parameters are: section container and operation code
-      updateForm(jqueryMap.$generic, $('input[name=gen_opcode]:checked').val());
+      // In genericDate view, Calc button has two functions
+      if ($container.find('#startDate').val() && $container.find('.finishDate').val())
+        // Figure distance between two dates
+        dateSpan();
+      else
+        // Add to or subtract from a date
+        // Parameters are view container and operation code
+        updateForm(jqueryMap.$generic, $('input[name=gen_opcode]:checked').val());
     });
 
     jqueryMap.$cemCalcButton.click(function() {
       updateForm(jqueryMap.$cemetery, $('input[name=cem_opcode]:checked').val());
-
     }); // end handlers for Calc buttons
 
     // Handlers when user hits enter in "Days" widget
@@ -197,6 +222,7 @@ spa.dates = (function () {
     // Clear input fields on clear button click
     jqueryMap.$genClear.click(function() {
       $('.finishDate').val('');
+      $('#startDate').val('');
       $('.years').val('');
       $('.months').val('');
       $('.days').val('');
