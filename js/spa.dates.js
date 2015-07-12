@@ -95,9 +95,9 @@ spa.dates = (function () {
       match = matchString.exec(duration);
 
       // Put them into input/display widgets
-      $('.years').val(match[1]);
-      $('.months').val(4);
-      $('.days').val(19);
+      jqueryMap.$generic.find('.years').val(match[1]);
+      jqueryMap.$generic.find('.months').val(match[2]);
+      jqueryMap.$generic.find('.days').val(match[3]);
   } // end /dateSpan
 
   //-------------------- END UTILITY METHODS -------------------
