@@ -9,8 +9,8 @@ spa.shell = (function () {
   var
     configMap = {
       main_html : String()
-        + '<header class = section group"><h1>Saint Joseph\'s College SPA Demo</h1></header>'
-        + '<nav id="side" class="col span_1_of_2">'
+        + '<header><h1>Saint Joseph\'s College SPA Demo</h1></header>'
+        + '<nav id="side">'
         + '<h3>Nav Region</h3>'
         + '<ul>'
         + '<li><a id="date" href="/dates">Date calculator</a></li>'
@@ -18,7 +18,7 @@ spa.shell = (function () {
 	+ '<li><a id="seo" href="/seo">SEO stuff</a></li>'
 	+ '<li><a href=".">Reload</a><li'
 	+ '</ul></nav>'
-        + '<section id="content-main" class="col span_1_of_2">Feature Content Region</section>'
+        + '<section id="content-main">Feature Content Region</section>'
 	+ '<section id="content-dates"></section>'
 	+ '<section id="content-socket"></section>'
 	+ '<section id="content-seo"></section>'
