@@ -72,6 +72,8 @@ spa.dates = (function () {
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
  //------------------- BEGIN UTILITY METHODS ------------------
+
+  // Begin method /doDateCalc/
   doDateCalc = function(startDate, operation) {
     // Mutate moment startDate by adding/subtracting timespan
     if (operation === 'add') 
@@ -80,18 +82,23 @@ spa.dates = (function () {
       startDate.subtract(timespanMap.years, 'years').subtract(timespanMap.months, 'months').subtract(timespanMap.days, 'days');
     };
 
+  // Begin method /dateSpan/
   dateSpan = function() {
-    // This one is only going to be called from the genericDate view
+    // Get dates from the input widgets
     var earlier = moment(jqueryMap.$container.find('#startDate').val()),
       later = moment(jqueryMap.$container.find('.finishDate').val()),
+
+      // Calculate duration
       duration = (moment.duration(later.diff(earlier)).format("Y M D")),
-      // Hope there's an easier way to do this
+      // Use regex to extract years, months, and days
       matchString = /(\d+) (\d+) (\d+)/,
       match = matchString.exec(duration);
-    $('.years').val(match[1]);
-    $('.months').val(4);
-    $('.days').val(19);
-  }
+
+      // Put them into input/display widgets
+      $('.years').val(match[1]);
+      $('.months').val(4);
+      $('.days').val(19);
+  } // end /dateSpan
 
   //-------------------- END UTILITY METHODS -------------------
 
@@ -181,20 +188,18 @@ spa.dates = (function () {
 
     // Click handler for Calc buttons
     jqueryMap.$genCalcButton.click(function() {
-      // Which type of calculation?
+      // In genericDate view, Calc button has two functions
       if ($container.find('#startDate').val() && $container.find('.finishDate').val())
         // Figure distance between two dates
-        // No error checking
         dateSpan();
       else
-        // Use days parameters
-        // Parameters are: section container and operation code
+        // Add to or subtract from a date
+        // Parameters are view container and operation code
         updateForm(jqueryMap.$generic, $('input[name=gen_opcode]:checked').val());
     });
 
     jqueryMap.$cemCalcButton.click(function() {
       updateForm(jqueryMap.$cemetery, $('input[name=cem_opcode]:checked').val());
-
     }); // end handlers for Calc buttons
 
     // Handlers when user hits enter in "Days" widget
