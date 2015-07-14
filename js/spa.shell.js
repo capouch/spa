@@ -9,7 +9,7 @@ spa.shell = (function () {
   var
     configMap = {
       main_html : String()
-        + '<header><h1>Saint Joseph\'s College SPA Demo</h1></header>'
+        + '<header><h1>Saint Joseph\'s College SPA Header</h1></header>'
         + '<nav id="side">'
         + '<h3>Nav Region</h3>'
         + '<ul>'
