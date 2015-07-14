@@ -10,18 +10,19 @@ spa.shell = (function () {
     configMap = {
       main_html : String()
         + '<header><h1>Saint Joseph\'s College SPA Header</h1></header>'
-        + '<nav id="side">'
+        + '<nav><div id="side">'
         + '<h3>Nav Region</h3>'
         + '<ul>'
         + '<li><a id="date" href="/dates">Date calculator</a></li>'
 	+ '<li><a id="socket" href="/socket">Socket.io View</a></li>'
 	+ '<li><a id="seo" href="/seo">SEO stuff</a></li>'
 	+ '<li><a href=".">Reload</a><li'
-	+ '</ul></nav>'
-        + '<section id="content-main">Feature Content Region</section>'
-	+ '<section id="content-dates"></section>'
-	+ '<section id="content-socket"></section>'
-	+ '<section id="content-seo"></section>'
+	+ '</ul></div></nav>'
+        + '<section><div id="content-main">Feature Content Region'
+        + '</div></section>'
+	+ '<section><div id="content-dates"></div></section>'
+	+ '<section><div id="content-socket"></div></section>'
+	+ '<section><div id="content-seo"></div></section>'
     },
     stateMap = {
       $container  : undefined,
