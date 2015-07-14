@@ -28,8 +28,8 @@ spa.dates = (function () {
       + ' <input type="number" maxlength="2" class="months" /><br>'
       + ' <label for="days">Days  </label>'
       + ' <input type="number" maxlength="2" class="days" />'
-      + ' <input type="radio" name="gen_opcode" value="sub" checked> Subtract'
-      + ' <input type="radio" name="gen_opcode" value="add">Add'
+      + ' <input type="radio" name="gen_whichOp" value="sub" checked> Subtract'
+      + ' <input type="radio" name="gen_whichOp" value="add">Add'
       + ' <br><input type="button" value="Calc" class="calcButton" />'
       + ' <input type="button" value="Clear" class="clearButton" />'
       + ' <aside class="output">Target:</aside>'
@@ -45,8 +45,8 @@ spa.dates = (function () {
       + ' <input type="number" maxlength="2" class="months" /><br>'
       + ' <label for="days">Days  </label>'
       + ' <input type="number" maxlength="2" class="days" />'
-      + ' <input type="radio" name="cem_opcode" class = "add" value="sub" checked> Subtract'
-      + ' <input type="radio" name="cem_opcode" class= "add" value="add">Add'
+      + ' <input type="radio" name="cem_whichOp" class = "add" value="sub" checked> Subtract'
+      + ' <input type="radio" name="cem_whichOp" class= "add" value="add">Add'
       + ' <br><input type="button" value="Calc" class="calcButton" />'
       + ' <input type="button" value="Clear" class="clearButton" />'
       + ' <aside class="output">Target:</aside>'
@@ -154,7 +154,7 @@ spa.dates = (function () {
     timespanMap.days = $(container.find('.days')).val();
 
 
-    // Add or subtract according to opcode value (add/sub)
+    // Add or subtract according to whichOp value (add/sub)
     doDateCalc(start, operation);
     // Write it to output
     $(container.find('.output')).html('Target: ' + start.format("dddd, MMMM Do YYYY"));
@@ -195,25 +195,25 @@ spa.dates = (function () {
       else
         // Add to or subtract from a date
         // Parameters are view container and operation code
-        updateForm(jqueryMap.$generic, $('input[name=gen_opcode]:checked').val());
+        updateForm(jqueryMap.$generic, $('input[name=gen_whichOp]:checked').val());
     });
 
     jqueryMap.$cemCalcButton.click(function() {
-      updateForm(jqueryMap.$cemetery, $('input[name=cem_opcode]:checked').val());
+      updateForm(jqueryMap.$cemetery, $('input[name=cem_whichOp]:checked').val());
     }); // end handlers for Calc buttons
 
     // Handlers when user hits enter in "Days" widget
     jqueryMap.$genDays.keypress(function(e) {
       // 13 = Return (Enter) key
       if(e.which == 13) {
-        updateForm(jqueryMap.$generic, $('input[name=gen_opcode]:checked').val());
+        updateForm(jqueryMap.$generic, $('input[name=gen_whichOp]:checked').val());
       }
     }); 
 
     jqueryMap.$cemDays.keypress(function(e) {
       // 13 = Return (Enter) key
       if(e.which == 13) {
-        updateForm(jqueryMap.$cemetery, $('input[name=cem_opcode]:checked').val());
+        updateForm(jqueryMap.$cemetery, $('input[name=cem_whichOp]:checked').val());
 
       }
     }); // End handlers for enter key pressed
