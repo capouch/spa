@@ -169,12 +169,10 @@ spa.dates = (function () {
   // Begin event handler /clear/
   function clear(container) { 
     container.find('.finishDate').val('');
-    // container.find('#startDate').val('');
     container.find('.years').val('');
-    // $('#genericDate.years').val('');
     container.find('.months').val('');
     container.find('.days').val('');
-    // $('#genericDate.days').val('');
+    // Reset "sub" as default operation
     $('#gen_default').prop('checked', true);
     } // end /clear/ 
 
