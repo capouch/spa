@@ -84,7 +84,6 @@ spa.dates = (function () {
 
   // Begin method /dateSpan/
   dateSpan = function() {
-// NOTE NOTE zero out result fields here!!!
     // Get dates from the input widgets
     var earlier = moment(jqueryMap.$container.find('#startDate').val()),
       later = moment(jqueryMap.$container.find('.finishDate').val()),
@@ -93,15 +92,19 @@ spa.dates = (function () {
       duration = (moment.duration(later.diff(earlier)).format("Y[y] M[m] D[d]")),
       // Use regex to extract years, months, and days
       matchString = /((\d+)y )*((\d+)m )*((\d+)d)*/,
-      match = matchString.exec(duration);
-      // Put them into input/display widgets
-      if (match[2])
-        jqueryMap.$generic.find('.years').val(match[2]);
-      if (match[4])
-        jqueryMap.$generic.find('.months').val(match[4]);
-      if (match[6])
-        jqueryMap.$generic.find('.days').val(match[6]);
-  } // end /dateSpan
+      match = matchString.exec(duration),
+      yrs, mos, days;
+
+    // Put them into input/display widgets
+    // Set field values 
+    yrs = (match[2])?match[2]:'';
+    mos = (match[4])?match[4]:'';
+    days = (match[6])?match[6]:'';
+    // Write them into boxes
+    jqueryMap.$generic.find('.years').val(yrs);
+    jqueryMap.$generic.find('.months').val(mos);
+    jqueryMap.$generic.find('.days').val(days);
+    } // end /dateSpan
 
   //-------------------- END UTILITY METHODS -------------------
 
