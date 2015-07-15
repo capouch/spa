@@ -21,7 +21,8 @@ var
   app     = express(),
   router = express.Router(),
   routes = require('./js/routes.js'),
-  server  = http.createServer( app );
+  server  = http.createServer( app ),
+  io = require('socket.io').listen(server);
 
 // ------------- END MODULE SCOPE VARIABLES ---------------
 
@@ -34,6 +35,18 @@ var
   // app.use(morgan('combined'));
   routes.configRoutes( router, server );
   app.use('/', router);
+
+  // Socket.IO Functions
+  app.get('/', function(req, res){
+      res.sendFile(__dirname + './html/index.html');
+  });
+
+  io.on('connection', function(socket){
+    socket.on('chat message', function(msg){
+      io.emit('chat message', msg);
+    });
+  });
+
 // -------------- END SERVER CONFIGURATION ----------------
 
 // ----------------- BEGIN START SERVER -------------------

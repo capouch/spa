@@ -10,7 +10,12 @@ spa.socket = (function () {
   var
     configMap = {
       main_html : String()
-        + '<section id="socketIO">Socket.io Demonstration</section>'
+        + '<section id="socketIO">Socket.io Demonstration'
+          + '<ul id="messages"></ul>'
+          + '<form action="">'
+            + '<input id="m" autocomplete="off" /><button>Send</button>'
+          + '</form>'
+        + '</section>'
     },
     stateMap = {
       $container  : undefined,
@@ -83,6 +88,18 @@ spa.socket = (function () {
     $container.html( configMap.main_html );
     setJqueryMap();
     jqueryMap.$container.show();
+
+    // socket.io
+    var socket = io();
+    $('form').submit(function(){
+      socket.emit('chat message', $('#m').val());
+      $('#m').val('');
+      return false;
+    });
+    socket.on('chat message', function(msg){
+      $('#messages').append($('<li>').text(msg));
+    });
+
   };
   return { initModule : initModule };
   //------------------- END PUBLIC METHODS ---------------------
