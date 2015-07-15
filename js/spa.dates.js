@@ -28,7 +28,7 @@ spa.dates = (function () {
       + ' <input type="number" maxlength="2" class="months" /><br>'
       + ' <label for="days">Days  </label>'
       + ' <input type="number" maxlength="2" class="days" />'
-      + ' <input type="radio" name="gen_whichOp" value="sub" checked> Subtract'
+      + ' <input type="radio" id="gen_default" name="gen_whichOp" value="sub" checked> Subtract'
       + ' <input type="radio" name="gen_whichOp" value="add">Add'
       + ' <br><input type="button" value="Calc" class="calcButton" />'
       + ' <input type="button" value="Clear" class="clearButton" />'
@@ -45,7 +45,7 @@ spa.dates = (function () {
       + ' <input type="number" maxlength="2" class="months" /><br>'
       + ' <label for="days">Days  </label>'
       + ' <input type="number" maxlength="2" class="days" />'
-      + ' <input type="radio" name="cem_whichOp" class = "add" value="sub" checked> Subtract'
+      + ' <input type="radio" id="cem_default" name="cem_whichOp" class = "add" value="sub" checked> Subtract'
       + ' <input type="radio" name="cem_whichOp" class= "add" value="add">Add'
       + ' <br><input type="button" value="Calc" class="calcButton" />'
       + ' <input type="button" value="Clear" class="clearButton" />'
@@ -84,20 +84,23 @@ spa.dates = (function () {
 
   // Begin method /dateSpan/
   dateSpan = function() {
+// NOTE NOTE zero out result fields here!!!
     // Get dates from the input widgets
     var earlier = moment(jqueryMap.$container.find('#startDate').val()),
       later = moment(jqueryMap.$container.find('.finishDate').val()),
 
       // Calculate duration
-      duration = (moment.duration(later.diff(earlier)).format("Y M D")),
+      duration = (moment.duration(later.diff(earlier)).format("Y[y] M[m] D[d]")),
       // Use regex to extract years, months, and days
-      matchString = /(\d+) (\d+) (\d+)/,
+      matchString = /((\d+)y )*((\d+)m )*((\d+)d)*/,
       match = matchString.exec(duration);
-
       // Put them into input/display widgets
-      jqueryMap.$generic.find('.years').val(match[1]);
-      jqueryMap.$generic.find('.months').val(match[2]);
-      jqueryMap.$generic.find('.days').val(match[3]);
+      if (match[2])
+        jqueryMap.$generic.find('.years').val(match[2]);
+      if (match[4])
+        jqueryMap.$generic.find('.months').val(match[4]);
+      if (match[6])
+        jqueryMap.$generic.find('.days').val(match[6]);
   } // end /dateSpan
 
   //-------------------- END UTILITY METHODS -------------------
@@ -160,6 +163,18 @@ spa.dates = (function () {
     $(container.find('.output')).html('Target: ' + start.format("dddd, MMMM Do YYYY"));
   } // end updateForm
 
+  // Begin event handler /clear/
+  function clear(container) { 
+    container.find('.finishDate').val('');
+    // container.find('#startDate').val('');
+    container.find('.years').val('');
+    // $('#genericDate.years').val('');
+    container.find('.months').val('');
+    container.find('.days').val('');
+    // $('#genericDate.days').val('');
+    $('#gen_default').prop('checked', true);
+    } // end /clear/ 
+
   //-------------------- END EVENT HANDLERS --------------------
 
   //------------------- BEGIN PUBLIC METHODS -------------------
@@ -221,20 +236,14 @@ spa.dates = (function () {
 
     // Clear input fields on clear button click
     jqueryMap.$genClear.click(function() {
-      $('.finishDate').val('');
+      clear(jqueryMap.$generic);
       $('#startDate').val('');
-      $('.years').val('');
-      $('.months').val('');
-      $('.days').val('');
-      // Also need to reset to subtract at this point
+      $('#gen_default').prop('checked', true);
     });
 
     jqueryMap.$cemClear.click(function() {
-      $('.finishDate').val('');
-      $('.years').val('');
-      $('.months').val('');
-      $('.days').val('');
-      // Also need to reset to subtract at this point
+      clear(jqueryMap.$cemetery);
+      $('#cem_default').prop('checked', true);
     }); // End handlers for Clear button pressed
 
     // Begin handler for view toggle button
