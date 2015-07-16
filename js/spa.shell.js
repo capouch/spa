@@ -9,22 +9,41 @@ spa.shell = (function () {
   var
     configMap = {
       main_html : String()
-        + '<header><h1>Saint Joseph\'s College SPA Header</h1></header>'
-        + '<nav><div id="side">'
+      +'<main>'
+      + '<header><h1>SPA Demo</h1></header>'
+        + '<nav id="side" class="navbar nav-sidebar">'
         + '<h3>Nav Region</h3>'
-        + '<ul>'
-        + '<li><a href=".">Home</a></li>'
-        + '<li><a id="date" href="/dates">Date calculator</a></li>'
-        + '<li><a id="socket" href="/socket">Socket.io View</a></li>'
-        + '<li><a id="seo" href="/seo">SEO stuff</a></li>'
-        + '</ul></div></nav>'
-        + '<section><div id="content-main">Feature Content Region'
-        + '</div></section>'
-        + '<section><div id="content-dates"></div></section>'
-        + '<section><div id="content-socket"></div></section>'
-        + '<section><div id="content-seo"></div></section>'
-    },
+        + '<ul class="nav nav-pills nav-stacked">'
+          + '<li><a id="date" href="/dates">Date calculator</a></li>'
+	      + '<li><a id="socket" href="/socket">Socket.io View</a></li>'
+	      + '<li><a id="seo" href="/seo">SEO link</a></li>'
+	      + '<li><a href=".">Reload</a></li>'
+	    + '</ul></nav>'
+             + '<section id="content-main">Feature Content Region</section>'
+      	+ '<section id="content-dates"></section>'
+	    + '<section id="content-socket"></section>'
+	    + '<section id="content-seo"></section>'
++'</main>'
+      
+      
+      /*+'<main>'
+      + '<nav class="navbar navbar-default " id="topNav">'
+          + '<a class="navbar-brand" href="/">SPA Demo</a></nav>'
+        + '<nav id="side" class="navbar navbar-default">'
+        //+ '<h3>Nav Region</h3>'
+        + '<ul class="nav nav-sidebar">'
+      	  + '<li><a href="/">Home</a></li>'
+          + '<li><a id="date" href="/dates">Date calculator</a></li>'
+	      + '<li><a id="socket" href="/socket">Socket.io View</a></li>'
+	      + '<li><a id="seo" href="/seo">SEO link</a></li>'
 
+	    + '</ul></nav>'
+        + '<section id="content-main">Feature Content Region</section>'
+      	+ '<section id="content-dates"></section>'
+	    + '<section id="content-socket"></section>'
+	    + '<section id="content-seo"></section>'
+	+ '</main>'*/
+    },
     stateMap = {
       // View state information
       $container  : undefined,
