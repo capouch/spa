@@ -105,8 +105,9 @@ spa.shell = (function () {
   // Page crawling when there are no pages
   function seo() {
     if( currentMod != jqueryMap.$seo )
-      currentMod.hide()
+      currentMod.hide();
     currentMod = jqueryMap.$seo;
+    spa.seo.postSection();
     // Nothing going on here yet
     }
 
@@ -130,7 +131,7 @@ spa.shell = (function () {
     jqueryMap.$socket.hide();
     jqueryMap.$seo.hide();
     spa.socket.initModule(jqueryMap.$socket);
-    // spa.seo.initModule(jqueryMap.$seo);
+    spa.seo.initModule(jqueryMap.$seo);
 
     // Default content is "home" screen
     currentMod = jqueryMap.$content;
