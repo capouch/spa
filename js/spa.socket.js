@@ -10,13 +10,19 @@ spa.socket = (function () {
   var
     configMap = {
       main_html : String()
-        + '<section id="socketIO">Socket.io Demonstration</section>'
+        + '<section id="socketIO">Socket.io Demonstration'
+          + '<ul id="messages"></ul>'
+          + '<form action="">'
+            + '<input id="m" autocomplete="off" /><button>Send</button>'
+          + '</form>'
+        + '</section>'
     },
     stateMap = {
       $container  : undefined,
     },
     jqueryMap = {},
-    initModule, copyAnchorMap, setJqueryMap, setClicks;
+    initModule, copyAnchorMap, setJqueryMap, setClicks, postSection,
+    socketIO, socket;
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
   //------------------- BEGIN UTILITY METHODS ------------------
@@ -30,6 +36,7 @@ spa.socket = (function () {
     // Overkill for small amount of functionality
     jqueryMap = {
       $container : $container,
+      $socketIO  : $container.find('#socketIO')
     };
   };
   // End DOM method /setJqueryMap/
@@ -80,10 +87,35 @@ spa.socket = (function () {
   initModule = function ( $container ) {
     // load HTML and map jQuery collections
     stateMap.$container = $container;
+    $container.hide();
     $container.html( configMap.main_html );
+
     setJqueryMap();
+    //jqueryMap.$socketIO.html( configMap.main_html );
+    //queryMap.$container.show();
+
+    // socket.io
+    socket = io();
+    $('form').submit(function(){
+      socket.emit('chat message', $('#m').val());
+      $('#m').val('');
+      return false;
+    });
+    socket.on('chat message', function(msg){
+      $('#messages').append($('<li>').text(msg));
+      // keep scrollbar at bottom
+      $('#messages').scrollTop(100000000);
+    });
+
+  };
+
+  postSection = function() {
+    jqueryMap.$socketIO.show();
     jqueryMap.$container.show();
   };
-  return { initModule : initModule };
+
+  return { initModule : initModule,
+           postSection : postSection
+    };
   //------------------- END PUBLIC METHODS ---------------------
 }());
