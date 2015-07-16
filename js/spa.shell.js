@@ -77,7 +77,8 @@ spa.shell = (function () {
       currentMod.hide();
     currentMod = jqueryMap.$socket
     // This changes once Nathan is ready 
-    spa.socket.initModule(jqueryMap.$socket);
+    //spa.socket.initModule(jqueryMap.$socket);
+    spa.socket.postSection();
     }
 
   function seo() {
@@ -109,7 +110,7 @@ spa.shell = (function () {
     spa.dates.initModule(jqueryMap.$dates);
     jqueryMap.$socket.hide();
     jqueryMap.$seo.hide();
-    // spa.socket.initModule(jqueryMap.$socket);
+    spa.socket.initModule(jqueryMap.$socket);
     // spa.seo.initModule(jqueryMap.$seo);
 
     // Default content is "home" screen

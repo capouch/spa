@@ -21,7 +21,8 @@ spa.socket = (function () {
       $container  : undefined,
     },
     jqueryMap = {},
-    initModule, copyAnchorMap, setJqueryMap, setClicks;
+    initModule, copyAnchorMap, setJqueryMap, setClicks, postSection,
+    socketIO, socket;
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
   //------------------- BEGIN UTILITY METHODS ------------------
@@ -35,6 +36,7 @@ spa.socket = (function () {
     // Overkill for small amount of functionality
     jqueryMap = {
       $container : $container,
+      $socketIO  : $container.find('#socketIO')
     };
   };
   // End DOM method /setJqueryMap/
@@ -85,12 +87,15 @@ spa.socket = (function () {
   initModule = function ( $container ) {
     // load HTML and map jQuery collections
     stateMap.$container = $container;
+    $container.hide();
     $container.html( configMap.main_html );
+
     setJqueryMap();
-    jqueryMap.$container.show();
+    //jqueryMap.$socketIO.html( configMap.main_html );
+    //queryMap.$container.show();
 
     // socket.io
-    var socket = io();
+    socket = io();
     $('form').submit(function(){
       socket.emit('chat message', $('#m').val());
       $('#m').val('');
@@ -98,9 +103,19 @@ spa.socket = (function () {
     });
     socket.on('chat message', function(msg){
       $('#messages').append($('<li>').text(msg));
+      // keep scrollbar at bottom
+      $('#messages').scrollTop(100000000);
     });
 
   };
-  return { initModule : initModule };
+
+  postSection = function() {
+    jqueryMap.$socketIO.show();
+    jqueryMap.$container.show();
+  };
+
+  return { initModule : initModule,
+           postSection : postSection
+    };
   //------------------- END PUBLIC METHODS ---------------------
 }());
