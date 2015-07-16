@@ -11,18 +11,18 @@ spa.shell = (function () {
       main_html : String()
         + '<header><h1>Saint Joseph\'s College SPA Header</h1></header>'
         + '<nav><div id="side">'
-        + '<h3>Nav Region</h3>'
-        + '<ul>'
-        + '<li><a id="date" href="/dates">Date calculator</a></li>'
-	+ '<li><a id="socket" href="/socket">Socket.io View</a></li>'
-	+ '<li><a id="seo" href="/seo">SEO stuff</a></li>'
-	+ '<li><a href=".">Reload</a><li'
-	+ '</ul></div></nav>'
-        + '<section><div id="content-main">Feature Content Region'
-        + '</div></section>'
-	+ '<section><div id="content-dates"></div></section>'
-	+ '<section><div id="content-socket"></div></section>'
-	+ '<section><div id="content-seo"></div></section>'
+          + '<h3>Nav Region</h3>'
+          + '<ul>'
+            + '<li><a id="date" href="/dates">Date calculator</a></li>'
+	          + '<li><a id="socket" href="/socket">Socket.io View</a></li>'
+	          + '<li><a id="seo" href="/seo">SEO stuff</a></li>'
+	          + '<li><a href=".">Reload</a></li>'
+	      + '</ul></div></nav>'
+      + '<section><div id="content-main">Feature Content Region'
+      + '</div></section>'
+	    + '<section><div id="content-dates"></div></section>'
+	    + '<section><div id="content-socket"></div></section>'
+	    + '<section><div id="content-seo"></div></section>'
     },
     stateMap = {
       $container  : undefined,
@@ -76,8 +76,7 @@ spa.shell = (function () {
     if( currentMod != jqueryMap.$socket )
       currentMod.hide();
     currentMod = jqueryMap.$socket
-    // This changes once Nathan is ready 
-    spa.socket.initModule(jqueryMap.$socket);
+    spa.socket.postSection();
     }
 
   function seo() {
@@ -109,7 +108,7 @@ spa.shell = (function () {
     spa.dates.initModule(jqueryMap.$dates);
     jqueryMap.$socket.hide();
     jqueryMap.$seo.hide();
-    // spa.socket.initModule(jqueryMap.$socket);
+    spa.socket.initModule(jqueryMap.$socket);
     // spa.seo.initModule(jqueryMap.$seo);
 
     // Default content is "home" screen
