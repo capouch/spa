@@ -9,14 +9,16 @@ spa.seo = (function () {
   var
     configMap = {
       main_html : String() 
-        + '<section id="content-seo">SEO Demonstration</section>'
+        + '<section id="seoPage">SEO Demonstration' 
+      + '<a href="http://localhost:3000/http://localhost:8000/dates/?_escaped_fragment_=">The Solution</a>'
+      + '</section>'
    
     },
     stateMap = {
       $container  : undefined
     },
     jqueryMap = {},
-    initModule, copyAnchorMap, setJqueryMap, setClicks;
+    initModule, copyAnchorMap, setJqueryMap, setClicks,postSection, seoPage;
     
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
@@ -26,7 +28,8 @@ spa.seo = (function () {
 
     // Set initial jQuery map values
     jqueryMap = {
-      $container : $container
+      $container : $container,
+      $seoPage  : $container.find('#seoPage')
     };
   };
   // End DOM method /setJqueryMap/
@@ -35,11 +38,26 @@ spa.seo = (function () {
   initModule = function ( $container ) {
     // load HTML and map jQuery collections
     stateMap.$container = $container;
+    $container.hide();
     $container.html( configMap.main_html );
+
     setJqueryMap();
-    jqueryMap.$container.show();
-    
+    //jqueryMap.$socketIO.html( configMap.main_html );
+    //queryMap.$container.show();
+
   };
-  return { initModule : initModule };
+
+
+  
+    // Begin method /postSection/
+  // Normal entry point - Just render container contents
+  postSection = function() {
+    jqueryMap.$seoPage.show();
+    jqueryMap.$container.show();
+  } // end postSection
+
+  return { initModule : initModule,
+          postSection : postSection
+         };
   //------------------- END PUBLIC METHODS ---------------------
 })();
