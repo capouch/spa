@@ -1,3 +1,7 @@
+// This is craig's branch
+
+
+
 /*
  * app.js - Express server with routing
 */
@@ -50,7 +54,7 @@ var
 // -------------- END SERVER CONFIGURATION ----------------
 
 // ----------------- BEGIN START SERVER -------------------
-server.listen( 8000 );
+server.listen( 8000u );
 console.log(
   'Express server listening on port %d in %s mode',
    server.address().port, app.settings.env
