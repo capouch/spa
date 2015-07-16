@@ -76,8 +76,6 @@ spa.shell = (function () {
     if( currentMod != jqueryMap.$socket )
       currentMod.hide();
     currentMod = jqueryMap.$socket
-    // This changes once Nathan is ready 
-    //spa.socket.initModule(jqueryMap.$socket);
     spa.socket.postSection();
     }
 
