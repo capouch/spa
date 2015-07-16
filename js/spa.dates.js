@@ -124,8 +124,10 @@ spa.dates = (function () {
       // We need one of each of these per view container
       $genCalcButton : $container.find('#genericDate').find('.calcButton'),
       $cemCalcButton : $container.find('#cemeteryDate').find('.calcButton'),
+
       $genDays       : $container.find('#genericDate').find('.days'),
       $cemDays       : $container.find('#cemeteryDate').find('.days'),
+
       $genClear      : $container.find('#genericDate').find('.clearButton'),
       $cemClear      : $container.find('#cemeteryDate').find('.clearButton')
     };
