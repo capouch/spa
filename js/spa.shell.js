@@ -13,28 +13,30 @@ spa.shell = (function () {
         + '<nav><div id="side">'
         + '<h3>Nav Region</h3>'
         + '<ul>'
+        + '<li><a href=".">Home</a></li>'
         + '<li><a id="date" href="/dates">Date calculator</a></li>'
-	+ '<li><a id="socket" href="/socket">Socket.io View</a></li>'
-	+ '<li><a id="seo" href="/seo">SEO stuff</a></li>'
-	+ '<li><a href=".">Reload</a><li'
-	+ '</ul></div></nav>'
+        + '<li><a id="socket" href="/socket">Socket.io View</a></li>'
+        + '<li><a id="seo" href="/seo">SEO stuff</a></li>'
+        + '</ul></div></nav>'
         + '<section><div id="content-main">Feature Content Region'
         + '</div></section>'
-	+ '<section><div id="content-dates"></div></section>'
-	+ '<section><div id="content-socket"></div></section>'
-	+ '<section><div id="content-seo"></div></section>'
+        + '<section><div id="content-dates"></div></section>'
+        + '<section><div id="content-socket"></div></section>'
+        + '<section><div id="content-seo"></div></section>'
     },
+
     stateMap = {
+      // View state information
       $container  : undefined,
     },
+
     jqueryMap = {},
 
     initModule, setJqueryMap,
-    currentMod;    
+    currentMod;
+
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
-  //------------------- BEGIN UTILITY METHODS ------------------
-  //-------------------- END UTILITY METHODS -------------------
 
   //--------------------- BEGIN DOM METHODS --------------------
   // Begin DOM method /setJqueryMap/
@@ -63,6 +65,7 @@ spa.shell = (function () {
     }
 
   // One function per feature module
+  // Demo two views in same module
   function dates() { 
     // Don't be bad if user keeps clicking same menu choice
     if( currentMod != jqueryMap.$dates ) 
@@ -72,14 +75,15 @@ spa.shell = (function () {
     spa.dates.postSection();
     }
 
+  // socket.io uses websockets for client-server data exchange
   function socket() {
     if( currentMod != jqueryMap.$socket )
       currentMod.hide();
     currentMod = jqueryMap.$socket
-    // This changes once Nathan is ready 
-    spa.socket.initModule(jqueryMap.$socket);
+    spa.socket.postSection();
     }
 
+  // Page crawling when there are no pages
   function seo() {
     if( currentMod != jqueryMap.$seo )
       currentMod.hide()
@@ -90,9 +94,6 @@ spa.shell = (function () {
   // End DOM client-side router methods
 
   //--------------------- END DOM METHODS ----------------------
-
-  //------------------- BEGIN EVENT HANDLERS -------------------
-  //-------------------- END EVENT HANDLERS --------------------
 
   //------------------- BEGIN PUBLIC METHODS -------------------
 
@@ -109,7 +110,7 @@ spa.shell = (function () {
     spa.dates.initModule(jqueryMap.$dates);
     jqueryMap.$socket.hide();
     jqueryMap.$seo.hide();
-    // spa.socket.initModule(jqueryMap.$socket);
+    spa.socket.initModule(jqueryMap.$socket);
     // spa.seo.initModule(jqueryMap.$seo);
 
     // Default content is "home" screen

@@ -124,8 +124,10 @@ spa.dates = (function () {
       // We need one of each of these per view container
       $genCalcButton : $container.find('#genericDate').find('.calcButton'),
       $cemCalcButton : $container.find('#cemeteryDate').find('.calcButton'),
+
       $genDays       : $container.find('#genericDate').find('.days'),
       $cemDays       : $container.find('#cemeteryDate').find('.days'),
+
       $genClear      : $container.find('#genericDate').find('.clearButton'),
       $cemClear      : $container.find('#cemeteryDate').find('.clearButton')
     };
@@ -257,13 +259,6 @@ spa.dates = (function () {
       //Swap actual section contents
       swapSection();
     }); // End handler for view toggle button
-
-
-    // Test moment library functions by showing my age
-    var now = moment(),
-      startday = moment('1951-02-20');
-    jqueryMap.$container.append('<br>Date now: ' 
-      + now.format("dddd, MMMM Do YYYY"));
  } // End public method /initModule
 
   // Begin method /postSection/
