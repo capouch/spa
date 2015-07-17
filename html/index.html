@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+ <!-- head content must come *after* these tags -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="bSX2l42ztWqeT7G7Pg-0ChidTrFwtASqMVZX7Z2Npao" />
+  <meta name="fragment" content="!">
+
+  <title>Our First SPA</title>
+
+  <!-- Our "good enough for now" stylesheet -->
+  <link rel="stylesheet" href="../css/main.css"       type="text/css"/>
+
+  <!-- Third-party libraries -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+   <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+  <script src="../lib/page.js"></script>
+  <script src="../lib/moment.js"></script>
+  <script src="../lib/moment-duration-format.js"></script>
+
+  <!-- Our Javascript -->
+  <script src='../js/spa.js'></script>
+  <script src='../js/spa.shell.js'></script>
+  <!-- Feature modules -->
+  <script src='../js/spa.dates.js'></script>
+  <script src='../js/spa.socket.js'></script>
+ <script src='../js/spa.seo.js'></script>
+
+<!-- Let's get started -->
+<script>
+    $(function () { spa.initModule( $('#spa') ); });
+</script>
+
+</head>
+<body>
+<main id="spa"></main>
+
+</body>
+</html>
