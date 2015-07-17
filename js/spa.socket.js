@@ -114,6 +114,7 @@ spa.socket = (function () {
     jqueryMap.$container.show();
   };
 
+ 
   return { initModule : initModule,
            postSection : postSection
     };
