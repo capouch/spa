@@ -9,8 +9,11 @@ spa.seo = (function () {
   var
     configMap = {
       main_html : String() 
-        + '<section id="seoPage">SEO Demonstration' 
-      + '<a href="http://localhost:3000/http://localhost:8000/dates/?_escaped_fragment_=">The Solution</a>'
+        + '<section id="seoPage">SEO Demonstration'
+      + '</br>'
+         + ' Make sure the prerender server is running'
+      + '</br>'
+      + '<a id="seoLink" href="http://localhost:3000/http://localhost:8000/dates/?_escaped_fragment_=">The Solution</a>'
       + '</section>'
    
     },
