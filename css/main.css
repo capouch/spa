@@ -132,14 +132,14 @@ label.datecalc {
   }
 }
 
-@media screen and (max-width: 770px) {
+/*@media screen and (max-width: 770px) {
   #sendBtn {
     width: 20%;
   }
   #m {
     width: 80%;
   }
-}
+}*/
 
 
 
