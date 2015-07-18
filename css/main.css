@@ -110,7 +110,23 @@ label.datecalc {
   color: aliceblue;
 }
 
+#messages {
+  height: 100px;
+  margin: 0;
+  overflow-y: auto;
+  padding: 10px 20px 10px 20px;
+  list-style-type: none;
+  background-color: white;
+}
 
+#messages li:nth-child(even) {
+  background-color: #00FFFF;
+}
+
+#m {
+  margin-top: 2%;
+  width: 90%
+}
 
 
 
