@@ -123,9 +123,22 @@ label.datecalc {
   background-color: #00FFFF;
 }
 
-#m {
-  margin-top: 2%;
-  width: 90%
+@media screen and (min-width: 771px) {
+  #sendBtn {
+    width: 10%;
+  }
+  #m {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  #sendBtn {
+    width: 20%;
+  }
+  #m {
+    width: 80%;
+  }
 }
 
 
