@@ -30,10 +30,10 @@ header {
     text-shadow: -1px 1px #27496d;
 }*/
 
-nav#side {
+#side {
   background-color: #b5b5b5;
   float: left;
-  width: 25%;
+  width: 100%;
   height: 100%;
   margin: .5%;
   border-color: #92dce0;
