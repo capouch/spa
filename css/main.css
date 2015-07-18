@@ -120,6 +120,7 @@ label.datecalc {
 }
 
 #messages li:nth-child(even) {
+  border-radius: 5px;
   background-color: #00FFFF;
 }
 
@@ -132,14 +133,17 @@ label.datecalc {
   }
 }
 
-/*@media screen and (max-width: 770px) {
+@media screen and (max-width: 770px) {
+
   #sendBtn {
     width: 20%;
+    display: inline;
   }
   #m {
     width: 80%;
+    display: inline;
   }
-}*/
+}
 
 
 
