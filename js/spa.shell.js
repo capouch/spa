@@ -11,39 +11,21 @@ spa.shell = (function () {
       main_html : String()
       +'<main>'
       + '<header><h1>SPA Demo</h1></header>'
-        + '<nav id="side" class="navbar nav-sidebar">'
-        + '<h3>Nav Region</h3>'
-        + '<ul class="nav nav-pills nav-stacked">'
-          + '<li><a id="date" href="/dates">Date calculator</a></li>'
-	      + '<li><a id="socket" href="/socket">Socket.io View</a></li>'
-	      + '<li><a id="seo" href="/seo">SEO link</a></li>'
-	      + '<li><a href=".">Reload</a></li>'
-	    + '</ul></nav>'
-             + '<section id="content-main">Feature Content Region</section>'
-      	+ '<section id="content-dates"></section>'
-	    + '<section id="content-socket"></section>'
-	    + '<section id="content-seo"></section>'
-+'</main>'
-      
-      
-      /*+'<main>'
-      + '<nav class="navbar navbar-default " id="topNav">'
-          + '<a class="navbar-brand" href="/">SPA Demo</a></nav>'
-        + '<nav id="side" class="navbar navbar-default">'
-        //+ '<h3>Nav Region</h3>'
-        + '<ul class="nav nav-sidebar">'
-      	  + '<li><a href="/">Home</a></li>'
-          + '<li><a id="date" href="/dates">Date calculator</a></li>'
-	      + '<li><a id="socket" href="/socket">Socket.io View</a></li>'
-	      + '<li><a id="seo" href="/seo">SEO link</a></li>'
-
-	    + '</ul></nav>'
-        + '<section id="content-main">Feature Content Region</section>'
-      	+ '<section id="content-dates"></section>'
-	    + '<section id="content-socket"></section>'
-	    + '<section id="content-seo"></section>'
-	+ '</main>'*/
+      + '<nav id="side" class="navbar nav-sidebar">'
+      + '<h3>Nav Region</h3>'
+      + '<ul class="nav nav-pills nav-stacked">'
+      + '<li><a href=".">Home</a></li>'
+      + '<li><a id="date" href="/dates">Date calculator</a></li>'
+      + '<li><a id="socket" href="/socket">Socket.io View</a></li>'
+      + '<li><a id="seo" href="/seo">SEO link</a></li>'
+      + '</ul></nav>'
+      + '<section id="content-main">Feature Content Region</section>'
+      + '<section id="content-dates"></section>'
+      + '<section id="content-socket"></section>'
+      + '<section id="content-seo"></section>'
+      +'</main>'
     },
+      
     stateMap = {
       // View state information
       $container  : undefined,
