@@ -9,20 +9,33 @@ spa.shell = (function () {
   var
     configMap = {
       main_html : String()
-      +'<main>'
-      + '<header><h1>SPA Demo</h1></header>'
-      + '<nav id="side" class="navbar nav-sidebar">'
-      + '<h3>Nav Region</h3>'
-      + '<ul class="nav nav-pills nav-stacked">'
-      + '<li><a href=".">Home</a></li>'
-      + '<li><a id="date" href="/dates">Date calculator</a></li>'
-      + '<li><a id="socket" href="/socket">Socket.io View</a></li>'
-      + '<li><a id="seo" href="/seo">SEO link</a></li>'
-      + '</ul></nav>'
-      + '<section id="content-main">Feature Content Region</section>'
-      + '<section id="content-dates"></section>'
-      + '<section id="content-socket"></section>'
-      + '<section id="content-seo"></section>'
+       +'<main>'
+      
+      +'<nav class="navbar navbar-default" role="navigation" >'
+      +'<div class="navbar-header">'
+      +'<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">'
+      +'<span class="sr-only">Toggle navigation</span>'
+      +'<span class="icon-bar"></span>'
+      +'<span class="icon-bar"></span>'
+      +'<span class="icon-bar"></span>'
+      +'</button>'
+      +'<a class="navbar-brand" href="/">SPA Demo</a>'
+      +'</div>'
+      +'</nav>'
+      
+      +'<nav class="collapse navbar-collapse navbar-ex1-collapse col-md-8">'
+      +'<ul class="nav nav-sidebar" id="side">'
+      +'<li><a href="/">Home</a></li>'
+      +'<li><a href="/dates">Date Calculator</a></li>'
+      +'<li><a href="/socket">Socket.io View</a></li>'
+      +'<li><a href="/seo">SEO link</a></li>'
+      +'</ul>'
+      +'</nav>'
+      
+      +'<section id="content-main">Feature Content Region</section>'
+      +'<section id="content-dates"></section>'
+      +'<section id="content-socket"></section>'
+      +'<section id="content-seo"></section>'
       +'</main>'
     },
       
