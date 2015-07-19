@@ -21,6 +21,10 @@ spa.shell = (function () {
       +'</button>'
       +'<a class="navbar-brand" href="/">SPA Demo</a>'
       +'</div>'
+      +'<ul class="nav navbar-nav navbar-right" id="logs">'
+      +'<li id="sign"><a href=""><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>'
+      +'<li id="log"><a href=""><span class="glyphicon glyphicon-log-in"></span> Login</a></li>'
+      +'</ul>'
       +'</nav>'
       
       +'<nav class="collapse navbar-collapse navbar-ex1-collapse col-md-8">'
@@ -29,6 +33,8 @@ spa.shell = (function () {
       +'<li><a href="/dates">Date Calculator</a></li>'
       +'<li><a href="/socket">Socket.io View</a></li>'
       +'<li><a href="/seo">SEO link</a></li>'
+      +'<li id="signUp"><a href=""><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>'
+      +'<li id="logIn"><a href=""><span class="glyphicon glyphicon-log-in"></span> Login</a></li>'
       +'</ul>'
       +'</nav>'
       
@@ -137,6 +143,48 @@ spa.shell = (function () {
     page('/socket', socket);
     page('/seo', seo);
     page();
+    
+    $("#log").on("click", function () {
+      alert("Coming Soon");
+    });
+
+    $("#sign").on("click", function () {
+      alert("Coming Soon");
+    });
+    
+    $("#logIn").on("click", function () {
+      alert("Coming Soon");
+    });
+
+    $("#signUp").on("click", function () {
+      alert("Coming Soon");
+    });
+
+
+    $("#signUp").hide();
+    $("#logIn").hide();
+
+    if ($(window).width() <= 600) {
+      $("#logs").hide();
+      $("#signUp").show();
+      $("#logIn").show();
+    }
+
+
+    $(window).resize(function () {
+      var win = $(this);
+      if (win.width() <= 700) {
+        console.log('small');
+        $("#logs").hide();
+        $("#signUp").show();
+        $("#logIn").show();
+      } else {
+        $("#logs").show();
+        $("#signUp").hide();
+        $("#logIn").hide();
+      }
+    });
+
 
   };
 
