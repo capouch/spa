@@ -31,7 +31,8 @@ header {
 }*/
 
 #side {
-  background-color: #b5b5b5;
+  /*background-color: #b5b5b5;*/
+  background-color: blue;
   float: left;
   width: 100%;
   height: 100%;
