@@ -27,7 +27,7 @@ spa.shell = (function () {
       +'</ul>'
       +'</nav>'
       
-      +'<nav class="collapse navbar-collapse navbar-ex1-collapse col-md-8">'
+      +'<nav class="collapse navbar-collapse navbar-ex1-collapse col-md-8 col-sm-7">'
       +'<ul class="nav nav-sidebar" id="side">'
       +'<li><a href="/">Home</a></li>'
       +'<li><a href="/dates">Date Calculator</a></li>'
