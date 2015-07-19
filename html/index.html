@@ -13,7 +13,7 @@
  <title>Our First SPA</title>
 
  <!-- Our "good enough for now" stylesheet -->
- <link rel="stylesheet" href="../css/main.css" type="text/css" />
+ <link class="css_a" rel="stylesheet" href="../css/main.css" type="text/css" />
 
  <!-- Third-party libraries -->
 
@@ -21,24 +21,64 @@
  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
- <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+ <!--script src="https://cdn.socket.io/socket.io-1.3.5.js"></script-->
+ <script src="/socket.io/socket.io.js"></script>
  <script src="../lib/page.js"></script>
  <script src="../lib/moment.js"></script>
  <script src="../lib/moment-duration-format.js"></script>
 
  <!-- Our Javascript -->
- <script src='../js/spa.js'></script>
- <script src='../js/spa.shell.js'></script>
+ <script class="script_a" src='../js/spa.js'></script>
+ <script class="script_a" src='../js/spa.shell.js'></script>
  <!-- Feature modules -->
- <script src='../js/spa.dates.js'></script>
- <script src='../js/spa.socket.js'></script>
- <script src='../js/spa.seo.js'></script>
+ <script class="script_a" src='../js/spa.dates.js'></script>
+ <script class="script_a" src='../js/spa.socket.js'></script>
+ <script class="script_a" src='../js/spa.seo.js'></script>
 
  <!-- Let's get started -->
  <script>
   $(function() {
+  	//console.log("before");
    spa.initModule($('#spa'));
+   //console.log("after");
+
+
+
   });
+  console.log("outside before");
+
+  // Set event handler to react to "stylesheet" message
+    io.connect('http://localhost:8000').on( 'stylesheet', function ( path ) {
+    	console.log("in stylesheet");
+      // Get rid of current style
+      $( '.css_a' ).remove();
+      // Replace contents of stylesheet with file from websocket
+      $( 'head' ).append(
+        '<link class="css_a" rel="stylesheet" href="'
+        + path +
+        '"/>'
+      );
+      // Redisplay HTML with new styling
+      $( 'body' ).html( b );
+    });
+
+    // Set event handler to react to "javascript" message
+    io.connect('http://localhost:8000').on( 'script', function ( path ) {
+    	console.log("in script");
+      // Get rid of current style
+      $( '.script_a' ).remove();
+      // Replace contents of stylesheet with file from websocket
+      $( 'head' ).append(
+        '<script class="script_a" src="'
+        + path +
+        '"/>'
+      );
+      // Redisplay HTML with new styling
+      $( 'body' ).html( b );
+    });
+
+    console.log("outside after");
+
  </script>
 
 </head>
