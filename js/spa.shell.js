@@ -164,7 +164,7 @@ spa.shell = (function () {
     $("#signUp").hide();
     $("#logIn").hide();
 
-    if ($(window).width() <= 600) {
+    if ($(window).width() <= 770) {
       $("#logs").hide();
       $("#signUp").show();
       $("#logIn").show();
@@ -173,7 +173,7 @@ spa.shell = (function () {
 
     $(window).resize(function () {
       var win = $(this);
-      if (win.width() <= 700) {
+      if (win.width() <= 770) {
         console.log('small');
         $("#logs").hide();
         $("#signUp").show();
