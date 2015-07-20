@@ -38,6 +38,8 @@ var
 // ------------- END MODULE SCOPE VARIABLES ---------------
 
 // --------------- BEGIN UTILITY METHODS ------------------
+
+// watch files for any changes being saved for dynamic loading
 setWatch = function ( url_path, file_type ) {
   console.log( 'setWatch called on ' + url_path );
 
@@ -62,6 +64,7 @@ setWatch = function ( url_path, file_type ) {
 
 // ------------- BEGIN SERVER CONFIGURATION ---------------
 
+  // Dynamic Loading
   app.use( function ( request, response, next ) {
     console.log("in app.use");
     if ( request.url.indexOf( '/js/'  ) >= 0 ) {
@@ -77,7 +80,6 @@ setWatch = function ( url_path, file_type ) {
 
   app.get( '/', function ( request, response ) {
     console.log("in app.get");
-    //response.redirect( '/' );
     response.sendFile(__dirname + '/html/index.html');
   });
 
@@ -89,25 +91,6 @@ setWatch = function ( url_path, file_type ) {
   // app.use(morgan('combined'));
   routes.configRoutes( router, server );
   app.use('/', router);
-
-  
-
-  // Socket.IO Functions // commentted this out since the same method
-  // is needed above for dynamic loading
-  /*app.get('/', function(req, res){
-      console.log("in app.get");
-      res.sendFile(__dirname + './html/index.html');
-  });*/
-
-  io.on('connection', function(socket){
-    console.log("making io connection");
-    socket.on('chat message', function(msg){
-      io.emit('chat message', msg);
-      console.log("sending chat message");
-    });
-  });
-
-  
 
 // -------------- END SERVER CONFIGURATION ----------------
 
