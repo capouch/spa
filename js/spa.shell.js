@@ -9,9 +9,8 @@ spa.shell = (function () {
   var
     configMap = {
       main_html : String()
-       +'<main>'
-      
       +'<nav class="navbar navbar-default" role="navigation" >'
+      
       +'<div class="navbar-header">'
       +'<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">'
       +'<span class="sr-only">Toggle navigation</span>'
@@ -42,7 +41,6 @@ spa.shell = (function () {
       +'<section id="content-dates"></section>'
       +'<section id="content-socket"></section>'
       +'<section id="content-seo"></section>'
-      +'</main>'
     },
       
     stateMap = {
