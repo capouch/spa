@@ -70,19 +70,18 @@ spa.socket = (function () {
 
     setJqueryMap();
 
-    // Copied out of the socketio repo
     // Display the value of var "b" from the data.js file
     $(function () {
       jqueryMap.$socketIO.html( b );
-      jqueryMap.$socketIO.css ( '#sock_css' );
     });
+
     // Set event handler to react to "stylesheet" message 
     io.connect('http://localhost:8000').on( 'stylesheet', function ( path ){
-console.log('We DID connect!!');
     // Get rid of current style
     $( '#sock_css' ).remove();
     // Replace contents of stylesheet with file from websocket
-    jqueryMap.$socketIO.css(
+    // Note which container you append to here is crucial
+    jqueryMap.$container.append(
     '<link id="sock_css" rel="stylesheet" href="'
      + path +
      '"/>'
