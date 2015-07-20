@@ -33,8 +33,6 @@ spa.shell = (function () {
       +'<li><a href="/dates">Date Calculator</a></li>'
       +'<li><a href="/socket">Socket.io View</a></li>'
       +'<li><a href="/seo">SEO link</a></li>'
-      +'<li id="signUp"><a href=""><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>'
-      +'<li id="logIn"><a href=""><span class="glyphicon glyphicon-log-in"></span> Login</a></li>'
       +'</ul>'
       +'</nav>'
       
@@ -132,7 +130,7 @@ spa.shell = (function () {
     jqueryMap.$socket.hide();
     jqueryMap.$seo.hide();
     spa.socket.initModule(jqueryMap.$socket);
-    spa.seo.initModule(jqueryMap.$seo);
+    // spa.seo.initModule(jqueryMap.$seo);
 
     // Default content is "home" screen
     currentMod = jqueryMap.$content;
