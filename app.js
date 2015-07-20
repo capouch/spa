@@ -25,6 +25,7 @@ var
   methodOverride = require('method-override'),
   morgan = require('morgan'		    ),
   socketIo = require( 'socket.io'),
+  fsHandle = require( 'fs'),
 
   app     = express(),
   router = express.Router(),
@@ -60,14 +61,6 @@ setWatch = function ( url_path, file_type ) {
 // ---------------- END UTILITY METHODS -------------------
 
 // ------------- BEGIN SERVER CONFIGURATION ---------------
-  app.use( express.static( __dirname + '' ) );
-  app.use( bodyParser.urlencoded({ extended: false }));
-  app.use(bodyParser.json());
-  app.use(methodOverride());
-  // Turn on verbose logging
-  // app.use(morgan('combined'));
-  routes.configRoutes( router, server );
-  app.use('/', router);
 
   app.use( function ( request, response, next ) {
     console.log("in app.use");
@@ -82,11 +75,29 @@ setWatch = function ( url_path, file_type ) {
     app.use( express.static( __dirname + '/' ) );
   });
 
-  // Socket.IO Functions
-  app.get('/', function(req, res){
+  app.get( '/', function ( request, response ) {
+    console.log("in app.get");
+    //response.redirect( '/' );
+    response.sendFile(__dirname + '/html/index.html');
+  });
+
+  app.use( express.static( __dirname + '' ) );
+  app.use( bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
+  app.use(methodOverride());
+  // Turn on verbose logging
+  // app.use(morgan('combined'));
+  routes.configRoutes( router, server );
+  app.use('/', router);
+
+  
+
+  // Socket.IO Functions // commentted this out since the same method
+  // is needed above for dynamic loading
+  /*app.get('/', function(req, res){
       console.log("in app.get");
       res.sendFile(__dirname + './html/index.html');
-  });
+  });*/
 
   io.on('connection', function(socket){
     console.log("making io connection");
