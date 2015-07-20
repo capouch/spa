@@ -135,10 +135,11 @@ spa.dates = (function () {
       // Calculate duration
       duration = (moment.duration(later.diff(earlier)).format("Y[y] M[m] D[d]")),
       // Use regex to extract years, months, and days
-      matchString = /((\d+)y )*((\d+)m )*((\d+)d)*/,
+      // Note: durations are supposed to be dimensionless
+      //  and so I remove the '-' at front for negative years
+      matchString = /(\-*(\d+)y )*(\-*(\d+)m )*(\-*(\d+)d)*/,
       match = matchString.exec(duration),
       yrs, mos, days;
-
     // Put them into input/display widgets
     // Set field values 
     yrs = (match[2])?match[2]:'';
