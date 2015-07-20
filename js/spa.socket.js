@@ -11,10 +11,15 @@ spa.socket = (function () {
     configMap = {
       main_html : String()
         + '<section id="socketIO">Socket.io Demonstration'
-          + '<ul id="messages"></ul>'
-          + '<form action="">'
-            + '<input id="m" autocomplete="off" /><button>Send</button>'
+          + '<ul class="list-group-item" id="messages"></ul>'
+          //+ '<div class="row">'
+          + '<form class="form-inline" action="">'
+            //+ '<div class="form-group">'
+            + '<input id="m" class="form-control" autocomplete="off" />'
+            + '<button class="btn btn-default" id="sendBtn">Send</button>'
+            //+ '</div>'
           + '</form>'
+          //+ '</div>'
         + '</section>'
     },
     stateMap = {

@@ -9,41 +9,41 @@ spa.shell = (function () {
   var
     configMap = {
       main_html : String()
-      +'<main>'
-      + '<header><h1>SPA Demo</h1></header>'
-        + '<nav id="side" class="navbar nav-sidebar">'
-        + '<h3>Nav Region</h3>'
-        + '<ul class="nav nav-pills nav-stacked">'
-          + '<li><a id="date" href="/dates">Date calculator</a></li>'
-	      + '<li><a id="socket" href="/socket">Socket.io View</a></li>'
-	      + '<li><a id="seo" href="/seo">SEO link</a></li>'
-	      + '<li><a href=".">Reload</a></li>'
-	    + '</ul></nav>'
-             + '<section id="content-main">Feature Content Region</section>'
-      	+ '<section id="content-dates"></section>'
-	    + '<section id="content-socket"></section>'
-	    + '<section id="content-seo"></section>'
-+'</main>'
+      +'<nav>'
+      +'<div class="navbar navbar-default" role="navigation">'
+      +'<div class="navbar-header">'
+      +'<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">'
+      +'<span class="sr-only">Toggle navigation</span>'
+      +'<span class="icon-bar"></span>'
+      +'<span class="icon-bar"></span>'
+      +'<span class="icon-bar"></span>'
+      +'</button>'
+      +'<a class="navbar-brand" href="/">SPA Demo</a>'
+      +'</div>'
+      +'<ul class="nav navbar-nav navbar-right" id="logs">'
+      +'<li id="sign"><a href=""><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>'
+      +'<li id="log"><a href=""><span class="glyphicon glyphicon-log-in"></span> Login</a></li>'
+      +'</ul>'
+      +'</div></nav>'
       
+      +'<nav class="collapse navbar-collapse navbar-ex1-collapse col-md-8 col-sm-7">'
+      +'<ul class="nav nav-sidebar" id="side">'
+      +'<li><a href="/">Home</a></li>'
+      +'<li><a href="/dates">Date Calculator</a></li>'
+      +'<li><a href="/socket">Socket.io View</a></li>'
+      +'<li><a href="/seo">SEO link</a></li>'
+      +'<li id="signUp"><a href=""><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>'
+      +'<li id="logIn"><a href=""><span class="glyphicon glyphicon-log-in"></span> Login</a></li>'
+      +'</ul>'
+      +'</nav>'
       
-      /*+'<main>'
-      + '<nav class="navbar navbar-default " id="topNav">'
-          + '<a class="navbar-brand" href="/">SPA Demo</a></nav>'
-        + '<nav id="side" class="navbar navbar-default">'
-        //+ '<h3>Nav Region</h3>'
-        + '<ul class="nav nav-sidebar">'
-      	  + '<li><a href="/">Home</a></li>'
-          + '<li><a id="date" href="/dates">Date calculator</a></li>'
-	      + '<li><a id="socket" href="/socket">Socket.io View</a></li>'
-	      + '<li><a id="seo" href="/seo">SEO link</a></li>'
-
-	    + '</ul></nav>'
-        + '<section id="content-main">Feature Content Region</section>'
-      	+ '<section id="content-dates"></section>'
-	    + '<section id="content-socket"></section>'
-	    + '<section id="content-seo"></section>'
-	+ '</main>'*/
+      +'<section><div id="content-main">Feature Content Region'
+      + '</div></section>'
+      +'<section><div id="content-dates"></div></section>'
+      +'<section><div id="content-socket"></div></section>'
+      +'<section><div id="content-seo"></div></section>'
     },
+      
     stateMap = {
       // View state information
       $container  : undefined,
@@ -142,6 +142,48 @@ spa.shell = (function () {
     page('/socket', socket);
     page('/seo', seo);
     page();
+    
+    $("#log").on("click", function () {
+      alert("Coming Soon");
+    });
+
+    $("#sign").on("click", function () {
+      alert("Coming Soon");
+    });
+    
+    $("#logIn").on("click", function () {
+      alert("Coming Soon");
+    });
+
+    $("#signUp").on("click", function () {
+      alert("Coming Soon");
+    });
+
+
+    $("#signUp").hide();
+    $("#logIn").hide();
+
+    if ($(window).width() <= 770) {
+      $("#logs").hide();
+      $("#signUp").show();
+      $("#logIn").show();
+    }
+
+
+    $(window).resize(function () {
+      var win = $(this);
+      if (win.width() <= 770) {
+        console.log('small');
+        $("#logs").hide();
+        $("#signUp").show();
+        $("#logIn").show();
+      } else {
+        $("#logs").show();
+        $("#signUp").hide();
+        $("#logIn").hide();
+      }
+    });
+
 
   };
 

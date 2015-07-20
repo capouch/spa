@@ -1,7 +1,3 @@
-// This is craig's branch
-
-
-
 /*
  * app.js - Express server with routing
 */
@@ -40,15 +36,9 @@ var
   routes.configRoutes( router, server );
   app.use('/', router);
 
-  // Socket.IO Functions
+  // Basic routing
   app.get('/', function(req, res){
       res.sendFile(__dirname + './html/index.html');
-  });
-
-  io.on('connection', function(socket){
-    socket.on('chat message', function(msg){
-      io.emit('chat message', msg);
-    });
   });
 
 // -------------- END SERVER CONFIGURATION ----------------

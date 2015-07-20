@@ -1,6 +1,5 @@
 { "name"    : "SPA",
   "version" : "0.0.1",
-  "main"    : "main.js",
   "dependencies" : {
     "express"   : "4.10.x",
     "body-parser": "1.5.x",
