@@ -9,8 +9,8 @@ spa.shell = (function () {
   var
     configMap = {
       main_html : String()
-      +'<nav class="navbar navbar-default" role="navigation" >'
-      
+      +'<nav>'
+      +'<div class="navbar navbar-default" role="navigation">'
       +'<div class="navbar-header">'
       +'<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">'
       +'<span class="sr-only">Toggle navigation</span>'
@@ -24,7 +24,7 @@ spa.shell = (function () {
       +'<li id="sign"><a href=""><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>'
       +'<li id="log"><a href=""><span class="glyphicon glyphicon-log-in"></span> Login</a></li>'
       +'</ul>'
-      +'</nav>'
+      +'</div></nav>'
       
       +'<nav class="collapse navbar-collapse navbar-ex1-collapse col-md-8 col-sm-7">'
       +'<ul class="nav nav-sidebar" id="side">'
@@ -37,10 +37,11 @@ spa.shell = (function () {
       +'</ul>'
       +'</nav>'
       
-      +'<section id="content-main">Feature Content Region</section>'
-      +'<section id="content-dates"></section>'
-      +'<section id="content-socket"></section>'
-      +'<section id="content-seo"></section>'
+      +'<section><div id="content-main">Feature Content Region'
+      + '</div></section>'
+      +'<section><div id="content-dates"></div></section>'
+      +'<section><div id="content-socket"></div></section>'
+      +'<section><div id="content-seo"></div></section>'
     },
       
     stateMap = {
