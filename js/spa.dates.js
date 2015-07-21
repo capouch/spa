@@ -11,7 +11,8 @@ spa.dates = (function () {
     configMap = {
       main_html : String()
       + ' <h4 class="datecalc">Date Calculation Region </h4>'
-      + ' <input type="button" class="btn btn-default" value="Show Cemetery View" id="toggleButton" />'
+      + ' <input type="button" class="btn btn-default" '
+      + ' value="Show Cemetery View" id="toggleButton" />'
       + ' <section id="genericDate"></section>'
       + ' <section id="cemeteryDate"></section>'
       ,

@@ -9,6 +9,5 @@ var spa = (function () {
     // Start the shell
     spa.shell.initModule( $container );
   };
-
   return { initModule: initModule };
 }());

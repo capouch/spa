@@ -5,7 +5,7 @@
 
 spa.shell = (function () {
   'use strict';
-  //---------------- BEGIN MODULE SCOPE VARIABLES --------------
+  // ------------> "Local" variables
   var
     configMap = {
       main_html : String()
@@ -18,7 +18,7 @@ spa.shell = (function () {
       +'<span class="icon-bar"></span>'
       +'<span class="icon-bar"></span>'
       +'</button>'
-      +'<a class="navbar-brand" href="/">SPA Demo</a>'
+      +'<a class="navbar-brand" href="/">Saint Joseph\'s College SPA Demo</a>'
       +'</div>'
       +'<ul class="nav navbar-nav navbar-right" id="logs">'
       +'<li id="sign"><a href=""><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>'
@@ -83,7 +83,8 @@ spa.shell = (function () {
     jqueryMap.$content.show();
     }
 
-  // One function per feature module
+  // -- One function per feature module
+
   // Demo two views in same module
   function dates() { 
     // Don't be bad if user keeps clicking same menu choice
@@ -108,14 +109,13 @@ spa.shell = (function () {
       currentMod.hide();
     currentMod = jqueryMap.$seo;
     spa.seo.postSection();
-    // Nothing going on here yet
     }
 
   // End DOM client-side router methods
 
-  //--------------------- END DOM METHODS ----------------------
+  // -- end DOM-oriented methods //
 
-  //------------------- BEGIN PUBLIC METHODS -------------------
+  // -- Public methods
 
   // Begin Public method /initModule/
   initModule = function ( $container ) {
@@ -143,6 +143,7 @@ spa.shell = (function () {
     page('/seo', seo);
     page();
     
+    // 
     $("#log").on("click", function () {
       alert("Coming Soon");
     });
@@ -185,7 +186,7 @@ spa.shell = (function () {
     });
 
 
-  };
+  }; // End public method initModule
 
   // Public API
   return { initModule : initModule };
