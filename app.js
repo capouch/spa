@@ -47,8 +47,9 @@ setWatch = function ( url_path, file_type ) {
 
 // ------------- BEGIN SERVER CONFIGURATION ---------------
   app.use( function ( request, response, next ) {
-    if ( request.url.indexOf( '/js/foo.js'  ) >= 0 ) {
-      setWatch( request.url, 'script' );
+    if ( request.url.indexOf( '/js/data.js'  ) >= 0 ) {
+      // Use regex to cut off everything after the /
+      setWatch( '/js/data.js', 'script' );
     }
     else if ( request.url.indexOf( '/css/sockstyle.css' ) >= 0 ) {
       setWatch( request.url, 'stylesheet' );

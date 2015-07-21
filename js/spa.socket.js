@@ -11,7 +11,7 @@ spa.socket = (function () {
     configMap = {
       main_html : String()
         + '<section id="socketIO">Socket.io Demonstration'
-        + '<script src="/js/data.js"></script>'
+        + '<script id="foo" src="/js/data.js"></script>'
         + '<button class="btn btn-default" id="sendBtn">Send</button>'
         + '</section>'
     },
@@ -76,6 +76,20 @@ spa.socket = (function () {
     });
 
     // Set event handler to react to "stylesheet" message 
+    io.connect('http://localhost:8000').on('script', function (path){
+console.log('I hear the file has changed' + b );
+    $( '#foo' ).remove();
+    // Replace contents of stylesheet with file from websocket
+    // Note which container you append to here is crucial
+    jqueryMap.$container.append(
+    '<script id="foo"  src="'
+     + path +
+     '"></script>'
+    );
+    // Redisplay HTML with new styling
+    jqueryMap.$socketIO.html( b );
+    });
+
     io.connect('http://localhost:8000').on( 'stylesheet', function ( path ){
     // Get rid of current style
     $( '#sock_css' ).remove();
