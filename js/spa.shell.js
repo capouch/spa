@@ -18,7 +18,7 @@ spa.shell = (function () {
       +'<span class="icon-bar"></span>'
       +'<span class="icon-bar"></span>'
       +'</button>'
-      +'<a class="navbar-brand" href="/">Saint Joseph\'s College SPA Demo</a>'
+      +'<a class="navbar-brand" href="/">SJC SPA Demo</a>'
       +'</div>'
       +'<ul class="nav navbar-nav navbar-right" id="logs">'
       +'<li id="sign"><a href=""><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>'
