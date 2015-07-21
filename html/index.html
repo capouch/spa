@@ -43,24 +43,6 @@
    //console.log("after");
 
   });
-  console.log("outside before");
-
-  // Set event handler to react to "stylesheet" message
-  io.connect('http://localhost:8000').on( 'stylesheet', function ( path ) {
-    console.log("in stylesheet");
-    // Get rid of current style
-    $( '.css_a' ).remove();
-    // Replace contents of stylesheet with file from websocket
-    $( 'head' ).append(
-      '<link class="css_a" rel="stylesheet" href="'
-      + path +
-      '"/>'
-    );
-    // Redisplay HTML with new styling
-    //$( 'body' ).html( b );
-  });
-
-  console.log("outside after");
 
  </script>
 

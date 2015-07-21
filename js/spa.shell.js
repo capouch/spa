@@ -100,7 +100,7 @@ spa.shell = (function () {
     if( currentMod != jqueryMap.$socket )
       currentMod.hide();
     currentMod = jqueryMap.$socket
-    spa.socket.postSection();
+    //spa.socket.postSection();
     }
 
   // Page crawling when there are no pages

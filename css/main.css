@@ -31,8 +31,7 @@ header {
 }*/
 
 #side {
-  /*background-color: #b5b5b5;*/
-  background-color: blue;
+  background-color: #b5b5b5;
   float: left;
   width: 100%;
   height: 100%;
@@ -103,6 +102,12 @@ label.datecalc {
   font-size: 25px;
 }
 
+#socketio {
+  background-color: red;
+  height: 100%;
+  width: 100%;
+}
+
 #seoPage {
   font-size: 20px;
 }
@@ -110,41 +115,4 @@ label.datecalc {
 #seoLink {
   color: aliceblue;
 }
-
-#messages {
-  height: 200px;
-  margin: 0;
-  overflow-y: auto;
-  padding: 10px 20px 10px 20px;
-  list-style-type: none;
-  background-color: white;
-}
-
-#messages li:nth-child(even) {
-  border-radius: 5px;
-  background-color: #00FFFF;
-}
-
-@media screen and (min-width: 771px) {
-  #sendBtn {
-    width: 10%;
-  }
-  #m {
-    width: 90%;
-  }
-}
-
-@media screen and (max-width: 770px) {
-
-  #sendBtn {
-    width: 20%;
-    display: inline;
-  }
-  #m {
-    width: 80%;
-    display: inline;
-  }
-}
-
-
 

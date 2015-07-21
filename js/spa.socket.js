@@ -10,24 +10,13 @@ spa.socket = (function () {
   var
     configMap = {
       main_html : String()
-        + '<section id="socketIO">Socket.io Demonstration'
-          + '<ul class="list-group-item" id="messages"></ul>'
-          //+ '<div class="row">'
-          + '<form class="form-inline" action="">'
-            //+ '<div class="form-group">'
-            + '<input id="m" class="form-control" autocomplete="off" />'
-            + '<button class="btn btn-default" id="sendBtn">Send</button>'
-            //+ '</div>'
-          + '</form>'
-          //+ '</div>'
-        + '</section>'
+        + '<div id=socketio></div>'
     },
     stateMap = {
       $container  : undefined,
     },
     jqueryMap = {},
-    initModule, copyAnchorMap, setJqueryMap, setClicks, postSection,
-    socketIO, socket;
+    initModule, copyAnchorMap, setJqueryMap;
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
   //------------------- BEGIN UTILITY METHODS ------------------
@@ -41,32 +30,10 @@ spa.socket = (function () {
     // Overkill for small amount of functionality
     jqueryMap = {
       $container : $container,
-      $socketIO  : $container.find('#socketIO')
+      $sio  : $container.find('#socketio')
     };
   };
   // End DOM method /setJqueryMap/
-
-  // Begin DOM method /setClicks/
-  function setClicks() {
-    addClickHandler(document.getElementById("clientRoutes"), 'Brian Content');
-    addClickHandler(document.getElementById("testRoutes"), 'Craig Content');
-    // Enable backing up through content
-    window.addEventListener("popstate", function(e) {
-      jqueryMap.$content.html(savedContent[--pushedCount]);
-      });
-    }
-  // End DOM method /setClicks/
-
-  // Begin DOM method addClickHandler/
-  function addClickHandler(link, verbiage) {
-    link.addEventListener("click", function(e) {
-      savedContent[pushedCount++] = jqueryMap.$content.html();
-      jqueryMap.$content.html(verbiage);
-      history.pushState(null, null, link.href); 
-      e.preventDefault();
-      }, false);
-    }
-  // End DOM method /addClickHandler/
 
   //--------------------- END DOM METHODS ----------------------
 
@@ -99,29 +66,23 @@ spa.socket = (function () {
     //jqueryMap.$socketIO.html( configMap.main_html );
     //queryMap.$container.show();
 
-    // socket.io
-    socket = io();
-    $('form').submit(function(){
-      socket.emit('chat message', $('#m').val());
-      $('#m').val('');
-      return false;
-    });
-    socket.on('chat message', function(msg){
-      $('#messages').append($('<li>').text(msg));
-      // keep scrollbar at bottom
-      $('#messages').scrollTop(100000000);
-    });
+    // Set event handler to react to "stylesheet" message
+    /*io.connect('http://localhost:8000').on( 'stylesheet', function ( path ) {
+      console.log("in stylesheet");
+      // Get rid of current style
+      $( '.css_a' ).remove();
+      // Replace contents of stylesheet with file from websocket
+      $( 'head' ).append(
+        '<link class="css_a" rel="stylesheet" href="'
+        + path +
+        '"/>'
+      );
+      // Redisplay HTML with new styling
+      //$( 'body' ).html( b );
+    });*/
 
-  };
-
-  postSection = function() {
-    jqueryMap.$socketIO.show();
-    jqueryMap.$container.show();
-  };
-
- 
-  return { initModule : initModule,
-           postSection : postSection
     };
+ 
+  return { initModule : initModule };
   //------------------- END PUBLIC METHODS ---------------------
 }());
