@@ -22,7 +22,7 @@ spa.socket = (function () {
 
     jqueryMap = {},
     initModule, copyAnchorMap, setJqueryMap, setClicks, postSection,
-    socketIO, socket;
+    socketIO, socket, serverURL;
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
   //------------------- BEGIN UTILITY METHODS ------------------
@@ -63,6 +63,9 @@ spa.socket = (function () {
   // Returns   : none 
   // Throws    : none
   initModule = function ( $container ) {
+
+    // Note this directive should be set higher up in the food chain
+    serverURL = 'http://localhost:8000';
     // load HTML and map jQuery collections
     stateMap.$container = $container;
     $container.hide();
@@ -76,7 +79,7 @@ spa.socket = (function () {
     });
 
     // Set event handler to react to "stylesheet" message 
-    io.connect('http://localhost:8000').on('script', function (path) {
+    io.connect(serverURL).on('script', function (path) {
       console.log('I hear the file has changed' + b );
       $( '#sock_js' ).remove();
       // Replace contents of stylesheet with file from websocket
@@ -90,7 +93,7 @@ spa.socket = (function () {
       jqueryMap.$socketIO.html( b );
     });
 
-    io.connect('http://localhost:8000').on( 'stylesheet', function ( path ) {
+    io.connect(serverURL).on( 'stylesheet', function ( path ) {
       // Get rid of current style
       $( '#sock_css' ).remove();
       // Replace contents of stylesheet with file from websocket
