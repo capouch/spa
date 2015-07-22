@@ -64,8 +64,10 @@ spa.socket = (function () {
   // Throws    : none
   initModule = function ( $container ) {
 
-    // Note this directive should be set higher up in the food chain
+    // Set to taste
     serverURL = 'http://localhost:8000';
+    // serverURL = 'http://knuckle.palaver.net:8000';
+
     // load HTML and map jQuery collections
     stateMap.$container = $container;
     $container.hide();
