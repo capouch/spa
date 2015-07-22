@@ -1,5 +1,5 @@
 // You will want to be much fancier than this
 //   although this would work to prove our point
-var b = '<b>Nombre: </b>Javier Montenegro'
+var b = '<b>Nombre: </b>Javier Flores'
 		+ '<br><b> Direccion: </b>101 Calle Mayor'
 		+ '<br><b> Edad: </b>52';
