@@ -59,6 +59,14 @@ configRoutes = function ( router, server ) {
     };
     res.sendFile('robots.txt', options);
   });
+  
+    router.get('/Sitemap.xml', function(req, res) {
+    var options = {
+      // I don't like this very much
+      root: __dirname + '/../html/'
+    };
+    res.sendFile('Sitemap.xml', options);
+  });
 
 }; 
  
