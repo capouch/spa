@@ -1,0 +1,17 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>http://knuckle.palaver.net:8000/dates</loc>
+	</url>
+	<url>
+		<loc>http://knuckle.palaver.net:8000/socket</loc>
+	</url>
+	<url>
+		<loc>http://knuckle.palaver.net:8000/seo</loc>
+	</url>
+	<url>
+		<loc>http://knuckle.palaver.net:8000/</loc>
+	</url>
+	<url>
+		<loc>http://knuckle.palaver.net:8000/robots.txt</loc>
+	</url>
+</urlset>
