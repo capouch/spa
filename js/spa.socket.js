@@ -6,7 +6,7 @@
 
 spa.socket = (function () {
   'use strict';
-  //---------------- BEGIN MODULE SCOPE VARIABLES --------------
+  //--- Begin local variables
   var
     configMap = {
       main_html : String()
@@ -23,12 +23,9 @@ spa.socket = (function () {
     jqueryMap = {},
     initModule, copyAnchorMap, setJqueryMap, setClicks, postSection,
     socketIO, socket, serverURL;
-  //----------------- END MODULE SCOPE VARIABLES ---------------
+  //--- end local variables
 
-  //------------------- BEGIN UTILITY METHODS ------------------
-  //-------------------- END UTILITY METHODS -------------------
-
-  //--------------------- BEGIN DOM METHODS --------------------
+  //--- DOM interaction methods
   // Begin DOM method /setJqueryMap/
   setJqueryMap = function () {
     var $container = stateMap.$container;
@@ -41,27 +38,10 @@ spa.socket = (function () {
   };
   // End DOM method /setJqueryMap/
 
-  //--------------------- END DOM METHODS ----------------------
+  //--- end DOM-related methods
 
-  //------------------- BEGIN EVENT HANDLERS -------------------
-  //-------------------- END EVENT HANDLERS --------------------
-
-  //------------------- BEGIN PUBLIC METHODS -------------------
-  // Begin Public method /initModule/
-  // Example   : spa.socket.initModule( $('#app_div_id') );
-  // Purpose   :
-  //   Sets up data calculations
-  // Arguments :
-  //   * $container (example: $('#app_div_id')).
-  //     A jQuery collection that should represent 
-  //     a single DOM container
-  // Action    :
-  //   Populates $container with the shell of the UI
-  //   and then configures and initializes feature modules.
-  //   The Shell is also responsible for browser-wide issues
-  //   such as URI anchor and cookie management
-  // Returns   : none 
-  // Throws    : none
+  //--- Public methods
+  // Begin Public method /initModule
   initModule = function ( $container ) {
 
     // Set to taste
@@ -119,5 +99,5 @@ spa.socket = (function () {
   return { initModule : initModule,
            postSection : postSection
     };
-  //------------------- END PUBLIC METHODS ---------------------
+  //--- end public methods
 }());
