@@ -10,10 +10,11 @@ spa.socket = (function () {
   var
     configMap = {
       main_html : String()
-        + '<section id="socketIO">Socket.io Demonstration'
+        + '<section id="socketIO">'
+        + '<div id="socketIO">
         + '<script id="sock_js" src="/js/data.js"></script>'
         + '<button class="btn btn-default" id="sendBtn">Send</button>'
-        + '</section>'
+        + '</div></section>'
     },
 
     stateMap = {
