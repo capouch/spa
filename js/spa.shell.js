@@ -54,11 +54,12 @@ spa.shell = (function () {
     initModule, setJqueryMap,
     currentMod;
 
-  //----------------- END MODULE SCOPE VARIABLES ---------------
+  //--- end variables
 
 
-  //--------------------- BEGIN DOM METHODS --------------------
-  // Begin DOM method /setJqueryMap/
+  //--- Methods interacting with the DOM/jQuery
+
+  // Begin DOM method /setJqueryMap
   setJqueryMap = function () {
     var $container = stateMap.$container;
 
@@ -72,7 +73,7 @@ spa.shell = (function () {
       $seo       : $container.find('#content-seo')
     };
   };
-  // End DOM method /setJqueryMap/
+  // End DOM method /setJqueryMap
 
   // Begin client-side router methods
 
@@ -115,9 +116,9 @@ spa.shell = (function () {
 
   // -- end DOM-oriented methods //
 
-  // -- Public methods
+  // -- Public API methods
 
-  // Begin Public method /initModule/
+  // Begin Public method /initModule
   initModule = function ( $container ) {
     // load HTML and map jQuery collections
     stateMap.$container = $container;
@@ -143,7 +144,7 @@ spa.shell = (function () {
     page('/seo', seo);
     page();
     
-    // 
+    // Set up dummy event handlers for header region
     $("#log").on("click", function () {
       alert("Coming Soon");
     });
@@ -161,9 +162,11 @@ spa.shell = (function () {
     });
 
 
+    // Elements hidden on full-size screens
     $("#signUp").hide();
     $("#logIn").hide();
 
+    // Respond to small display area
     if ($(window).width() <= 770) {
       $("#logs").hide();
       $("#signUp").show();
@@ -185,10 +188,9 @@ spa.shell = (function () {
       }
     });
 
-
   }; // End public method initModule
 
-  // Public API
+  // Post API reference property
   return { initModule : initModule };
-  //------------------- END PUBLIC METHODS ---------------------
+  //--- end methods exposed to public
 }());
