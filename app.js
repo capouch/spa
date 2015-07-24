@@ -56,7 +56,7 @@ setWatch = function ( url_path, file_type ) {
     next();
 
   app.use( express.static( __dirname + '/' ) );
-  app.use(require('prerender-node').set('prerenderToken', 'KpWv54ERZuWdTbB3DO5e'));
+ 
 });
 
   // app.use( express.static( __dirname + '' ) );
@@ -67,6 +67,7 @@ setWatch = function ( url_path, file_type ) {
   // app.use(morgan('combined'));
   routes.configRoutes( router, server );
   app.use('/', router);
+  app.use(require('prerender-node').set('prerenderToken', 'KpWv54ERZuWdTbB3DO5e'));
 
   // 
   app.get('/', function(req, res){
