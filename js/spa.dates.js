@@ -6,7 +6,8 @@
 
 spa.dates = (function () {
   'use strict';
-  //---------------- BEGIN MODULE SCOPE VARIABLES --------------
+
+  //--- Local variables
   var
     configMap = {
       main_html : String()
@@ -20,73 +21,72 @@ spa.dates = (function () {
       generic_html: String()
       +'<h3>Generic Date View</h3>'
       +'<div class="row">'
-         +'<div class="form-group col-md-3 col-xs-8">'
-            +'<label class="control-label" for="startDate">Start</label>'
+      +'<div class="form-group col-md-3 col-xs-8">'
+      +'<label class="control-label" for="startDate">Start</label>'
 
-            +'<input class="form-control" type="date" id="startDate" />'
-            +'<br/>'
-            +'<label class="control-label" for="finishDate">End <b>(Date of interest)</b></label>'
-            +'<input class="form-control finishDate" type="date" />'
-         +'</div>'
-         +'<div class="form-group col-md-3 col-xs-8 col-sm-4">'
-            +'<label class="control-label" for="years">Years </label>'
-            +'<input class="form-control years" type="number" maxlength="3" />'
-            +'<br/>'
-            +'<label class="control-label" for="months">Months</label>'
-            +'<input class="form-control months" type="number" maxlength="2"  />'
-            +'<br/>'
-            +'<div class="form-group col-md-13 col-xs-13">'
-               +'<label class="control-label" for="days">Days </label>'
-               +'<input class="form-control days" type="number" maxlength="2"  />'
+      +'<input class="form-control" type="date" id="startDate" />'
+      +'<br/>'
+      +'<label class="control-label" for="finishDate">End <b>(Date of interest)</b></label>'
+      +'<input class="form-control finishDate" type="date" />'
+      +'</div>'
+      +'<div class="form-group col-md-3 col-xs-8 col-sm-4">'
+      +'<label class="control-label" for="years">Years </label>'
+      +'<input class="form-control years" type="number" maxlength="3" />'
+      +'<br/>'
+      +'<label class="control-label" for="months">Months</label>'
+      +'<input class="form-control months" type="number" maxlength="2"  />'
+      +'<br/>'
+      +'<div class="form-group col-md-13 col-xs-13">'
+      +'<label class="control-label" for="days">Days </label>'
+      +'<input class="form-control days" type="number" maxlength="2"  />'
               
-               +'<label class="radio-inline" for="radio1">'
-                  +'<input class="radio" type="radio" name="gen_whichOp" id="gen_opcode" value="add">Add'
-               +'</label>'
-               +'<br/>'
-               +'<label class="radio-inline" for="radio2">'
-                  +'<input class="radio" type="radio" name="gen_whichOp" value="sub" checked>Subtract'
-               +'</label>'
+      +'<label class="radio-inline" for="radio1">'
+      +'<input class="radio" type="radio" name="gen_whichOp" id="gen_opcode" value="add">Add'
+      +'</label>'
+      +'<br/>'
+      +'<label class="radio-inline" for="radio2">'
+      +'<input class="radio" type="radio" name="gen_whichOp" value="sub" checked>Subtract'
+      +'</label>'
                
-            +'</div>'
-         +'</div>'
-         +'<br/>'
+      +'</div>'
+      +'</div>'
+      +'<br/>'
       +'</div>'
      
-         +'<input type="button" value="Calc" class="btn btn-success btn-lg calcButton" id="calcButton" />'
-         +'<input type="button" value="Clear" class="btn btn-danger btn-lg clearButton" id="clearButton" />'
-         +'<aside class="output">Target:</aside>'
+      +'<input type="button" value="Calc" class="btn btn-success btn-lg calcButton" id="calcButton" />'
+      +'<input type="button" value="Clear" class="btn btn-danger btn-lg clearButton" id="clearButton" />'
+      +'<aside class="output">Target:</aside>'
       +'<br/>'
       ,
 
       cemetery_html: String()
       +'<h3>Cemetery Date View</h3>'
       +'<div class="row">'
-         +'<div class="form-group col-md-3 col-xs-8">'
-            +'<label class="control-label" for="finishDate">Death Date</label>'
+      +'<div class="form-group col-md-3 col-xs-8">'
+      +'<label class="control-label" for="finishDate">Death Date</label>'
       +'<br/>'
-            +'<input type="date" class="form-control finishDate" />'
-         +'</div>'
+      +'<input type="date" class="form-control finishDate" />'
+      +'</div>'
 
-         +'<div class="form-group col-md-3 col-xs-8">'
-            +'<label class="control-label" for="years">Years </label>'
-            +'<input type="number" maxlength="3" class="form-control years" />'
-            +'<br/>'
-            +'<label class="control-label" for="months">Months</label>'
-            +'<input type="number" maxlength="2" class="form-control months" />'
-            +'<br/>'
-            +'<div class="form-group col-md-13 col-xs-13">'
-               +'<label class="control-label" for="days">Days </label>'
-               +'<input type="number" maxlength="2" class="form-control days" />'
-
-               +'<label class="radio-inline" for="radio1">'
-                  +'<input type="radio" class="add" name="cem_whichOp" value="add" > Add'
-               +'</label>'
-               +'<br/>'
-               +'<label class="radio-inline" for="radio2">'
-                  +'<input type="radio" class="add" name="cem_whichOp" value="sub" id="cem_default" checked> Subtract'
-               +'</label>'
-            +'</div>'
-         +'</div>'
+      +'<div class="form-group col-md-3 col-xs-8">'
+      +'<label class="control-label" for="years">Years </label>'
+      +'<input type="number" maxlength="3" class="form-control years" />'
+      +'<br/>'
+      +'<label class="control-label" for="months">Months</label>'
+      +'<input type="number" maxlength="2" class="form-control months" />'
+      +'<br/>'
+      +'<div class="form-group col-md-13 col-xs-13">'
+      +'<label class="control-label" for="days">Days </label>'
+      +'<input type="number" maxlength="2" class="form-control days" />'
+      +'<label class="radio-inline" for="radio1">'
+      +'<input type="radio" class="add" name="cem_whichOp" value="add" > Add'
+      +'</label>'
+      +'<br/>'
+      +'<label class="radio-inline" for="radio2">'
+      +'<input type="radio" class="add" name="cem_whichOp" value="sub" id="cem_default" checked> Subtract'
+      +'</label>'
+      +'</div>'
+      +'</div>'
       +'</div>'
       
       
@@ -114,11 +114,11 @@ spa.dates = (function () {
     calcStartYear, postSection, operation, doDateCalc,
     generic, cemetery, genericView, buttonText,
     swapSection, dateSpan;
-  //----------------- END MODULE SCOPE VARIABLES ---------------
+  //--- end local variables
 
- //------------------- BEGIN UTILITY METHODS ------------------
+  //--- Business logic
 
-  // Begin method /doDateCalc/
+  // Begin method /doDateCalc
   doDateCalc = function(startDate, operation) {
     // Mutate moment startDate by adding/subtracting timespan
     if (operation === 'add') 
@@ -126,13 +126,13 @@ spa.dates = (function () {
     else
       startDate.subtract(timespanMap.years, 'years').subtract(timespanMap.months, 'months').subtract(timespanMap.days, 'days');
     };
+  // end method /doDateCalc
 
   // Begin method /dateSpan/
   dateSpan = function() {
     // Get dates from the input widgets
     var earlier = moment(jqueryMap.$container.find('#startDate').val()),
       later = moment(jqueryMap.$container.find('.finishDate').val()),
-
       // Calculate duration
       duration = (moment.duration(later.diff(earlier)).format("Y[y] M[m] D[d]")),
       // Use regex to extract years, months, and days
@@ -152,11 +152,11 @@ spa.dates = (function () {
     jqueryMap.$generic.find('.days').val(days);
     } // end /dateSpan
 
-  //-------------------- END UTILITY METHODS -------------------
+  //--- end business logic methods
 
-  //--------------------- BEGIN DOM METHODS --------------------
+  //--- Begin DOM manipulation methods
 
-  // Begin method /setJqueryMap/
+  // Begin method /setJqueryMap
   setJqueryMap = function () {
     var $container = stateMap.$container;
 
@@ -179,7 +179,7 @@ spa.dates = (function () {
     };
   }; // end setJqueryMap
 
-  // Begin method /swapSection/
+  // Begin method /swapSection
   swapSection = function() {
       if ( genericView )  {
         jqueryMap.$cemetery.hide();
@@ -190,11 +190,11 @@ spa.dates = (function () {
      } 
     } // end swapSection 
 
-  //--------------------- END DOM METHODS ----------------------
+  //--- end DOM-related methods
 
-  //------------------- BEGIN EVENT HANDLERS -------------------
+  //--- Event handlers
 
-  // Begin event handler /updateForm/
+  // Begin event handler /updateForm
   function updateForm(container, operation) {
     var inputDate = $(container.find('.finishDate')).val(),
     // create moment objects
@@ -214,7 +214,7 @@ spa.dates = (function () {
     $(container.find('.output')).html('Target: ' + start.format("dddd, MMMM Do YYYY"));
   } // end updateForm
 
-  // Begin event handler /clear/
+  // Begin event handler /clear
   function clear(container) { 
     container.find('.finishDate').val('');
     container.find('.years').val('');
@@ -222,13 +222,13 @@ spa.dates = (function () {
     container.find('.days').val('');
     // Reset "sub" as default operation
     $('#gen_default').prop('checked', true);
-    } // end /clear/ 
+    } // end /clear 
 
-  //-------------------- END EVENT HANDLERS --------------------
+  //--- end event handlers
 
-  //------------------- BEGIN PUBLIC METHODS -------------------
+  //--- Public methods
 
-  // Begin Public method /initModule/
+  // Begin public method /initModule
   initModule = function ( $container ) {
     // load HTML and map jQuery collections SILENTLY!
     // Start out in generic view
@@ -247,7 +247,7 @@ spa.dates = (function () {
     genericView = true;
     jqueryMap.$cemetery.hide();
 
-    // Event handlers
+    // Event handlers inline
     // First: view container specific handlers
 
     // Click handler for Calc buttons
@@ -274,6 +274,7 @@ spa.dates = (function () {
       }
     }); 
 
+    // Do calculation when users hits 'Enter" in day widget
     jqueryMap.$cemDays.keypress(function(e) {
       // 13 = Return (Enter) key
       if(e.which == 13) {
@@ -324,5 +325,5 @@ spa.dates = (function () {
   return { initModule : initModule, 
            postSection : postSection
     };
-  //------------------- END PUBLIC METHODS ---------------------
+  //--- end public methods
 }());
