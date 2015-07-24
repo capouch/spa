@@ -20,10 +20,6 @@ spa.shell = (function () {
       +'</button>'
       +'<a class="navbar-brand" href="/">SPA Demo</a>'
       +'</div>'
-      +'<ul class="nav navbar-nav navbar-right" id="logs">'
-      +'<li id="sign"><a href=""><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>'
-      +'<li id="log"><a href=""><span class="glyphicon glyphicon-log-in"></span> Login</a></li>'
-      +'</ul>'
       +'</div></nav>'
       
       +'<nav class="collapse navbar-collapse navbar-ex1-collapse col-md-8 col-sm-7">'
