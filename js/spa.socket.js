@@ -47,7 +47,7 @@ spa.socket = (function () {
 
     // Set to taste
     serverURL = 'http://localhost:8000';
-    // serverURL = 'http://knuckle.palaver.net:8000';
+    // serverURL = 'http://oscon.saintjoe-cs.org:8000';
 
     // load HTML and map jQuery collections
     stateMap.$container = $container;
