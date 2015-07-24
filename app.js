@@ -51,7 +51,7 @@ var
 
   // Process all traffic looking for "magic names"
   app.use( function ( request, response, next ) {
-    // Watch for changes to /js/data.js or any CSS file
+    // Watch for changes to /js/data.js or /css/sockstyle.css file
     if ( request.url.indexOf( '/js/data.js'  ) >= 0 ) {
       setWatch( '/js/data.js', 'script' );
     }
