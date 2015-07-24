@@ -27,7 +27,6 @@ spa.shell = (function () {
       +'<li><a href="/">Home</a></li>'
       +'<li><a href="/dates">Date Calculator</a></li>'
       +'<li><a href="/">socket.io Data Channel</a></li>'
-      +'<li><a href="/">SEO Concerns</a></li>'
       +'<li id="signUp"><a href=""><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>'
       +'<li id="logIn"><a href=""><span class="glyphicon glyphicon-log-in"></span> Login</a></li>'
       +'</ul>'
