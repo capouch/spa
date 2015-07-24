@@ -10,10 +10,6 @@ spa.seo = (function () {
     configMap = {
       main_html : String() 
         + '<section id="seoPage">SEO Demonstration'
-      + '</br>'
-         + ' Make sure the prerender server is running'
-      + '</br>'
-      + '<a id="seoLink" href="http://localhost:3000/http://localhost:8000/dates/?_escaped_fragment_=">The Solution</a>'
       + '</section>'
    
     },
