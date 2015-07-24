@@ -56,24 +56,22 @@ spa.socket = (function () {
 
     setJqueryMap();
 
-    // Display the value of var "b" from the data.js file
+    // Display the value of var "dummyPage" from the data.js file
     $(function () {
-      jqueryMap.$socketIO.html( b );
+      jqueryMap.$socketIO.html( dummyPage );
     });
 
-    // Set event handler to react to "stylesheet" message 
+    // Set event handler to react to "script" message 
     io.connect(serverURL).on('script', function (path) {
-      console.log('I hear the file has changed' + b );
       $( '#sock_js' ).remove();
-      // Replace contents of stylesheet with file from websocket
-      // Note which container you append to here is crucial
+      // Replace contents of element with freshly-loaded value
       jqueryMap.$container.append(
         '<script id="sock_js"  src="'
           + path +
           '"></script>'
       );
       // Redisplay HTML with new styling
-      jqueryMap.$socketIO.html( b );
+      jqueryMap.$socketIO.html( dummyPage );
     });
 
     io.connect(serverURL).on( 'stylesheet', function ( path ) {
@@ -87,7 +85,7 @@ spa.socket = (function () {
           '"/>'
       );
       // Redisplay HTML with new styling
-      jqueryMap.$socketIO.html( b );
+      jqueryMap.$socketIO.html( dummyPage );
     });
   };
 
