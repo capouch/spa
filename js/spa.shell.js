@@ -90,7 +90,7 @@ spa.shell = (function () {
   function dates() { 
     // Don't be bad if user keeps clicking same menu choice
     if( currentMod != jqueryMap.$dates ) 
-	currentMod.hide();
+	    currentMod.hide();
     // Remember where we're at
     currentMod = jqueryMap.$dates;
     spa.dates.postSection();
