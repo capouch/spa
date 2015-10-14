@@ -25,23 +25,23 @@ var
 
 // --- end variable declarations and initialization 
 
-// Watch a file and let clients know if/when one changes
+  // Watch a file and let clients know if/when one changes
   setWatch = function ( url_path, file_type ) {
-  console.log( 'setWatch called on ' + url_path );
-  //
-  if ( ! watchMap[ url_path ] ) {
-    console.log( 'setting watch on ' + url_path );
-    // Part of Node's native 'fs' package
-    fsHandle.watchFile(
-      url_path.slice(1),
-      function ( current, previous ) {
-        console.log( 'file accessed' );
-        // Send notice 
-        if ( current.mtime !== previous.mtime ) {
-          console.log( 'file changed: ' + url_path);
-          io.sockets.emit( file_type, url_path );
+    console.log( 'setWatch called on ' + url_path );
+    //
+    if ( ! watchMap[ url_path ] ) {
+        console.log( 'setting watch on ' + url_path );
+        // Part of Node's native 'fs' package
+        fsHandle.watchFile(
+        url_path.slice(1),
+        function ( current, previous ) {
+          console.log( 'file accessed' );
+          // Send notice 
+          if ( current.mtime !== previous.mtime ) {
+            console.log( 'file changed: ' + url_path);
+            io.sockets.emit( file_type, url_path );
+          }
         }
-      }
     );
     watchMap[ url_path ] = true;
   }
@@ -54,10 +54,10 @@ var
     // Watch for changes to /js/data.js or /css/sockstyle.css file
     if ( request.url.indexOf( '/js/data.js'  ) >= 0 ) {
       setWatch( '/js/data.js', 'script' );
-    }
+      }
     else if ( request.url.indexOf( '/css/sockstyle.css' ) >= 0 ) {
       setWatch( request.url, 'stylesheet' );
-    }
+      }
     next();
 
   app.use( express.static( __dirname + '/' ) );
