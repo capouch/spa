@@ -1,7 +1,7 @@
 /*
  * spa.socket.js
  * Socket.io feature module for OSCON Demo
- * Brian Capouch 
+ * Brian Capouch
 */
 
 spa.socket = (function () {
@@ -22,7 +22,7 @@ spa.socket = (function () {
     },
 
     jqueryMap = {},
-    initModule, copyAnchorMap, setJqueryMap, setClicks, postSection,
+    initModule, copyAnchorMap, setJqueryMap, postSection,
     socketIO, socket, serverURL;
   //--- end local variables
 
@@ -61,7 +61,7 @@ spa.socket = (function () {
       jqueryMap.$socketIO.html( dummyPage );
     });
 
-    // Set event handler to react to "script" message 
+    // Set event handler to react to "script" message
     io.connect(serverURL).on('script', function (path) {
       $( '#sock_js' ).remove();
       // Replace contents of element with freshly-loaded value
@@ -94,7 +94,7 @@ spa.socket = (function () {
     jqueryMap.$container.show();
   };
 
- 
+
   return { initModule : initModule,
            postSection : postSection
     };
