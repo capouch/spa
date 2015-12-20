@@ -1,7 +1,7 @@
 /*
  * spa.dates.js
  * Dates feature module for OSCON Demo
- * Brian Capouch 
+ * Brian Capouch
 */
 
 spa.dates = (function () {
@@ -21,9 +21,10 @@ spa.dates = (function () {
       generic_html: String()
       +'<h3>Generic Date View</h3>'
       +'<div class="row">'
+      +'<!-- form- classes are Bootstrap to allow for responsiveness -->'
       +'<div class="form-group col-md-3 col-xs-8">'
-      +'<label class="control-label" for="startDate">Start</label>'
 
+      +'<label class="control-label" for="startDate">Start</label>'
       +'<input class="form-control" type="date" id="startDate" />'
       +'<br/>'
       +'<label class="control-label" for="finishDate">End <b>(Date of interest)</b></label>'
@@ -39,7 +40,7 @@ spa.dates = (function () {
       +'<div class="form-group col-md-13 col-xs-13">'
       +'<label class="control-label" for="days">Days </label>'
       +'<input class="form-control days" type="number" maxlength="2"  />'
-              
+
       +'<label class="radio-inline" for="radio1">'
       +'<input class="radio" type="radio" name="gen_whichOp" id="gen_opcode" value="add">Add'
       +'</label>'
@@ -47,12 +48,12 @@ spa.dates = (function () {
       +'<label class="radio-inline" for="radio2">'
       +'<input class="radio" type="radio" name="gen_whichOp" value="sub" checked>Subtract'
       +'</label>'
-               
+
       +'</div>'
       +'</div>'
       +'<br/>'
       +'</div>'
-     
+
       +'<input type="button" value="Calc" class="btn btn-success btn-lg calcButton" id="calcButton" />'
       +'<input type="button" value="Clear" class="btn btn-danger btn-lg clearButton" id="clearButton" />'
       +'<aside class="output">Target:</aside>'
@@ -88,9 +89,6 @@ spa.dates = (function () {
       +'</div>'
       +'</div>'
       +'</div>'
-      
-      
-
       +'<input type="button" value="Calc" class="btn btn-success btn-lg calcButton" />'
       +'<input type="button" value="Clear" class="btn btn-danger btn-lg clearButton" />'
       +'<aside class="output">Target:</aside>'
@@ -121,7 +119,7 @@ spa.dates = (function () {
   // Begin method /doDateCalc
   doDateCalc = function(startDate, operation) {
     // Mutate moment startDate by adding/subtracting timespan
-    if (operation === 'add') 
+    if (operation === 'add')
       startDate.add(timespanMap.years, 'years').add(timespanMap.months,'months').add(timespanMap.days, 'days');
     else
       startDate.subtract(timespanMap.years, 'years').subtract(timespanMap.months, 'months').subtract(timespanMap.days, 'days');
@@ -142,7 +140,7 @@ spa.dates = (function () {
       match = matchString.exec(duration),
       yrs, mos, days;
     // Put them into input/display widgets
-    // Set field values 
+    // Set field values
     yrs = (match[2])?match[2]:'';
     mos = (match[4])?match[4]:'';
     days = (match[6])?match[6]:'';
@@ -187,8 +185,8 @@ spa.dates = (function () {
       } else {
        jqueryMap.$generic.hide();
        jqueryMap.$cemetery.show();
-     } 
-    } // end swapSection 
+     }
+    } // end swapSection
 
   //--- end DOM-related methods
 
@@ -215,14 +213,14 @@ spa.dates = (function () {
   } // end updateForm
 
   // Begin event handler /clear
-  function clear(container) { 
+  function clear(container) {
     container.find('.finishDate').val('');
     container.find('.years').val('');
     container.find('.months').val('');
     container.find('.days').val('');
     // Reset "sub" as default operation
     $('#gen_default').prop('checked', true);
-    } // end /clear 
+    } // end /clear
 
   //--- end event handlers
 
@@ -239,7 +237,7 @@ spa.dates = (function () {
     $container.html( configMap.main_html );
     $container.find('#cemeteryDate').html( configMap.cemetery_html );
     $container.find('#genericDate').html( configMap.generic_html );
-    
+
     // Set collection references
     setJqueryMap();
 
@@ -272,7 +270,7 @@ spa.dates = (function () {
       if(e.which == 13) {
         updateForm(jqueryMap.$generic, $('input[name=gen_whichOp]:checked').val());
       }
-    }); 
+    });
 
     // Do calculation when users hits 'Enter" in day widget
     jqueryMap.$cemDays.keypress(function(e) {
@@ -322,7 +320,7 @@ spa.dates = (function () {
   jqueryMap.$container.show();
   } // end postSection
 
-  return { initModule : initModule, 
+  return { initModule : initModule,
            postSection : postSection
     };
   //--- end public methods
