@@ -111,7 +111,7 @@ spa.dates = (function () {
     initModule, copyAnchorMap, setJqueryMap, setClicks,
     calcStartYear, postSection, operation, doDateCalc,
     generic, cemetery, genericView, buttonText,
-    swapSection, dateSpan;
+    swapSection, dateSpan, countDays;
   //--- end local variables
 
   //--- Business logic
@@ -139,16 +139,37 @@ spa.dates = (function () {
       matchString = /(\-*(\d+)y )*(\-*(\d+)m )*(\-*(\d+)d)*/,
       match = matchString.exec(duration),
       yrs, mos, days;
+
+    console.log("earlier: " + earlier);
+    console.log("later: " + later);
+    console.log("duration: " + duration);
+
     // Put them into input/display widgets
     // Set field values
     yrs = (match[2])?match[2]:'';
     mos = (match[4])?match[4]:'';
     days = (match[6])?match[6]:'';
+
+    console.log("years: "+yrs);
+    console.log("months: "+mos);
+    console.log("days: "+days);
+
     // Write them into boxes
     jqueryMap.$generic.find('.years').val(yrs);
     jqueryMap.$generic.find('.months').val(mos);
     jqueryMap.$generic.find('.days').val(days);
+
+    countDays();
     } // end /dateSpan
+
+  //--------------------------------------
+
+  countDays = function() {
+    var a = moment([2007, 0, 29]);
+    var b = moment([2007, 0, 28]);
+    console.log(a.diff(b, 'days'));   // =1
+  }
+  //--------------------------------------
 
   //--- end business logic methods
 
