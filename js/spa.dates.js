@@ -143,6 +143,9 @@ spa.dates = (function () {
     console.log("earlier: " + earlier);
     console.log("later: " + later);
     console.log("duration: " + duration);
+    console.log("diff: " + earlier.diff(later, 'days'));
+    //
+    countDays(earlier, later);
 
     // Put them into input/display widgets
     // Set field values
@@ -159,15 +162,13 @@ spa.dates = (function () {
     jqueryMap.$generic.find('.months').val(mos);
     jqueryMap.$generic.find('.days').val(days);
 
-    countDays();
     } // end /dateSpan
 
   //--------------------------------------
-
-  countDays = function() {
-    var a = moment([2007, 0, 29]);
-    var b = moment([2007, 0, 28]);
-    console.log(a.diff(b, 'days'));   // =1
+  // count # of days between two dates
+  countDays = function(starting, ending) {
+    var duration = ending.diff(starting, 'days')
+    console.log("countDays: " + duration);   // =1
   }
   //--------------------------------------
 
