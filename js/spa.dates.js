@@ -111,7 +111,7 @@ spa.dates = (function () {
     initModule, copyAnchorMap, setJqueryMap, setClicks,
     calcStartYear, postSection, operation, doDateCalc,
     generic, cemetery, genericView, buttonText,
-    swapSection, dateSpan, countDays;
+    swapSection, dateSpan, countDays, countMD;
   //--- end local variables
 
   //--- Business logic
@@ -169,6 +169,11 @@ spa.dates = (function () {
   countDays = function(starting, ending) {
     var duration = ending.diff(starting, 'days')
     console.log("countDays: " + duration);   // =1
+  }
+
+  // count days and months, but not years
+  countMD = function(starting, ending) {
+
   }
   //--------------------------------------
 
