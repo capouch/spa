@@ -21,39 +21,54 @@ spa.dates = (function () {
       generic_html: String()
       +'<h3>Generic Date View</h3>'
       +'<div class="row">'
-      +'<!-- form- classes are Bootstrap to allow for responsiveness -->'
-      +'<div class="form-group col-md-3 col-xs-8">'
+        +'<!-- form- classes are Bootstrap to allow for responsiveness -->'
+        +'<div class="form-group col-md-3 col-xs-8">'
 
-      +'<label class="control-label" for="startDate">Start</label>'
-      +'<input class="form-control" type="date" id="startDate" />'
-      +'<br/>'
-      +'<label class="control-label" for="finishDate">End <b>(Date of interest)</b></label>'
-      +'<input class="form-control finishDate" type="date" />'
+          +'<label class="control-label" for="startDate">Start</label>'
+          +'<input class="form-control" type="date" id="startDate" />'
+          +'<br/>'
+          +'<label class="control-label" for="finishDate">End <b>(Date of interest)</b></label>'
+          +'<input class="form-control finishDate" type="date" />'
+        +'</div>'
+        +'<div class="form-group col-md-3 col-xs-8 col-sm-4">'
+          +'<label class="control-label" for="years">Years </label>'
+          +'<input class="form-control years" type="number" maxlength="3" />'
+          +'<br/>'
+          +'<label class="control-label" for="months">Months</label>'
+          +'<input class="form-control months" type="number" maxlength="2"  />'
+          +'<br/>'
+          +'<div class="form-group col-md-13 col-xs-13">'
+            +'<label class="control-label" for="days">Days </label>'
+            +'<input class="form-control days" type="number" maxlength="2"  />'
+
+            +'<label class="radio-inline" for="radio1">'
+              +'<input class="radio" type="radio" name="gen_whichOp" id="gen_opcode" value="add">Add'
+            +'</label>'
+            +'<br/>'
+            +'<label class="radio-inline" for="radio2">'
+              +'<input class="radio" type="radio" name="gen_whichOp" value="sub" checked>Subtract'
+            +'</label>'
+
+          +'</div>'
+        +'</div>'
+        +'<br/>'
       +'</div>'
-      +'<div class="form-group col-md-3 col-xs-8 col-sm-4">'
-      +'<label class="control-label" for="years">Years </label>'
-      +'<input class="form-control years" type="number" maxlength="3" />'
-      +'<br/>'
-      +'<label class="control-label" for="months">Months</label>'
-      +'<input class="form-control months" type="number" maxlength="2"  />'
-      +'<br/>'
+
       +'<div class="form-group col-md-13 col-xs-13">'
-      +'<label class="control-label" for="days">Days </label>'
-      +'<input class="form-control days" type="number" maxlength="2"  />'
+        +'<label class="control-label" for="format">Format: </label>'
 
-      +'<label class="radio-inline" for="radio1">'
-      +'<input class="radio" type="radio" name="gen_whichOp" id="gen_opcode" value="add">Add'
-      +'</label>'
+        +'<label class="radio-inline" for="radio1">'
+          +'<input class="radio dayRadio" type="radio" name="gen_whichOp" id="gen_opcode" value="add">Days'
+        +'</label>'
+        +'<label class="radio-inline" for="radio2">'
+          +'<input class="radio dmRadio" type="radio" name="gen_whichOp" value="sub">Days/Months'
+        +'</label>'
+        +'<label class="radio-inline" for="radio2">'
+          +'<input class="radio dmyRadio" type="radio" name="gen_whichOp" value="sub" checked>Days/Months/Years'
+        +'</label>'
+      +'</div>'
+
       +'<br/>'
-      +'<label class="radio-inline" for="radio2">'
-      +'<input class="radio" type="radio" name="gen_whichOp" value="sub" checked>Subtract'
-      +'</label>'
-
-      +'</div>'
-      +'</div>'
-      +'<br/>'
-      +'</div>'
-
       +'<input type="button" value="Calc" class="btn btn-success btn-lg calcButton" id="calcButton" />'
       +'<input type="button" value="Clear" class="btn btn-danger btn-lg clearButton" id="clearButton" />'
       +'<aside class="output">Target:</aside>'
@@ -63,34 +78,37 @@ spa.dates = (function () {
       cemetery_html: String()
       +'<h3>Cemetery Date View</h3>'
       +'<div class="row">'
-      +'<div class="form-group col-md-3 col-xs-8">'
-      +'<label class="control-label" for="finishDate">Death Date</label>'
-      +'<br/>'
-      +'<input type="date" class="form-control finishDate" />'
+        +'<div class="form-group col-md-3 col-xs-8">'
+          +'<label class="control-label" for="finishDate">Death Date</label>'
+          +'<br/>'
+          +'<input type="date" class="form-control finishDate" />'
+        +'</div>'
+
+        +'<div class="form-group col-md-3 col-xs-8">'
+          +'<label class="control-label" for="years">Years </label>'
+          +'<input type="number" maxlength="3" class="form-control years" />'
+          +'<br/>'
+          +'<label class="control-label" for="months">Months</label>'
+          +'<input type="number" maxlength="2" class="form-control months" />'
+          +'<br/>'
+          +'<div class="form-group col-md-13 col-xs-13">'
+            +'<label class="control-label" for="days">Days </label>'
+            +'<input type="number" maxlength="2" class="form-control days" />'
+            +'<label class="radio-inline" for="radio1">'
+              +'<input type="radio" class="add" name="cem_whichOp" value="add" > Add'
+            +'</label>'
+            +'<br/>'
+            +'<label class="radio-inline" for="radio2">'
+              +'<input type="radio" class="add" name="cem_whichOp" value="sub" id="cem_default" checked> Subtract'
+            +'</label>'
+          +'</div>'
+        +'</div>'
       +'</div>'
 
-      +'<div class="form-group col-md-3 col-xs-8">'
-      +'<label class="control-label" for="years">Years </label>'
-      +'<input type="number" maxlength="3" class="form-control years" />'
-      +'<br/>'
-      +'<label class="control-label" for="months">Months</label>'
-      +'<input type="number" maxlength="2" class="form-control months" />'
-      +'<br/>'
-      +'<div class="form-group col-md-13 col-xs-13">'
-      +'<label class="control-label" for="days">Days </label>'
-      +'<input type="number" maxlength="2" class="form-control days" />'
-      +'<label class="radio-inline" for="radio1">'
-      +'<input type="radio" class="add" name="cem_whichOp" value="add" > Add'
-      +'</label>'
-      +'<br/>'
-      +'<label class="radio-inline" for="radio2">'
-      +'<input type="radio" class="add" name="cem_whichOp" value="sub" id="cem_default" checked> Subtract'
-      +'</label>'
+      +'<div id="calc">'
+        +'<input type="button" value="Calc" class="btn btn-success btn-lg calcButton" />'
+        +'<input type="button" value="Clear" class="btn btn-danger btn-lg clearButton" />'
       +'</div>'
-      +'</div>'
-      +'</div>'
-      +'<input type="button" value="Calc" class="btn btn-success btn-lg calcButton" />'
-      +'<input type="button" value="Clear" class="btn btn-danger btn-lg clearButton" />'
       +'<aside class="output">Target:</aside>'
       +'<br/>'
       },
@@ -144,6 +162,14 @@ spa.dates = (function () {
     console.log("later: " + later);
     console.log("duration: " + duration);
     console.log("diff: " + earlier.diff(later, 'days'));
+
+    if (jqueryMap.$generic.find('.dayRadio').checked){
+      // display number of days
+    } else if (jqueryMap.$generic.find('.dmRadio').checked) {
+      // display number of months and days
+    } else {
+      // display years monts days
+    }
     //
     countDays(earlier, later);
 
@@ -160,7 +186,7 @@ spa.dates = (function () {
     // Write them into boxes
     jqueryMap.$generic.find('.years').val(yrs);
     jqueryMap.$generic.find('.months').val(mos);
-    jqueryMap.$generic.find('.days').val(days);
+    //jqueryMap.$generic.find('.days').val(days);
 
     } // end /dateSpan
 
@@ -169,6 +195,7 @@ spa.dates = (function () {
   countDays = function(starting, ending) {
     var duration = ending.diff(starting, 'days')
     console.log("countDays: " + duration);   // =1
+    jqueryMap.$generic.find('.days').val(duration);
   }
 
   // count days and months, but not years
@@ -200,7 +227,8 @@ spa.dates = (function () {
       $cemDays       : $container.find('#cemeteryDate').find('.days'),
 
       $genClear      : $container.find('#genericDate').find('.clearButton'),
-      $cemClear      : $container.find('#cemeteryDate').find('.clearButton')
+      $cemClear      : $container.find('#cemeteryDate').find('.clearButton'),
+
     };
   }; // end setJqueryMap
 
