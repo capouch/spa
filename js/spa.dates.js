@@ -129,7 +129,7 @@ spa.dates = (function () {
     initModule, copyAnchorMap, setJqueryMap, setClicks,
     calcStartYear, postSection, operation, doDateCalc,
     generic, cemetery, genericView, buttonText,
-    swapSection, dateSpan, countDays, countMD;
+    swapSection, dateSpan, countDays, countMD, countMDY;
   //--- end local variables
 
   //--- Business logic
@@ -163,20 +163,6 @@ spa.dates = (function () {
     console.log("duration: " + duration);
     console.log("diff: " + earlier.diff(later, 'days'));
 
-    // check wich format is chacked
-    if (document.getElementById('dayRadio').checked){
-      // display number of days
-      console.log("day is checked <<<<<<<");
-    } else if (document.getElementById('dmRadio').checked) {
-      // display number of months and days
-      console.log("day/months is checked <<<<<<<");
-    } else {
-      // display years months days
-      console.log("day/months/years is checked <<<<<<<");
-    }
-    //
-    countDays(earlier, later);
-
     // Put them into input/display widgets
     // Set field values
     yrs = (match[2])?match[2]:'';
@@ -187,9 +173,24 @@ spa.dates = (function () {
     console.log("months: "+mos);
     console.log("days: "+days);
 
+    // check wich format is chacked
+    if (document.getElementById('dayRadio').checked){
+      // display number of days
+      console.log("day is checked <<<<<<<");
+      countDays(earlier, later);
+    } else if (document.getElementById('dmRadio').checked) {
+      // display number of months and days
+      console.log("day/months is checked <<<<<<<");
+      countMD(days, mos, yrs);
+    } else {
+      // display years months days
+      console.log("day/months/years is checked <<<<<<<");
+      countMDY(yrs, mos, days);
+    }
+
     // Write them into boxes
-    jqueryMap.$generic.find('.years').val(yrs);
-    jqueryMap.$generic.find('.months').val(mos);
+    //jqueryMap.$generic.find('.years').val(yrs);
+    //jqueryMap.$generic.find('.months').val(mos);
     //jqueryMap.$generic.find('.days').val(days);
 
     } // end /dateSpan
@@ -203,8 +204,19 @@ spa.dates = (function () {
   }
 
   // count days and months, but not years
-  countMD = function(starting, ending) {
+  countMD = function(days, months, years) {
+    jqueryMap.$generic.find('.days').val(days);
+    // prepending the + to variables or numbers makes javascript recognize them as numbers
+    var duration = +months + +years * 12;
+    jqueryMap.$generic.find('.months').val( duration );
+  }
 
+  // days/months/years
+  countMDY = function(yrs, mos, days) {
+    // Write them into boxes
+    jqueryMap.$generic.find('.years').val(yrs);
+    jqueryMap.$generic.find('.months').val(mos);
+    jqueryMap.$generic.find('.days').val(days);
   }
   //--------------------------------------
 
