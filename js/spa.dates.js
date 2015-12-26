@@ -30,7 +30,7 @@ spa.dates = (function () {
           +'<label class="control-label" for="finishDate">End <b>(Date of interest)</b></label>'
           +'<input class="form-control finishDate" type="date" />'
         +'</div>'
-        +'<div class="form-group col-md-3 col-xs-8 col-sm-4">'
+        +'<div class="form-group col-md-3 col-xs-8 col-sm-4" id="gen_ymd">'
           +'<label class="control-label" for="years">Years </label>'
           +'<input class="form-control years" type="number" maxlength="3" />'
           +'<br/>'
@@ -245,6 +245,8 @@ spa.dates = (function () {
       $genClear      : $container.find('#genericDate').find('.clearButton'),
       $cemClear      : $container.find('#cemeteryDate').find('.clearButton'),
 
+      $genYmd        : $container.find('#gen_ymd')
+
     };
   }; // end setJqueryMap
 
@@ -321,6 +323,7 @@ spa.dates = (function () {
 
     // Click handler for Calc buttons
     jqueryMap.$genCalcButton.click(function() {
+      clear(jqueryMap.$genYmd);
       // In genericDate view, Calc button has two functions
       if ($container.find('#startDate').val() && $container.find('.finishDate').val())
         // Figure distance between two dates
