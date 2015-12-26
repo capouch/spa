@@ -58,13 +58,13 @@ spa.dates = (function () {
         +'<label class="control-label" for="format">Format: </label>'
 
         +'<label class="radio-inline" for="radio1">'
-          +'<input class="radio dayRadio" type="radio" name="gen_whichOp" id="gen_opcode" value="add">Days'
+          +'<input class="radio" type="radio" name="gen_whichOpF" id="dayRadio" value="add">Days'
         +'</label>'
         +'<label class="radio-inline" for="radio2">'
-          +'<input class="radio dmRadio" type="radio" name="gen_whichOp" value="sub">Days/Months'
+          +'<input class="radio" type="radio" name="gen_whichOpF" id="dmRadio" value="sub">Days/Months'
         +'</label>'
         +'<label class="radio-inline" for="radio2">'
-          +'<input class="radio dmyRadio" type="radio" name="gen_whichOp" value="sub" checked>Days/Months/Years'
+          +'<input class="radio dmyRadio" type="radio" name="gen_whichOpF" value="sub" checked>Days/Months/Years'
         +'</label>'
       +'</div>'
 
@@ -163,12 +163,16 @@ spa.dates = (function () {
     console.log("duration: " + duration);
     console.log("diff: " + earlier.diff(later, 'days'));
 
-    if (jqueryMap.$generic.find('.dayRadio').checked){
+    // check wich format is chacked
+    if (document.getElementById('dayRadio').checked){
       // display number of days
-    } else if (jqueryMap.$generic.find('.dmRadio').checked) {
+      console.log("day is checked <<<<<<<");
+    } else if (document.getElementById('dmRadio').checked) {
       // display number of months and days
+      console.log("day/months is checked <<<<<<<");
     } else {
-      // display years monts days
+      // display years months days
+      console.log("day/months/years is checked <<<<<<<");
     }
     //
     countDays(earlier, later);
